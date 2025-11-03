@@ -17,7 +17,9 @@
     <None Remove="Resources\help.png" />
     <None Remove="Resources\home.png" />
     <None Remove="Resources\left-arrow-circle.png" />
+    <None Remove="Resources\profile.png" />
     <None Remove="Resources\right-arrow-circle.png" />
+    <None Remove="Resources\setting.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -51,7 +53,13 @@
     <Resource Include="Resources\left-arrow-circle.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Resources\profile.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\right-arrow-circle.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\setting.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

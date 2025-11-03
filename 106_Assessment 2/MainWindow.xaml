@@ -33,7 +33,29 @@
             </Button>
 
             <StackPanel Grid.Row="1">
+                <StackPanel.Resources>
+                    <Style TargetType="userControls:SidebarBtn">
+                        <Setter Property="Margin" Value="0 10"/>
+                    </Style>
+                </StackPanel.Resources>
+                
                 <userControls:SidebarBtn PageIcon="/Resources/home.png" PageName="Home"/>
+                <userControls:SidebarBtn PageIcon="/Resources/calendar.png" PageName="Events / Booking"/>
+                <userControls:SidebarBtn PageIcon="/Resources/compass.png" PageName="Things to do"/>
+                <userControls:SidebarBtn PageIcon="/Resources/book.png" PageName="Park Information"/>
+                <userControls:SidebarBtn PageIcon="/Resources/community.png" PageName="Community"/>
+                <userControls:SidebarBtn PageIcon="/Resources/help.png" PageName="Help / Contact"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="2">
+                <StackPanel.Resources>
+                    <Style TargetType="userControls:SidebarBtn">
+                        <Setter Property="Margin" Value="0 10"/>
+                    </Style>
+                </StackPanel.Resources>
+
+                <userControls:SidebarBtn PageIcon="/Resources/profile.png" PageName="Sign In"/>
+                <userControls:SidebarBtn PageIcon="/Resources/setting.png" PageName="Settings"/>
             </StackPanel>
         </Grid>
     </Grid>
