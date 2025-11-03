@@ -10,6 +10,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\book.png" />
+    <None Remove="Resources\calendar.png" />
+    <None Remove="Resources\community.png" />
+    <None Remove="Resources\compass.png" />
+    <None Remove="Resources\help.png" />
+    <None Remove="Resources\home.png" />
     <None Remove="Resources\left-arrow-circle.png" />
     <None Remove="Resources\right-arrow-circle.png" />
   </ItemGroup>
@@ -24,6 +30,24 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\book.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\calendar.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\community.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\compass.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\help.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\home.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\left-arrow-circle.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>

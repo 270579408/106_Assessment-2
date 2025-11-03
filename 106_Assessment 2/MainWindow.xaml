@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_106_Assessment_2"
+        xmlns:userControls="clr-namespace:_106_Assessment_2.View.UserControls"
         mc:Ignorable="d"
         Title="MainWindow" Height="1024" Width="1440"
         WindowState="Maximized"
@@ -26,12 +27,13 @@
                     Background="Transparent"
                     BorderBrush="Transparent"
                     Cursor="Hand"
-                    Grid.Row="0">
+                    Grid.Row="0"
+                    Margin="10 0">
                 <Image Source="/Resources/left-arrow-circle.png" Stretch="Fill"/>
             </Button>
 
             <StackPanel Grid.Row="1">
-                
+                <userControls:SidebarBtn PageIcon="/Resources/home.png" PageName="Home"/>
             </StackPanel>
         </Grid>
     </Grid>
