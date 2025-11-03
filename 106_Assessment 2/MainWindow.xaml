@@ -5,8 +5,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_106_Assessment_2"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="1024" Width="1440"
+        WindowState="Maximized"
+        WindowStartupLocation="CenterScreen">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            
+            <Button Height="60" Width="60" 
+                    HorizontalAlignment="Right"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    Cursor="Hand"
+                    Grid.Row="0">
+                <Image Source="/Resources/left-arrow-circle.png" Stretch="Fill"/>
+            </Button>
+
+            <StackPanel Grid.Row="1">
+                
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>
