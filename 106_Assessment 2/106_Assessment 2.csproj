@@ -10,6 +10,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Services\**" />
+    <Compile Remove="Utils\**" />
+    <EmbeddedResource Remove="Services\**" />
+    <EmbeddedResource Remove="Utils\**" />
+    <None Remove="Services\**" />
+    <None Remove="Utils\**" />
+    <Page Remove="Services\**" />
+    <Page Remove="Utils\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Resources\book.png" />
     <None Remove="Resources\calendar.png" />
     <None Remove="Resources\community.png" />
@@ -20,11 +31,6 @@
     <None Remove="Resources\profile.png" />
     <None Remove="Resources\right-arrow-circle.png" />
     <None Remove="Resources\setting.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Utils\" />
-    <Folder Include="Services\" />
   </ItemGroup>
 
   <ItemGroup>

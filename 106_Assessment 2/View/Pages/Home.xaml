@@ -3,11 +3,11 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       Title="Home">
 
-    <Grid>
-        <TextBlock Text="Welcome to the Home Page!" 
-                  FontSize="36" 
-                  HorizontalAlignment="Center" 
-                  VerticalAlignment="Center"/>
-
-    </Grid>
+    <StackPanel>
+        <TextBox Width="200" Height="30" Name="name_input"/>
+        <TextBox Width="200" Height="30" Name="email_input"/>
+        <TextBox Width="200" Height="30" Name="phone_input"/>
+        <TextBox Width="200" Height="30" Name="interest_input"/>
+        <Button Width="100" Height="30" Content="Submit" Click="Submit_Click"/>
+    </StackPanel>
 </Page>
