@@ -25,6 +25,8 @@
     <None Remove="Resources\calendar.png" />
     <None Remove="Resources\community.png" />
     <None Remove="Resources\compass.png" />
+    <None Remove="Resources\event1.jpg" />
+    <None Remove="Resources\Fonts\IrishGrover-Regular.ttf" />
     <None Remove="Resources\help.png" />
     <None Remove="Resources\home.png" />
     <None Remove="Resources\left-arrow-circle.png" />
@@ -48,6 +50,12 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\compass.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\event1.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Fonts\IrishGrover-Regular.ttf">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\help.png">

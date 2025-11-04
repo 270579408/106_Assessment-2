@@ -1,13 +1,43 @@
 ﻿<Page x:Class="_106_Assessment_2.View.Pages.Home"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      Title="Home">
+      Title="Home"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d"
+      d:DesignHeight="1024"
+      d:DesignWidth="1140">
 
-    <StackPanel>
-        <TextBox Width="200" Height="30" Name="name_input"/>
-        <TextBox Width="200" Height="30" Name="email_input"/>
-        <TextBox Width="200" Height="30" Name="phone_input"/>
-        <TextBox Width="200" Height="30" Name="interest_input"/>
-        <Button Width="100" Height="30" Content="Submit" Click="Submit_Click"/>
-    </StackPanel>
+    <Grid>
+        <Grid Height="600" VerticalAlignment="Top">
+            <Image x:Name="FeaturedEventsBannerImg" 
+                   Stretch="UniformToFill" 
+                   VerticalAlignment="Center"
+                   Source="/Resources/event1.jpg"/>
+
+            <Rectangle>
+                <Rectangle.Fill>
+                    <LinearGradientBrush EndPoint="1,0" StartPoint="0,0">
+                        <GradientStop Color="#CC000000" Offset="0"/>
+                        <GradientStop Color="#00000000" Offset="1"/>
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+
+            <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
+                <TextBlock x:Name="FeaturedEventsTitle" 
+                           FontSize="36" 
+                           FontWeight="Bold" 
+                           Foreground="White"
+                           Text="Summer Festival 2025"
+                           FontFamily="Calibri"/>
+
+                <TextBlock x:Name="FeaturedEventsDescription" 
+                           FontSize="36" 
+                           FontWeight="Bold" 
+                           Foreground="White" 
+                           Text="Join us for a day of fun, food, and festivities at the annual Summer Festival!"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
 </Page>
