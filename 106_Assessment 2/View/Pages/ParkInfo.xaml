@@ -1,0 +1,9 @@
+﻿<Page x:Class="_106_Assessment_2.View.Pages.ParkInfo"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="ParkInfo">
+
+    <Grid>
+        <TextBlock Text="Park Info Page" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24"/>
+    </Grid>
+</Page>

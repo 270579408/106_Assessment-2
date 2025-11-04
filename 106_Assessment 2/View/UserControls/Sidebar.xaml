@@ -40,10 +40,10 @@
 
             <userControls:SidebarBtn PageIcon="/Resources/home.png" PageName="Home" ButtonClicked="home_clicked"/>
             <userControls:SidebarBtn PageIcon="/Resources/calendar.png" PageName="Events / Booking" ButtonClicked="events_clicked"/>
-            <userControls:SidebarBtn PageIcon="/Resources/compass.png" PageName="Things to do"/>
-            <userControls:SidebarBtn PageIcon="/Resources/book.png" PageName="Park Information"/>
-            <userControls:SidebarBtn PageIcon="/Resources/community.png" PageName="Community"/>
-            <userControls:SidebarBtn PageIcon="/Resources/help.png" PageName="Help / Contact"/>
+            <userControls:SidebarBtn PageIcon="/Resources/compass.png" PageName="Things to do" ButtonClicked="activities_clicked"/>
+            <userControls:SidebarBtn PageIcon="/Resources/book.png" PageName="Park Information" ButtonClicked="parkInfo_clicked"/>
+            <userControls:SidebarBtn PageIcon="/Resources/community.png" PageName="Community" ButtonClicked="community_clicked"/>
+            <userControls:SidebarBtn PageIcon="/Resources/help.png" PageName="Help / Contact" ButtonClicked="help_clicked"/>
         </StackPanel>
 
         <StackPanel Grid.Row="2">
@@ -53,8 +53,8 @@
                 </Style>
             </StackPanel.Resources>
 
-            <userControls:SidebarBtn PageIcon="/Resources/profile.png" PageName="Sign In"/>
-            <userControls:SidebarBtn PageIcon="/Resources/setting.png" PageName="Settings"/>
+            <userControls:SidebarBtn PageIcon="/Resources/profile.png" PageName="Sign In" ButtonClicked="account_clicked"/>
+            <userControls:SidebarBtn PageIcon="/Resources/setting.png" PageName="Settings" ButtonClicked="settings_clicked"/>
         </StackPanel>
     </Grid>
 </UserControl>

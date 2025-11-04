@@ -23,6 +23,30 @@ namespace _106_Assessment_2
                     MainFrame.Navigate(new View.Pages.Events());
                     break;
 
+                case "activities":
+                    MainFrame.Navigate(new View.Pages.Activities());
+                    break;
+
+                case "parkInfo":
+                    MainFrame.Navigate(new View.Pages.ParkInfo());
+                    break;
+
+                case "community":
+                    MainFrame.Navigate(new View.Pages.Community());
+                    break;
+
+                case "help":
+                    MainFrame.Navigate(new View.Pages.Help());
+                    break;
+
+                case "account":
+                    MainFrame.Navigate(new View.Pages.Account());
+                    break;
+
+                case "settings":
+                    MainFrame.Navigate(new View.Pages.Settings());
+                    break;
+
                 default:
                     break;
 
