@@ -15,6 +15,10 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <userControls:Sidebar Grid.Column="0"/>
+        <userControls:Sidebar Grid.Column="0" x:Name="SidebarControl"/>
+
+        <Frame Grid.Column="1" 
+               x:Name="MainFrame" 
+               NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>

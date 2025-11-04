@@ -11,7 +11,14 @@ namespace _106_Assessment_2.View.UserControls
         public SidebarBtn()
         {
             InitializeComponent();
+
+            InnerButton.Click += (s, e) =>
+            {
+                ButtonClicked?.Invoke(this, e);
+            };
         }
+
+        public event RoutedEventHandler ButtonClicked;
 
         public static readonly DependencyProperty PageNameProperty =
             DependencyProperty.Register(

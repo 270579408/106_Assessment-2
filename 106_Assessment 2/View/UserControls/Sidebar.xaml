@@ -38,8 +38,8 @@
                 </Style>
             </StackPanel.Resources>
 
-            <userControls:SidebarBtn PageIcon="/Resources/home.png" PageName="Home"/>
-            <userControls:SidebarBtn PageIcon="/Resources/calendar.png" PageName="Events / Booking"/>
+            <userControls:SidebarBtn PageIcon="/Resources/home.png" PageName="Home" ButtonClicked="home_clicked"/>
+            <userControls:SidebarBtn PageIcon="/Resources/calendar.png" PageName="Events / Booking" ButtonClicked="events_clicked"/>
             <userControls:SidebarBtn PageIcon="/Resources/compass.png" PageName="Things to do"/>
             <userControls:SidebarBtn PageIcon="/Resources/book.png" PageName="Park Information"/>
             <userControls:SidebarBtn PageIcon="/Resources/community.png" PageName="Community"/>
