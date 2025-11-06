@@ -1,11 +1,7 @@
-﻿using _106_Assessment_2.Commons;
-using _106_Assessment_2.Models;
+﻿using _106_Assessment_2.Models;
 using _106_Assessment_2.ViewModels;
 using MongoDB.Driver;
-using System.Timers;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
