@@ -8,7 +8,7 @@
       d:DesignHeight="1024"
       d:DesignWidth="1140">
 
-    <Grid>
+    <StackPanel Height="Auto" Background="White">
         <Grid Height="600" VerticalAlignment="Top">
             <Image x:Name="FeaturedEventsBannerImg" 
                    Stretch="UniformToFill" 
@@ -86,5 +86,49 @@
                 </StackPanel>
             </StackPanel>
         </Grid>
-    </Grid>
+
+        <StackPanel>
+            <TextBlock Text="Upcoming Events" 
+                       FontSize="32"
+                       Margin="30 50 30 0 "/>
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" 
+                          VerticalScrollBarVisibility="Disabled" 
+                          Margin="30 20 0 0">
+                <ItemsControl ItemsSource="{Binding AllEvents}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                            <Grid Width="250" Height="270" Margin="0 0 20 0">
+                                <Image Source="{Binding ImageUrl}" 
+                                       Stretch="UniformToFill" 
+                                       VerticalAlignment="Center"/>
+
+                                <Rectangle>
+                                    <Rectangle.Fill>
+                                        <LinearGradientBrush EndPoint="0,0" StartPoint="0,1">
+                                            <GradientStop Color="#CC000000" Offset="0"/>
+                                            <GradientStop Color="#00000000" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Rectangle.Fill>
+                                </Rectangle>
+
+                                <StackPanel VerticalAlignment="Bottom"
+                                            Margin="15">
+                                    <TextBlock Text="{Binding Title}" 
+                                               FontSize="20"
+                                               Foreground="White"
+                                               TextWrapping="Wrap"/>
+                                </StackPanel>
+                            </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+            </ScrollViewer>
+        </StackPanel>
+    </StackPanel>
 </Page>

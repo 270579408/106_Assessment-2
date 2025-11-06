@@ -15,20 +15,23 @@ namespace _106_Assessment_2.View.Pages
         private DispatcherTimer _timer;
         private int _currentIndex = 0;
 
-        private List<Event> _featuredEvents;
+        public List<Event> AllEvents { get; set; }
+        private List<Event> FeaturedEvents;
 
         public Home()
         {
             InitializeComponent();
             _eventViewModel = new EventViewModel();
 
-            _featuredEvents = _eventViewModel.GetAllEvents();
-            _featuredEvents = _featuredEvents
+            AllEvents = _eventViewModel.GetAllEvents();
+            FeaturedEvents = AllEvents
                 .Where(ev => ev.Tag != null && ev.Tag.Contains("f"))
                 .ToList();
 
             ShowBanner(_currentIndex);
             StartBannerRotation();
+
+            DataContext = this;
         }
 
         private void ShowBanner(int index)
@@ -37,9 +40,9 @@ namespace _106_Assessment_2.View.Pages
 
             fadeOut.Completed += (s, e) =>
             {
-                FeaturedEventsBannerImg.Source = new BitmapImage(new Uri(_featuredEvents[index].ImageUrl, UriKind.Absolute));
-                FeaturedEventsTitle.Text = _featuredEvents[index].Title;
-                FeaturedEventsDescription.Text = _featuredEvents[index].Description;
+                FeaturedEventsBannerImg.Source = new BitmapImage(new Uri(FeaturedEvents[index].ImageUrl, UriKind.Absolute));
+                FeaturedEventsTitle.Text = FeaturedEvents[index].Title;
+                FeaturedEventsDescription.Text = FeaturedEvents[index].Description;
 
                 var fadeIn = new DoubleAnimation(0, 1, TimeSpan.FromSeconds(0.5));
                 FeaturedEventsBannerImg.BeginAnimation(OpacityProperty, fadeIn);
@@ -56,7 +59,7 @@ namespace _106_Assessment_2.View.Pages
             _timer.Interval = TimeSpan.FromSeconds(10); 
             _timer.Tick += (s, e) =>
             {
-                _currentIndex = (_currentIndex + 1) % _featuredEvents.Count;
+                _currentIndex = (_currentIndex + 1) % FeaturedEvents.Count;
                 ShowBanner(_currentIndex);
             };
             _timer.Start();
@@ -73,14 +76,14 @@ namespace _106_Assessment_2.View.Pages
 
         private void prevButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            _currentIndex = (_currentIndex - 1 + _featuredEvents.Count) % _featuredEvents.Count;
+            _currentIndex = (_currentIndex - 1 + FeaturedEvents.Count) % FeaturedEvents.Count;
             ShowBanner(_currentIndex);
             ResetBannerTimer();
         }
 
         private void nextButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            _currentIndex = (_currentIndex + 1) % _featuredEvents.Count;
+            _currentIndex = (_currentIndex + 1) % FeaturedEvents.Count;
             ShowBanner(_currentIndex);
             ResetBannerTimer();
         }

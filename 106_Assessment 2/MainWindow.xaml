@@ -15,7 +15,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <userControls:Sidebar Grid.Column="0" x:Name="SidebarControl"/>
+        <userControls:Sidebar Grid.Column="0" x:Name="SidebarControl" Panel.ZIndex="1"/>
 
         <Frame Grid.Column="1" 
                x:Name="MainFrame" 
