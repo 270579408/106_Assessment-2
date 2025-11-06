@@ -1,7 +1,10 @@
-﻿using System.Windows;
+﻿using System.Timers;
+using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
+using System.Windows.Media.Animation;
+using System.Windows.Threading;
 using System.Windows.Media.Imaging;
+
 
 class Banner
 {
@@ -18,11 +21,7 @@ namespace _106_Assessment_2.View.Pages
 {
     public partial class Home : Page
     {
-        public Home()
-        {
-            InitializeComponent();
-
-            List<Banner> banners = new List<Banner>()
+        private List<Banner> _banners = new List<Banner>()
             {
                 new Banner
                 {
@@ -66,9 +65,68 @@ namespace _106_Assessment_2.View.Pages
                 }
             };
 
-            FeaturedEventsBannerImg.Source = new BitmapImage(new Uri(banners[0].ImageUrl, UriKind.Relative));
-            FeaturedEventsTitle.Text = banners[0].Title;
-            FeaturedEventsDescription.Text = banners[0].Description;
+        private DispatcherTimer _timer;
+        private int _currentIndex = 0;
+
+        public Home()
+        {
+            InitializeComponent();
+
+            ShowBanner(_currentIndex);
+            StartBannerRotation();
+        }
+
+        private void ShowBanner(int index)
+        {
+            var fadeOut = new DoubleAnimation(1, 0, TimeSpan.FromSeconds(0.5));
+            fadeOut.Completed += (s, e) =>
+            {
+                FeaturedEventsBannerImg.Source = new BitmapImage(new Uri(_banners[index].ImageUrl, UriKind.Relative));
+                FeaturedEventsTitle.Text = _banners[index].Title;
+                FeaturedEventsDescription.Text = _banners[index].Description;
+
+                var fadeIn = new DoubleAnimation(0, 1, TimeSpan.FromSeconds(0.5));
+                FeaturedEventsBannerImg.BeginAnimation(OpacityProperty, fadeIn);
+            };
+            FeaturedEventsBannerImg.BeginAnimation(OpacityProperty, fadeOut);
+        }
+
+        private void StartBannerRotation()
+        {
+            if (_timer != null)
+                _timer.Stop(); // stop existing timer
+
+            _timer = new DispatcherTimer();
+            _timer.Interval = TimeSpan.FromSeconds(4); // rotate every 4 seconds
+            _timer.Tick += (s, e) =>
+            {
+                _currentIndex = (_currentIndex + 1) % _banners.Count;
+                ShowBanner(_currentIndex);
+            };
+            _timer.Start();
+        }
+
+        private void ResetBannerTimer()
+        {
+            if (_timer != null)
+            {
+                _timer.Stop();
+                _timer.Start(); // restart timer
+            }
+        }
+
+        private void prevButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            _currentIndex = (_currentIndex - 1 + _banners.Count) % _banners.Count;
+            ShowBanner(_currentIndex);
+            ResetBannerTimer();
+        }
+
+        private void nextButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            _currentIndex = (_currentIndex + 1) % _banners.Count;
+            ShowBanner(_currentIndex);
+            ResetBannerTimer();
         }
     }
 }
