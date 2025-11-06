@@ -8,10 +8,7 @@ namespace _106_Assessment_2.Models
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
-
-        [BsonElement("imageUrl")]
-        public string ImageUrl { get; set; }
-
+        
         [BsonElement("title")]
         public string Title { get; set; }
 
@@ -26,5 +23,11 @@ namespace _106_Assessment_2.Models
 
         [BsonElement("tag")]
         public string Tag { get; set; }
+
+        [BsonElement("registeredUserIds")]
+        public int RegisteredUserIds { get; set; }
+
+        [BsonElement("imageUrl")]
+        public string ImageUrl { get; set; }
     }
 }
