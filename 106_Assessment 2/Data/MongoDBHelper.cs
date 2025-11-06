@@ -8,7 +8,7 @@ namespace _106_Assessment_2.Data
 
         public MongoDBHelper()
         {
-            var connectionString = "mongodb+srv://sachin:sachin989@onewhero-bay-heritage-p.zsc2img.mongodb.net/?appName=Onewhero-Bay-Heritage-Park";
+            var connectionString = "mongodb+srv://270579408:S692718m@cluster0.xicz7cs.mongodb.net/?appName=Cluster0";
             var client = new MongoClient(connectionString);
 
             _database = client.GetDatabase("OnewheroBayPark");
