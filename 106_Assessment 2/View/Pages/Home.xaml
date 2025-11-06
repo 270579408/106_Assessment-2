@@ -12,8 +12,7 @@
         <Grid Height="600" VerticalAlignment="Top">
             <Image x:Name="FeaturedEventsBannerImg" 
                    Stretch="UniformToFill" 
-                   VerticalAlignment="Center"
-                   Source="/Resources/event1.jpg"/>
+                   VerticalAlignment="Center"/>
 
             <Rectangle>
                 <Rectangle.Fill>

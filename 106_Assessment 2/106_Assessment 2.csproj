@@ -87,8 +87,4 @@
     </Resource>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Commons\" />
-  </ItemGroup>
-
 </Project>
