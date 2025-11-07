@@ -205,22 +205,20 @@
             </StackPanel>
         
             <!-- Things to do section -->
-            <StackPanel Margin="0 50 0 50">
+            <StackPanel Margin="50">
                 <TextBlock Text="Things to do"
-                           FontSize="32"
-                           Margin="30 0 30 0 "/>
+                           FontSize="32"/>
 
-                <ItemsControl x:Name="ThingsToDoItemsControl"
-                              ItemsSource="{Binding AllActivities}">
+                <ItemsControl ItemsSource="{Binding AllActivities}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <StackPanel Orientation="Vertical"/>
+                            <WrapPanel Orientation="Horizontal" ItemWidth="400" ItemHeight="300"/>
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
 
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Grid Width="250" Height="270" Margin="0 0 20 0" x:Name="eventCard">
+                            <Grid Width="400" Height="300" Margin="0 20 20 20">
                                 <Image Source="{Binding ImageUrl}" 
                                        Stretch="UniformToFill" 
                                        VerticalAlignment="Center"/>
@@ -233,13 +231,18 @@
                                     </Rectangle.Fill>
                                 </Rectangle>
 
-                                <StackPanel VerticalAlignment="Bottom"
-                                            Margin="15">
+                                <StackPanel VerticalAlignment="Bottom" Margin="15 0 15 60">
                                     <TextBlock Text="{Binding Title}" 
-                                                FontSize="20"
+                                                FontSize="24"
+                                                Foreground="White"
+                                                FontWeight="SemiBold"
+                                                TextWrapping="Wrap"/>
+
+                                    <TextBlock Text="{Binding Description}" 
+                                                FontSize="16"
                                                 Foreground="White"
                                                 TextWrapping="Wrap"
-                                                Margin="0 10 0 0"/>
+                                                Margin="0 5 0 0"/>
                                 </StackPanel>
                             </Grid>
                         </DataTemplate>
