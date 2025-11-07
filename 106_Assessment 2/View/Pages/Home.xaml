@@ -6,7 +6,6 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:userControls="clr-namespace:_106_Assessment_2.View.UserControls"
       mc:Ignorable="d"
-      d:DesignHeight="1024"
       d:DesignWidth="1140">
 
     <ScrollViewer VerticalScrollBarVisibility="Auto"
@@ -203,6 +202,49 @@
                                             ActivityItemIcon="/Resources/community-golden.png"
                                             ActivityItemTitle="Community"/>
                 </Grid>
+            </StackPanel>
+        
+            <!-- Things to do section -->
+            <StackPanel Margin="0 50 0 50">
+                <TextBlock Text="Things to do"
+                           FontSize="32"
+                           Margin="30 0 30 0 "/>
+
+                <ItemsControl x:Name="ThingsToDoItemsControl"
+                              ItemsSource="{Binding AllActivities}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Vertical"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Width="250" Height="270" Margin="0 0 20 0" x:Name="eventCard">
+                                <Image Source="{Binding ImageUrl}" 
+                                       Stretch="UniformToFill" 
+                                       VerticalAlignment="Center"/>
+                                <Rectangle>
+                                    <Rectangle.Fill>
+                                        <LinearGradientBrush EndPoint="0,0" StartPoint="0,1">
+                                            <GradientStop Color="#CC000000" Offset="0"/>
+                                            <GradientStop Color="#00000000" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Rectangle.Fill>
+                                </Rectangle>
+
+                                <StackPanel VerticalAlignment="Bottom"
+                                            Margin="15">
+                                    <TextBlock Text="{Binding Title}" 
+                                                FontSize="20"
+                                                Foreground="White"
+                                                TextWrapping="Wrap"
+                                                Margin="0 10 0 0"/>
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
             </StackPanel>
         </StackPanel>
     </ScrollViewer>

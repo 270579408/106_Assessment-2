@@ -13,6 +13,7 @@ namespace _106_Assessment_2.View.Pages
     public partial class Home : Page
     {
         private readonly EventViewModel _eventViewModel;
+        private readonly ActivityViewModel _activityViewModel;
 
         private Point _startPoint;
         private double _startOffset;
@@ -23,16 +24,20 @@ namespace _106_Assessment_2.View.Pages
 
         public List<Event> AllEvents { get; set; }
         private List<Event> FeaturedEvents;
+        public List<Activity> AllActivities { get; set; }
 
         public Home()
         {
             InitializeComponent();
             _eventViewModel = new EventViewModel();
+            _activityViewModel = new ActivityViewModel();
 
             AllEvents = _eventViewModel.GetAllEvents();
             FeaturedEvents = AllEvents
                 .Where(ev => ev.Featured)
                 .ToList();
+
+            AllActivities = _activityViewModel.GetAllActivities();
 
             ShowBanner(_currentIndex);
             StartBannerRotation();

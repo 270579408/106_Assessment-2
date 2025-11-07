@@ -3,9 +3,6 @@ using System.Windows.Controls;
 
 namespace _106_Assessment_2.View.UserControls
 {
-    /// <summary>
-    /// Interaction logic for SidebarBtn.xaml
-    /// </summary>
     public partial class SidebarBtn : UserControl
     {
         public SidebarBtn()
