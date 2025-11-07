@@ -31,7 +31,7 @@ namespace _106_Assessment_2.View.Pages
 
             AllEvents = _eventViewModel.GetAllEvents();
             FeaturedEvents = AllEvents
-                .Where(ev => ev.Tag != null && ev.Tag.Contains("f"))
+                .Where(ev => ev.Featured)
                 .ToList();
 
             ShowBanner(_currentIndex);

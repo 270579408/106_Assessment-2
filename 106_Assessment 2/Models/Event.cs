@@ -1,5 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using System;
+using System.Collections.Generic;
 
 namespace _106_Assessment_2.Models
 {
@@ -8,7 +10,10 @@ namespace _106_Assessment_2.Models
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
-        
+
+        [BsonElement("imageUrl")]
+        public string ImageUrl { get; set; }
+
         [BsonElement("title")]
         public string Title { get; set; }
 
@@ -21,13 +26,13 @@ namespace _106_Assessment_2.Models
         [BsonElement("price")]
         public string Price { get; set; }
 
-        [BsonElement("tag")]
-        public string Tag { get; set; }
+        [BsonElement("tags")]
+        public List<string> Tags { get; set; } = new(); 
+
+        [BsonElement("featured")]
+        public bool Featured { get; set; }
 
         [BsonElement("registeredUserIds")]
-        public int RegisteredUserIds { get; set; }
-
-        [BsonElement("imageUrl")]
-        public string ImageUrl { get; set; }
+        public List<string> RegisteredUserIds { get; set; } = new();
     }
 }

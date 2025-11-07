@@ -21,8 +21,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Resources\badge-golden.png" />
     <None Remove="Resources\book.png" />
+    <None Remove="Resources\calendar-golden.png" />
     <None Remove="Resources\calendar.png" />
+    <None Remove="Resources\car-side-golden.png" />
+    <None Remove="Resources\community-golden.png" />
     <None Remove="Resources\community.png" />
     <None Remove="Resources\compass.png" />
     <None Remove="Resources\event1.jpg" />
@@ -31,6 +35,7 @@
     <None Remove="Resources\home.png" />
     <None Remove="Resources\left-arrow-circle-white.png" />
     <None Remove="Resources\left-arrow-circle.png" />
+    <None Remove="Resources\news-golden.png" />
     <None Remove="Resources\profile.png" />
     <None Remove="Resources\right-arrow-circle-white.png" />
     <None Remove="Resources\right-arrow-circle.png" />
@@ -43,10 +48,22 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\badge-golden.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\book.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Resources\calendar-golden.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\calendar.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\car-side-golden.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\community-golden.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\community.png">
@@ -71,6 +88,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\left-arrow-circle.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\news-golden.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\profile.png">

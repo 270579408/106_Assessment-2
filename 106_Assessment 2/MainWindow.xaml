@@ -19,6 +19,7 @@
 
         <Frame Grid.Column="1" 
                x:Name="MainFrame" 
-               NavigationUIVisibility="Hidden"/>
+               NavigationUIVisibility="Hidden"
+               />
     </Grid>
 </Window>
