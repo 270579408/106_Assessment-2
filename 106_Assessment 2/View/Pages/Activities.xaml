@@ -83,7 +83,39 @@
                            Margin="30 0 0 20"/>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <userControls:Items ItemIcon="/Resources/setting.png" ItemTitle="Settings"/>
+                    <userControls:Items ItemIcon="/Resources/clock-golden.png" 
+                                        ItemTitle="Opening Hours"
+                                        Margin="30 0"/>
+
+                    <userControls:Items ItemIcon="/Resources/ticket-golden.png" 
+                                        ItemTitle="Buy Tickets"
+                                        Margin="30 0"/>
+
+                    <userControls:Items ItemIcon="/Resources/map-golden.png" 
+                                        ItemTitle="Getting Here"
+                                        Margin="30 0"/>
+
+                    <userControls:Items ItemIcon="/Resources/calendar-golden.png" 
+                                        ItemTitle="Upcoming Events"
+                                        Margin="30 0"/>
+
+                    <userControls:Items ItemIcon="/Resources/leaf-maple-golden.png" 
+                                        ItemTitle="Facilities"
+                                        Margin="30 0"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <userControls:Items ItemIcon="/Resources/basket-golden.png" 
+                        ItemTitle="What to Bring?"
+                        Margin="30 0"/>
+
+                    <userControls:Items ItemIcon="/Resources/tiger-golden.png" 
+                        ItemTitle="Wildlife Encounters"
+                        Margin="30 0"/>
+
+                    <userControls:Items ItemIcon="/Resources/landmark-golden.png" 
+                        ItemTitle="Heritage and Culture"
+                        Margin="30 0"/>
                 </StackPanel>
             </StackPanel>
         </StackPanel>

@@ -8,14 +8,16 @@
     <Button Background="Transparent"
             BorderBrush="Transparent"
             BorderThickness="0"
-            Padding="10"
+            Padding="15"
             Cursor="Hand">
         <StackPanel>
-            <Image Source="{Binding ItemIcon}" Width="80" Height="80" />
-            <TextBlock Text="{Binding ItemTitle}" 
-                   FontSize="20" 
-                   TextAlignment="Center"
-                   Margin="0 10 0 0"/>
+            <Image Source="{Binding ItemIcon}" Width="60" Height="60" />
+            <TextBlock Text="{Binding ItemTitle}"
+                       Width="100"
+                       TextWrapping="Wrap"
+                       FontSize="20" 
+                       TextAlignment="Center"
+                       Margin="0 10 0 0"/>
         </StackPanel>
     </Button>
 </UserControl>

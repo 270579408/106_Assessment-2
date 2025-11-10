@@ -22,11 +22,13 @@
 
   <ItemGroup>
     <None Remove="Resources\badge-golden.png" />
+    <None Remove="Resources\basket-golden.png" />
     <None Remove="Resources\bird-in-mountain.jpg" />
     <None Remove="Resources\book.png" />
     <None Remove="Resources\calendar-golden.png" />
     <None Remove="Resources\calendar.png" />
     <None Remove="Resources\car-side-golden.png" />
+    <None Remove="Resources\clock-golden.png" />
     <None Remove="Resources\community-golden.png" />
     <None Remove="Resources\community.png" />
     <None Remove="Resources\compass.png" />
@@ -34,14 +36,20 @@
     <None Remove="Resources\Fonts\IrishGrover-Regular.ttf" />
     <None Remove="Resources\help.png" />
     <None Remove="Resources\home.png" />
+    <None Remove="Resources\landmark-golden.png" />
+    <None Remove="Resources\leaf-maple-golden.png" />
     <None Remove="Resources\left-arrow-circle-white.png" />
     <None Remove="Resources\left-arrow-circle.png" />
+    <None Remove="Resources\map-golden.png" />
     <None Remove="Resources\news-golden.png" />
     <None Remove="Resources\profile.png" />
     <None Remove="Resources\right-arrow-circle-white.png" />
     <None Remove="Resources\right-arrow-circle.png" />
     <None Remove="Resources\search-magnifying-glass.png" />
     <None Remove="Resources\setting.png" />
+    <None Remove="Resources\star-golden.png" />
+    <None Remove="Resources\ticket-golden.png" />
+    <None Remove="Resources\tiger-golden.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -51,6 +59,9 @@
 
   <ItemGroup>
     <Resource Include="Resources\badge-golden.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\basket-golden.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\bird-in-mountain.jpg">
@@ -66,6 +77,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\car-side-golden.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\clock-golden.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\community-golden.png">
@@ -89,10 +103,19 @@
     <Resource Include="Resources\home.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Resources\landmark-golden.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\leaf-maple-golden.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\left-arrow-circle-white.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\left-arrow-circle.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\map-golden.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\news-golden.png">
@@ -111,6 +134,15 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\setting.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\star-golden.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\ticket-golden.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\tiger-golden.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
