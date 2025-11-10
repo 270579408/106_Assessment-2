@@ -18,9 +18,8 @@
             <TextBlock Text="Things to do"
                        FontSize="36"
                        Margin="30 30 30 0"/>
-            
             <!-- Items -->
-            <StackPanel Margin="30">
+            <StackPanel Margin="30 30 30 0">
                 <ItemsControl ItemsSource="{Binding AllActivities}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
@@ -63,9 +62,9 @@
                 </ItemsControl>
             </StackPanel>
 
-            <Grid Height="100" Width="1000">
+            <!-- Banner -->
+            <Grid Height="100" Width="1200" Margin="0 50 0 0">
                 <Image Source="/Resources/bird-in-mountain.jpg" Stretch="UniformToFill" VerticalAlignment="Center"/>
-                 
                 <TextBlock Text="“Ready to explore? Plan your visit today and experience the best of Onewhero Bay Heritage Park.”"
                            FontSize="24"
                            FontWeight="Bold"
@@ -75,6 +74,30 @@
                            TextWrapping="Wrap"
                            TextAlignment="Center"/>
             </Grid>
+            <!-- Plan your visit section -->
+            <StackPanel Margin="0 50 0 0">
+                <TextBlock Text="PLAN YOUR VISIT"
+                           FontWeight="SemiBold"
+                           TextAlignment="Center"
+                           FontSize="40"
+                           Margin="30 0 0 20"/>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button Background="Transparent"
+                            BorderBrush="Transparent"
+                            BorderThickness="0"
+                            Padding="10"
+                            Cursor="Hand">
+                        <StackPanel>
+                            <Image Source="/Resources/setting.png" Width="80" Height="80" />
+                            <TextBlock Text="Opening Hours" 
+                                   FontSize="20" 
+                                   TextAlignment="Center"
+                                   Margin="0 5 0 0"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </StackPanel>
         </StackPanel>
     </ScrollViewer>
 </Page>
