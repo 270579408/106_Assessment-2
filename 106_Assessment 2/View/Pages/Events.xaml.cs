@@ -1,10 +1,13 @@
 ﻿using _106_Assessment_2.Models;
 using _106_Assessment_2.ViewModels;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Collections.ObjectModel;
+using System.Windows.Media;
 
 namespace _106_Assessment_2.View.Pages
 {
@@ -22,21 +25,17 @@ namespace _106_Assessment_2.View.Pages
         public Events()
         {
             InitializeComponent();
-
             _eventViewModel = new EventViewModel();
             AllEvents = new ObservableCollection<Event>(_eventViewModel.GetAllEvents());
-
             for (int i = 0; i < AllEvents.Count; i++)
             {
-                for(int j = 0; j < AllEvents[i].Tags.Count; j++)
+                for (int j = 0; j < AllEvents[i].Tags.Count; j++)
                 {
-                    if(!Tags.Contains(AllEvents[i].Tags[j].ToLower()))
+                    if (!Tags.Contains(AllEvents[i].Tags[j].ToLower()))
                         Tags.Add(AllEvents[i].Tags[j].ToLower());
                 }
             }
-
             FilteredEvents = new ObservableCollection<Event>(AllEvents);
-
             DataContext = this;
         }
 
@@ -45,14 +44,10 @@ namespace _106_Assessment_2.View.Pages
             Placeholder_Searchbar.Visibility = string.IsNullOrWhiteSpace(Searchbar.Text)
                 ? Visibility.Visible
                 : Visibility.Hidden;
-
             string searchText = Searchbar.Text.ToLower();
-
             FilteredEvents.Clear();
-
             foreach (var ev in AllEvents)
             {
-
                 if (ev.Tags.Any(t => t.ToLower().Contains(searchText)) ||
                     ev.Title.ToLower().Contains(searchText))
                 {
@@ -61,29 +56,50 @@ namespace _106_Assessment_2.View.Pages
             }
         }
 
-
-        private void ScrollViewer_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void Tag_Click(object sender, RoutedEventArgs e)
         {
-            _isDragging = true;
-            _startPoint = e.GetPosition(TagScrollViewer);
-            _startOffset = TagScrollViewer.HorizontalOffset;
-            TagScrollViewer.CaptureMouse();
+            if (_isDragging) return;
+            if (sender is Button btn)
+            {
+                string btnContent = btn.Content.ToString().ToLower();
+                FilteredEvents.Clear();
+                foreach (var ev in AllEvents)
+                {
+                    if (ev.Tags.Any(t => t.ToLower().Contains(btnContent)) ||
+                        ev.Title.ToLower().Contains(btnContent))
+                    {
+                        FilteredEvents.Add(ev);
+                    }
+                }
+            }
+            MessageBox.Show("Tag clicked!");
         }
 
-        private void ScrollViewer_PreviewMouseMove(object sender, MouseEventArgs e)
+        private bool IsEventSourceInside<T>(DependencyObject source) where T : DependencyObject
         {
-            if (!_isDragging) return;
-
-            Point currentPoint = e.GetPosition(TagScrollViewer);
-            double delta = _startPoint.X - currentPoint.X;
-
-            TagScrollViewer.ScrollToHorizontalOffset(_startOffset + delta);
+            while (source != null)
+            {
+                if (source is T) return true;
+                source = VisualTreeHelper.GetParent(source);
+            }
+            return false;
         }
 
-        private void ScrollViewer_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        private void LeftArrowButton_Click(object sender, RoutedEventArgs e)
         {
-            _isDragging = false;
-            TagScrollViewer.ReleaseMouseCapture();
+            double newOffset = TagScrollViewer.HorizontalOffset - 150;
+            if (newOffset < 0) newOffset = 0;
+            TagScrollViewer.ScrollToHorizontalOffset(newOffset);
         }
+
+        private void RightArrowButton_Click(object sender, RoutedEventArgs e)
+        {
+            double maxOffset = TagScrollViewer.ScrollableWidth;
+            double newOffset = TagScrollViewer.HorizontalOffset + 150;
+            if (newOffset > maxOffset) newOffset = maxOffset;
+            TagScrollViewer.ScrollToHorizontalOffset(newOffset);
+        }
+
     }
 }
+
