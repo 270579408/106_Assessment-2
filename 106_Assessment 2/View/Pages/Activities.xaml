@@ -1,7 +1,14 @@
 ﻿<Page x:Class="_106_Assessment_2.View.Pages.Activities"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      Title="Activities">
+      Title="Activities"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:userControls="clr-namespace:_106_Assessment_2.View.UserControls"
+      mc:Ignorable="d"
+      d:DesignWidth="1140"
+      d:DesignHeight="1024"
+      Background="White">
 
     <Grid>
         <TextBlock Text="Activities Page" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24"/>
