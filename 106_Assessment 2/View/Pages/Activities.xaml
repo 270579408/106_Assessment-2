@@ -10,7 +10,71 @@
       d:DesignHeight="1024"
       Background="White">
 
-    <Grid>
-        <TextBlock Text="Activities Page" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24"/>
-    </Grid>
+    <ScrollViewer VerticalScrollBarVisibility="Auto"
+              HorizontalScrollBarVisibility="Disabled"
+              Background="White">
+        <StackPanel>
+            <!-- Title -->
+            <TextBlock Text="Things to do"
+                       FontSize="36"
+                       Margin="30 30 30 0"/>
+            
+            <!-- Items -->
+            <StackPanel Margin="30">
+                <ItemsControl ItemsSource="{Binding AllActivities}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <!--<WrapPanel Orientation="Horizontal" ItemWidth="400" ItemHeight="300"/>-->
+                            <UniformGrid Columns="3" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Width="400" Height="300" Margin="0 20 20 20">
+                                <Image Source="{Binding ImageUrl}" 
+                           Stretch="UniformToFill" 
+                           VerticalAlignment="Center"/>
+                                <Rectangle>
+                                    <Rectangle.Fill>
+                                        <LinearGradientBrush EndPoint="0,0" StartPoint="0,1">
+                                            <GradientStop Color="#CC000000" Offset="0"/>
+                                            <GradientStop Color="#00000000" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Rectangle.Fill>
+                                </Rectangle>
+
+                                <StackPanel VerticalAlignment="Bottom" Margin="15 0 15 25">
+                                    <TextBlock Text="{Binding Title}" 
+                                    FontSize="24"
+                                    Foreground="White"
+                                    FontWeight="SemiBold"
+                                    TextWrapping="Wrap"/>
+
+                                    <TextBlock Text="{Binding Description}" 
+                                    FontSize="16"
+                                    Foreground="White"
+                                    TextWrapping="Wrap"
+                                    Margin="0 5 0 0"/>
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+
+            <Grid Height="100" Width="1000">
+                <Image Source="/Resources/bird-in-mountain.jpg" Stretch="UniformToFill" VerticalAlignment="Center"/>
+                 
+                <TextBlock Text="“Ready to explore? Plan your visit today and experience the best of Onewhero Bay Heritage Park.”"
+                           FontSize="24"
+                           FontWeight="Bold"
+                           Foreground="White"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           TextWrapping="Wrap"
+                           TextAlignment="Center"/>
+            </Grid>
+        </StackPanel>
+    </ScrollViewer>
 </Page>

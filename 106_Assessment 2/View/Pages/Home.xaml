@@ -156,7 +156,7 @@
                                     </Rectangle.Fill>
                                 </Rectangle>
 
-                                <StackPanel VerticalAlignment="Bottom" Margin="15 0 15 60">
+                                <StackPanel VerticalAlignment="Bottom" Margin="15 0 15 25">
                                     <TextBlock Text="{Binding Title}" 
                                                 FontSize="24"
                                                 Foreground="White"
