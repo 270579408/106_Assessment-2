@@ -83,19 +83,7 @@
                            Margin="30 0 0 20"/>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Button Background="Transparent"
-                            BorderBrush="Transparent"
-                            BorderThickness="0"
-                            Padding="10"
-                            Cursor="Hand">
-                        <StackPanel>
-                            <Image Source="/Resources/setting.png" Width="80" Height="80" />
-                            <TextBlock Text="Opening Hours" 
-                                   FontSize="20" 
-                                   TextAlignment="Center"
-                                   Margin="0 5 0 0"/>
-                        </StackPanel>
-                    </Button>
+                    <userControls:Items ItemIcon="/Resources/setting.png" ItemTitle="Settings"/>
                 </StackPanel>
             </StackPanel>
         </StackPanel>
