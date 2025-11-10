@@ -63,26 +63,33 @@ namespace _106_Assessment_2.View.Pages
             {
                 string btnContent = btn.Content.ToString().ToLower();
                 FilteredEvents.Clear();
+
                 foreach (var ev in AllEvents)
                 {
                     if (ev.Tags.Any(t => t.ToLower().Contains(btnContent)) ||
                         ev.Title.ToLower().Contains(btnContent))
                     {
+                        if (btn.Background is SolidColorBrush brush && brush.Color == Colors.Transparent)
+                            FilteredEvents.Add(ev);
+                    }
+                }
+
+                if (btn.Background is SolidColorBrush currentBrush && currentBrush.Color == Colors.Transparent)
+                {
+                    btn.Background = new SolidColorBrush(Color.FromRgb(200, 200, 200));
+                }
+                else
+                {
+                    btn.Background = new SolidColorBrush(Colors.Transparent);
+                    FilteredEvents.Clear();
+                    foreach (var ev in AllEvents)
+                    {
                         FilteredEvents.Add(ev);
                     }
                 }
-            }
-            MessageBox.Show("Tag clicked!");
-        }
 
-        private bool IsEventSourceInside<T>(DependencyObject source) where T : DependencyObject
-        {
-            while (source != null)
-            {
-                if (source is T) return true;
-                source = VisualTreeHelper.GetParent(source);
+
             }
-            return false;
         }
 
         private void LeftArrowButton_Click(object sender, RoutedEventArgs e)
@@ -102,4 +109,3 @@ namespace _106_Assessment_2.View.Pages
 
     }
 }
-
