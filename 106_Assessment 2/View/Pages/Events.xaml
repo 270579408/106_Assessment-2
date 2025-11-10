@@ -94,7 +94,7 @@
 
             <StackPanel>
                 <StackPanel Margin="50">
-                    <ItemsControl ItemsSource="{Binding AllEvents}">
+                    <ItemsControl ItemsSource="{Binding FilteredEvents}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <!--<UniformGrid Columns="3" />-->

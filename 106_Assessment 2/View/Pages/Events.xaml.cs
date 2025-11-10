@@ -12,6 +12,7 @@ namespace _106_Assessment_2.View.Pages
     {
         private readonly EventViewModel _eventViewModel;
         public ObservableCollection<Event> AllEvents { get; set; } = new ObservableCollection<Event>();
+        public ObservableCollection<Event> FilteredEvents { get; set; } = new ObservableCollection<Event>();
         public List<string> Tags { get; set; } = new List<string>();
 
         private Point _startPoint;
@@ -34,24 +35,32 @@ namespace _106_Assessment_2.View.Pages
                 }
             }
 
+            FilteredEvents = new ObservableCollection<Event>(AllEvents);
+
             DataContext = this;
         }
 
         private void Searchbar_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (Searchbar.Text == "")
-                Placeholder_Searchbar.Visibility = System.Windows.Visibility.Visible;
-            else
-                Placeholder_Searchbar.Visibility = System.Windows.Visibility.Hidden;
+            Placeholder_Searchbar.Visibility = string.IsNullOrWhiteSpace(Searchbar.Text)
+                ? Visibility.Visible
+                : Visibility.Hidden;
 
-            var toRemove = AllEvents.Where(ev => ev.Featured).ToList();
+            string searchText = Searchbar.Text.ToLower();
 
-            foreach(var ev in toRemove)
+            FilteredEvents.Clear();
+
+            foreach (var ev in AllEvents)
             {
-                AllEvents.Remove(ev);
-            }
 
+                if (ev.Tags.Any(t => t.ToLower().Contains(searchText)) ||
+                    ev.Title.ToLower().Contains(searchText))
+                {
+                    FilteredEvents.Add(ev);
+                }
+            }
         }
+
 
         private void ScrollViewer_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
