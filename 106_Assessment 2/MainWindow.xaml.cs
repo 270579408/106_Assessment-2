@@ -8,7 +8,7 @@ namespace _106_Assessment_2
         {
             InitializeComponent();
             SidebarControl.PageSelected += SidebarControl_PageSelected;
-            MainFrame.Navigate(new View.Pages.Activities());
+            MainFrame.Navigate(new View.Pages.ParkInfo());
         }
 
         private void SidebarControl_PageSelected(string pageName)

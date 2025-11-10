@@ -10,7 +10,43 @@
       d:DesignHeight="1024"
       Background="White">
 
-    <Grid>
-        <TextBlock Text="Park Info Page" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24"/>
-    </Grid>
+    <ScrollViewer VerticalScrollBarVisibility="Auto"
+              HorizontalScrollBarVisibility="Disabled"
+              Background="White">
+
+        <StackPanel>
+
+            <!-- Title -->
+            <TextBlock Text="Events"
+                   FontSize="36"
+                   Margin="30 30 30 0"/>
+
+            <!-- Park Information Content -->
+            <Grid Margin="30 20 30 0" Height="Auto">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.75*"/>
+                    <ColumnDefinition Width="0.25*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0"
+                           FontSize="20"
+                           TextWrapping="Wrap"
+                           Margin="0 0 80 0"
+                           VerticalAlignment="Top">
+                    Nestled in the scenic Northland region of New Zealand, Onewhero Bay Heritage Park is a place where nature, culture, and history come together. The park celebrates New Zealand’s unique wildlife and rich Māori heritage, offering visitors a memorable journey through time and the natural world.
+                        <LineBreak/>
+                        <LineBreak/>
+                    Established in 1987, Onewhero Bay Heritage Park was created through a community initiative to safeguard local wildlife habitats and historical sites. Over the years, it has grown into a leading eco-heritage destination, attracting visitors from across New Zealand and beyond.
+                        <LineBreak/>
+                        <LineBreak/>
+                    Our mission is to preserve native species, honour cultural traditions, and educate visitors about the importance of conservation. Whether you’re exploring our nocturnal kiwi house, visiting the heritage museum, or walking through lush native bush, every experience reflects our commitment to protecting Aotearoa’s natural and cultural treasures.
+                </TextBlock>
+
+                <Image Grid.Column="1"
+                       Source="/Resources/stick.png"
+                       Stretch="Uniform"
+                       VerticalAlignment="Center"/>
+            </Grid>
+        </StackPanel>
+    </ScrollViewer>
 </Page>

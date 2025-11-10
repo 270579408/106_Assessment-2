@@ -48,6 +48,7 @@
     <None Remove="Resources\search-magnifying-glass.png" />
     <None Remove="Resources\setting.png" />
     <None Remove="Resources\star-golden.png" />
+    <None Remove="Resources\stick.png" />
     <None Remove="Resources\ticket-golden.png" />
     <None Remove="Resources\tiger-golden.png" />
   </ItemGroup>
@@ -137,6 +138,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\star-golden.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\stick.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\ticket-golden.png">
