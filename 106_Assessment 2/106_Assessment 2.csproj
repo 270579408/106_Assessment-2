@@ -39,6 +39,7 @@
     <None Remove="Resources\profile.png" />
     <None Remove="Resources\right-arrow-circle-white.png" />
     <None Remove="Resources\right-arrow-circle.png" />
+    <None Remove="Resources\search-magnifying-glass.png" />
     <None Remove="Resources\setting.png" />
   </ItemGroup>
 
@@ -100,6 +101,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\right-arrow-circle.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\search-magnifying-glass.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\setting.png">
