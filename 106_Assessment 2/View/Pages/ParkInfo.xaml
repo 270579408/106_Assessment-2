@@ -17,7 +17,7 @@
         <StackPanel>
 
             <!-- Title -->
-            <TextBlock Text="Events"
+            <TextBlock Text="Park Information"
                    FontSize="36"
                    Margin="30 30 30 0"/>
 
@@ -47,6 +47,8 @@
                        Stretch="Uniform"
                        VerticalAlignment="Center"/>
             </Grid>
+        
+            
         </StackPanel>
     </ScrollViewer>
 </Page>
