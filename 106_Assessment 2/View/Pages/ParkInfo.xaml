@@ -47,8 +47,52 @@
                        Stretch="Uniform"
                        VerticalAlignment="Center"/>
             </Grid>
-        
-            
+
+            <StackPanel Margin="0 50 0 0">
+                <TextBlock Text="Key Features" 
+                           FontSize="32"
+                           Margin="30 0 30 0 "/>
+
+                <ItemsControl ItemsSource="{Binding KeyFeatures}" Margin="30 20 30 0">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Vertical"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="0 0 0 20">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="400"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Image Source="{Binding ImagePath}"
+                                       Stretch="UniformToFill"
+                                       Grid.Column="0"/>
+
+                                <StackPanel Grid.Column="1" 
+                                            VerticalAlignment="Center"
+                                            Margin="30 0 0 0">
+                                    <TextBlock Text="{Binding Title}" 
+                                                FontSize="28"
+                                                FontWeight="SemiBold"
+                                                VerticalAlignment="Center"
+                                                TextWrapping="Wrap"
+                                               Margin="0 0 0 5"/>
+
+                                    <TextBlock Text="{Binding Description}" 
+                                               FontSize="20" 
+                                               VerticalAlignment="Center"
+                                               TextWrapping="Wrap"
+                                               Grid.Column="1"/>
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
         </StackPanel>
     </ScrollViewer>
 </Page>

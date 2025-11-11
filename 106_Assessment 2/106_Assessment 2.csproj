@@ -36,6 +36,10 @@
     <None Remove="Resources\Fonts\IrishGrover-Regular.ttf" />
     <None Remove="Resources\help.png" />
     <None Remove="Resources\home.png" />
+    <None Remove="Resources\key-features-1.png" />
+    <None Remove="Resources\key-features-2.png" />
+    <None Remove="Resources\key-features-3.png" />
+    <None Remove="Resources\key-features-4.png" />
     <None Remove="Resources\landmark-golden.png" />
     <None Remove="Resources\leaf-maple-golden.png" />
     <None Remove="Resources\left-arrow-circle-white.png" />
@@ -102,6 +106,18 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\home.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\key-features-1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\key-features-2.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\key-features-3.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\key-features-4.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\landmark-golden.png">
