@@ -75,7 +75,7 @@
                            TextAlignment="Center"/>
             </Grid>
             <!-- Plan your visit section -->
-            <StackPanel Margin="0 50 0 0">
+            <!--<StackPanel Margin="0 50 0 0">
                 <TextBlock Text="PLAN YOUR VISIT"
                            FontWeight="SemiBold"
                            TextAlignment="Center"
@@ -117,7 +117,7 @@
                         ItemTitle="Heritage and Culture"
                         Margin="30 0"/>
                 </StackPanel>
-            </StackPanel>
+            </StackPanel>-->
         </StackPanel>
     </ScrollViewer>
 </Page>

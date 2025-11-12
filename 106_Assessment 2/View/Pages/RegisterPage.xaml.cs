@@ -37,12 +37,12 @@ namespace _106_Assessment_2.View.Pages
                 return;
             }
 
-            var (ok, msg) = new UserViewModel().RegisterUser(username, email, pw);
-            if (!ok)
-            {
-                lblStatus.Text = msg;
-                return;
-            }
+            //var (ok, msg) = new UserViewModel().RegisterUser(username, email, pw);
+            //if (!ok)
+            //{
+            //    lblStatus.Text = msg;
+            //    return;
+            //}
 
             MessageBox.Show("Registration successful. Please sign in.", "Success",
                 MessageBoxButton.OK, MessageBoxImage.Information);
@@ -52,6 +52,12 @@ namespace _106_Assessment_2.View.Pages
         private void GoLogin_Click(object sender, RoutedEventArgs e)
         {
             NavigationService?.Navigate(new Account());
+        }
+
+        private void SignIn_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Navigating to Sign In page.", "Info",
+                MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }

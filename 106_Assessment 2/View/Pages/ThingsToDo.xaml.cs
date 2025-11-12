@@ -4,23 +4,20 @@ using System.Windows.Controls;
 
 namespace _106_Assessment_2.View.Pages
 {
-    /// <summary>
-    /// Interaction logic for ThingsToDo.xaml
-    /// </summary>
-    public partial class ThingsToDo : Page
+    public partial class Activities : Page
     {
-        private readonly ThingsToDoViewModel _thingstodoViewModel;
+        private readonly ActivityViewModel _activityViewModel;
 
-        public List<ThingsToDo>Activities { get; set; }
+        public List<Activity> AllActivities { get; set; }
 
-        public ThingsToDo()
+        public Activities()
         {
-            InitializedComponent();
+            InitializeComponent();
 
-            _thingstodoViewModel = new ThingsToDoViewModel();
-            Activities = _thingstodoViewModel.GetAllActivities();
+            _activityViewModel = new ActivityViewModel();
+            AllActivities = _activityViewModel.GetAllActivities();
+
             DataContext = this;
         }
     }
-}
-
+    }

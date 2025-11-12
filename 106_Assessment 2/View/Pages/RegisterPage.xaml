@@ -54,13 +54,16 @@
                             Background="#C59E00" Foreground="White" BorderBrush="{x:Null}"
                             Click="Register_Click"/>
                     <TextBlock x:Name="lblStatus" Foreground="Crimson" Margin="0,8,0,0"/>
+
                     <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
-                        <TextBlock Text="Already have an account?" />
-                        <Hyperlink Click="SignIn_Click" Margin="6,0,0,0">Sign in</Hyperlink>
+                        <TextBlock Text="Already have an account?" VerticalAlignment="Center" />
+
+                        <TextBlock Margin="6,0,0,0" VerticalAlignment="Center">
+                            <Hyperlink Click="SignIn_Click">Sign in</Hyperlink>
+                        </TextBlock>
                     </StackPanel>
                 </StackPanel>
             </Grid>
         </Border>
     </Grid>
 </Page>
-Views/Regist
