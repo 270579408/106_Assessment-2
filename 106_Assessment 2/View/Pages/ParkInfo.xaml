@@ -7,7 +7,7 @@
       xmlns:userControls="clr-namespace:_106_Assessment_2.View.UserControls"
       mc:Ignorable="d"
       d:DesignWidth="1140"
-      d:DesignHeight="1024"
+      d:DesignHeight="1500"
       Background="White">
 
     <ScrollViewer VerticalScrollBarVisibility="Auto"
@@ -93,6 +93,47 @@
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
             </StackPanel>
+
+            <StackPanel Margin="0 50 0 0">
+                <TextBlock Text="Opening Hours and Entry Fees" 
+               FontSize="32"
+               Margin="30 0 30 0 "/>
+
+                <UniformGrid Rows="3" Columns="2" Margin="20" Width="500" Height="150" HorizontalAlignment="Left">
+                    <Border BorderBrush="Gray" BorderThickness="1">
+                        <TextBlock Text="Day" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" FontWeight="SemiBold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1">
+                        <TextBlock Text="Opening Hours" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" FontWeight="SemiBold"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1">
+                        <TextBlock Text="Moday - Friday" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1">
+                        <TextBlock Text="9:00 am - 5:00 pm" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1">
+                        <TextBlock Text="Saturday - Sunday" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1">
+                        <TextBlock Text="8:00 am - 6:00 pm" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24"/>
+                    </Border>
+                </UniformGrid>
+
+                <TextBlock Margin="30 10 0 0" Text="Admission Fees" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="28" FontWeight="SemiBold" />
+
+                <TextBlock Margin="30 5 0 0" FontSize="24">
+                    Adults: $25
+                    <LineBreak/>
+                    Children (5–15): $10
+                    <LineBreak/>
+                    Under 5: Free
+                    <LineBreak/>
+                    Family Pass: $60
+                </TextBlock>
+            </StackPanel>
+        
+        
         </StackPanel>
     </ScrollViewer>
 </Page>
