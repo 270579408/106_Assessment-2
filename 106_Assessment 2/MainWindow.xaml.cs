@@ -1,56 +1,43 @@
 ﻿using System.Windows;
+using System.Windows.Media.Animation;
 
 namespace _106_Assessment_2
 {
     public partial class MainWindow : Window
     {
+        private bool _isCollapsed = false;
+
         public MainWindow()
         {
             InitializeComponent();
-            SidebarControl.PageSelected += SidebarControl_PageSelected;
-            MainFrame.Navigate(new View.Pages.ParkInfo());
+            MainFrame.Navigate(new View.Pages.Home());
         }
 
-        private void SidebarControl_PageSelected(string pageName)
+        private void MenuToggleButton_Click(object sender, RoutedEventArgs e)
         {
-            switch(pageName)
+            double newWidth = _isCollapsed ? 250 : 60;
+
+            DoubleAnimation animation = new DoubleAnimation
             {
-                case "home":
-                    MainFrame.Navigate(new View.Pages.Home());
-                    break;
+                From = Sidebar.ActualWidth,
+                To = newWidth,
+                Duration = new Duration(System.TimeSpan.FromMilliseconds(300))
+            };
+            Sidebar.BeginAnimation(WidthProperty, animation);
+            NavColumn.Width = new GridLength(newWidth);
 
-                case "events":
-                    MainFrame.Navigate(new View.Pages.Events());
-                    break;
+            AppTitle.Visibility = _isCollapsed ? Visibility.Visible : Visibility.Collapsed;
 
-                case "activities":
-                    MainFrame.Navigate(new View.Pages.Activities());
-                    break;
-
-                case "parkInfo":
-                    MainFrame.Navigate(new View.Pages.ParkInfo());
-                    break;
-
-                case "community":
-                    MainFrame.Navigate(new View.Pages.Community());
-                    break;
-
-                case "help":
-                    MainFrame.Navigate(new View.Pages.Help());
-                    break;
-
-                case "account":
-                    MainFrame.Navigate(new View.Pages.Account());
-                    break;
-
-                case "settings":
-                    MainFrame.Navigate(new View.Pages.Settings());
-                    break;
-
-                default:
-                    break;
-
-            }
+            _isCollapsed = !_isCollapsed;
         }
+
+        private void Home_Click(object sender, RoutedEventArgs e) => MainFrame.Navigate(new View.Pages.Home());
+        private void Events_Click(object sender, RoutedEventArgs e) => MainFrame.Navigate(new View.Pages.Events());
+        private void Things_Click(object sender, RoutedEventArgs e) => MainFrame.Navigate(new View.Pages.ThingsToDo());
+        private void Park_Click(object sender, RoutedEventArgs e) => MainFrame.Navigate(new View.Pages.ParkInfo());
+        private void Community_Click(object sender, RoutedEventArgs e) => MainFrame.Navigate(new View.Pages.Community());
+        private void Help_Click(object sender, RoutedEventArgs e) => MessageBox.Show("Contact us at info@onewhero.nz");
+        private void Settings_Click(object sender, RoutedEventArgs e) => MessageBox.Show("Settings Page coming soon!");
+        private void SignIn_Click(object sender, RoutedEventArgs e) => MainFrame.Navigate(new View.Pages.Account());
     }
 }

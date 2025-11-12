@@ -6,20 +6,80 @@
         xmlns:local="clr-namespace:_106_Assessment_2"
         xmlns:userControls="clr-namespace:_106_Assessment_2.View.UserControls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="1024" Width="1440"
+        Title="MainWindow" Height="800" Width="1300"
         WindowState="Maximized"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen" Background="#FFF8F8F8" ResizeMode="CanResizeWithGrip">
+    <Window.Resources>
+
+        <Style x:Key="NavButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#333"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Padding" Value="10 6"/>
+            <Setter Property="Margin" Value="10 5"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="6">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <Image Source="{Binding Tag, RelativeSource={RelativeSource AncestorType=Button}}" 
+                                       Width="20" Height="20" Margin="10 0"/>
+                                <TextBlock Text="{TemplateBinding Content}" 
+                                           VerticalAlignment="Center" Margin="10 0" 
+                                           Foreground="{TemplateBinding Foreground}"/>
+                            </StackPanel>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#E6E6E6"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
     <Grid>
+
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="300"/>
+            <ColumnDefinition x:Name="NavColumn" Width="250"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <userControls:Sidebar Grid.Column="0" x:Name="SidebarControl" Panel.ZIndex="1"/>
+        <Border x:Name="Sidebar" Background="#F0F0F0" BorderBrush="#DDD" BorderThickness="0,0,1,0">
+            <DockPanel>
+        
+                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" VerticalAlignment="Center" Height="60">
+                    <Button x:Name="MenuToggleButton" Content="☰" Width="40" Height="40" 
+                            FontSize="20" Background="Transparent" BorderBrush="Transparent"
+                            Click="MenuToggleButton_Click"/>
+                    <TextBlock x:Name="AppTitle" Text="Onewhero Bay" FontSize="18" FontWeight="Bold" 
+                               VerticalAlignment="Center" Margin="10,0,0,0"/>
+                </StackPanel>
 
-        <Frame Grid.Column="1" 
-               x:Name="MainFrame" 
-               NavigationUIVisibility="Hidden"
-               />
+      
+                <StackPanel>
+                    <Button Style="{StaticResource NavButtonStyle}" Tag="Resources/home.png" Content="Home" Click="Home_Click"/>
+                    <Button Style="{StaticResource NavButtonStyle}" Tag="Resources/events.png" Content="Events / Booking" Click="Events_Click"/>
+                    <Button Style="{StaticResource NavButtonStyle}" Tag="Resources/compass.png" Content="Things To Do" Click="Things_Click"/>
+                    <Button Style="{StaticResource NavButtonStyle}" Tag="Resources/park.png" Content="Park Information" Click="Park_Click"/>
+                    <Button Style="{StaticResource NavButtonStyle}" Tag="Resources/community.png" Content="Community" Click="Community_Click"/>
+                    <Button Style="{StaticResource NavButtonStyle}" Tag="Resources/help.png" Content="Help / Contact" Click="Help_Click"/>
+                </StackPanel>
+
+                <StackPanel DockPanel.Dock="Bottom" Margin="10">
+                    <Separator/>
+                    <Button Style="{StaticResource NavButtonStyle}" Tag="Resources/settings.png" Content="Settings" Click="Settings_Click"/>
+                    <Button Style="{StaticResource NavButtonStyle}" Tag="Resources/signin.png" Content="Sign in" Click="SignIn_Click"/>
+                </StackPanel>
+            </DockPanel>
+        </Border>
+
+        <Frame x:Name="MainFrame" Grid.Column="1" NavigationUIVisibility="Hidden" Background="White"/>
+
     </Grid>
 </Window>
