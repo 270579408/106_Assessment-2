@@ -27,9 +27,12 @@ namespace _106_Assessment_2.View.Pages
                 {
                     if(BCrypt.Net.BCrypt.Verify(pwdPassword.Password, user.PasswordHash))
                     {
-                        MessageBox.Show("Login Successfull");
+                        GlobalData.CurrentUserId = user.ID;
+                        GlobalData.CurrentUserName = user.Name;
+                        GlobalData.CurrentUserEmail = user.Email;
 
-                        currentUser
+                        MessageBox.Show(GlobalData.CurrentUserId);
+
                     } else
                     {
                         FormError.Text = "* Password Not Matched";
