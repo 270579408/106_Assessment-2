@@ -19,8 +19,7 @@ namespace _106_Assessment_2.View.Pages
 
         private void Register_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("asvsaas");
-            
+            NavigationService?.Navigate(new Register());
         }
     }
 }
