@@ -30,6 +30,6 @@ namespace _106_Assessment_2
         private void Community_Click(object sender, RoutedEventArgs e) => MainFrame.Navigate(new View.Pages.Community());
         private void Help_Click(object sender, RoutedEventArgs e) => MessageBox.Show("Contact us at info@onewhero.nz");
         private void Settings_Click(object sender, RoutedEventArgs e) => MessageBox.Show("Settings Page coming soon!");
-        private void SignIn_Click(object sender, RoutedEventArgs e) => MainFrame.Navigate(new View.Pages.Account());
+        private void SignIn_Click(object sender, RoutedEventArgs e) => MessageBox.Show("a");
     }
 }

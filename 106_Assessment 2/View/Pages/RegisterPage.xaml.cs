@@ -46,12 +46,12 @@ namespace _106_Assessment_2.View.Pages
 
             MessageBox.Show("Registration successful. Please sign in.", "Success",
                 MessageBoxButton.OK, MessageBoxImage.Information);
-            NavigationService?.Navigate(new Account());
+            //NavigationService?.Navigate(new Account());
         }
 
         private void GoLogin_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService?.Navigate(new Account());
+            //NavigationService?.Navigate(new Account());
         }
 
         private void SignIn_Click(object sender, RoutedEventArgs e)

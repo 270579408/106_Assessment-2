@@ -43,7 +43,7 @@
                                    FontSize="20"
                                    Padding="15 0"
                                    Foreground="#636363"
-                                   x:Name="Placeholder_Searchbar"/>
+                                   x:Name="Placeholder_Input"/>
 
                         <TextBox Height="50" 
                                  Background="Transparent" 
@@ -51,7 +51,7 @@
                                  VerticalContentAlignment="Center"
                                  FontSize="20"
                                  Padding="15 0"
-                                 x:Name="MessageBox"
+                                 x:Name="MessageInput"
                                  TextChanged="Input_TextChanged"/>
                     </Grid>
 
@@ -78,7 +78,8 @@
                         BorderThickness="0"
                         Cursor="Hand"
                         Padding="10"
-                        Margin="20 0 0 0">
+                        Margin="20 0 0 0"
+                        Click="SelectImage_Click">
                     <Image Source="/Resources/add.png" 
                            Height="35" 
                            Width="35" 
