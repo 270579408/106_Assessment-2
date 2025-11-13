@@ -14,8 +14,8 @@ namespace _106_Assessment_2.Models
         [BsonRepresentation(BsonType.ObjectId)]
         public string ID { get; set; }
 
-        [BsonElement("Username")]
-        public string Username { get; set; }
+        [BsonElement("name")]
+        public string Name { get; set; }
 
         [BsonElement("PasswordHash")]
         public string PasswordHash { get; set; }

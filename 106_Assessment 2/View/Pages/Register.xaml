@@ -17,8 +17,8 @@
                            FontWeight="SemiBold" Margin="0,0,0,30" />
 
             <StackPanel Grid.Row="1" Margin="0,0,0,15">
-                <TextBlock Text="Username" FontSize="18"/>
-                <TextBox x:Name="txtUsername" Margin="0,5,0,0" Padding="10" FontSize="18"/>
+                <TextBlock Text="Name" FontSize="18"/>
+                <TextBox x:Name="txtName" Margin="0,5,0,0" Padding="10" FontSize="18"/>
             </StackPanel>
 
             <StackPanel Grid.Row="2" Margin="0,0,0,15">
@@ -37,6 +37,8 @@
             </StackPanel>
 
             <StackPanel Grid.Row="5" Margin="0,30,0,0">
+                <TextBlock x:Name="FormError" Foreground="Red" FontSize="16" Height="20"/>
+
                 <Button Content="Register" Padding="20 10" HorizontalAlignment="Right"
                             Background="#C59E00" Foreground="White" BorderBrush="Transparent" FontSize="18"
                             Click="Register_Click"/>
