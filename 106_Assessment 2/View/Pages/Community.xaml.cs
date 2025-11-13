@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
 
 namespace _106_Assessment_2.View.Pages
 {
@@ -10,6 +11,15 @@ namespace _106_Assessment_2.View.Pages
         public Community()
         {
             InitializeComponent();
+
+            DataContext = this;
+        }
+
+        private void Searchbar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Placeholder_Searchbar.Visibility = string.IsNullOrWhiteSpace(Searchbar.Text)
+                ? Visibility.Visible
+                : Visibility.Hidden;
         }
     }
 }
