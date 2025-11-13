@@ -1,11 +1,13 @@
 ﻿using System.Windows;
 using System.Windows.Media.Animation;
+using _106_Assessment_2.Models;
 
 namespace _106_Assessment_2
 {
     public partial class MainWindow : Window
     {
         private bool _isCollapsed = false;
+        public User currentUser;
 
         public MainWindow()
         {
