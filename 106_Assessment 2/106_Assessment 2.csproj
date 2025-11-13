@@ -22,6 +22,7 @@
 
   <ItemGroup>
     <None Remove="Resources\add.png" />
+    <None Remove="Resources\address-location-map.png" />
     <None Remove="Resources\badge-golden.png" />
     <None Remove="Resources\basket-golden.png" />
     <None Remove="Resources\bird-in-mountain.jpg" />
@@ -35,6 +36,7 @@
     <None Remove="Resources\community-golden.png" />
     <None Remove="Resources\community.png" />
     <None Remove="Resources\compass.png" />
+    <None Remove="Resources\email.png" />
     <None Remove="Resources\event1.jpg" />
     <None Remove="Resources\Fonts\IrishGrover-Regular.ttf" />
     <None Remove="Resources\free-wifi-golden.png" />
@@ -52,6 +54,7 @@
     <None Remove="Resources\left-arrow-circle.png" />
     <None Remove="Resources\map-golden.png" />
     <None Remove="Resources\news-golden.png" />
+    <None Remove="Resources\phone.png" />
     <None Remove="Resources\profile.png" />
     <None Remove="Resources\restroom-golden.png" />
     <None Remove="Resources\right-arrow-circle-white.png" />
@@ -74,6 +77,9 @@
 
   <ItemGroup>
     <Resource Include="Resources\add.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\address-location-map.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\badge-golden.png">
@@ -107,6 +113,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\compass.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\email.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\event1.jpg">
@@ -149,6 +158,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\news-golden.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\phone.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\profile.png">

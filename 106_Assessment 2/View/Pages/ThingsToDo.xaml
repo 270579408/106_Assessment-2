@@ -16,7 +16,8 @@
         <StackPanel>
             <!-- Title -->
             <TextBlock Text="Things to do"
-                       FontSize="36"
+                       FontSize="32"
+                       FontWeight="SemiBold"
                        Margin="30 30 30 0"/>
             <!-- Items -->
             <StackPanel Margin="30 30 30 0">

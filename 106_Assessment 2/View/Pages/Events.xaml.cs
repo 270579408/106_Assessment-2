@@ -1,12 +1,8 @@
 ﻿using _106_Assessment_2.Models;
 using _106_Assessment_2.ViewModels;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 using System.Windows.Media;
 
 namespace _106_Assessment_2.View.Pages
@@ -87,8 +83,6 @@ namespace _106_Assessment_2.View.Pages
                         FilteredEvents.Add(ev);
                     }
                 }
-
-
             }
         }
 

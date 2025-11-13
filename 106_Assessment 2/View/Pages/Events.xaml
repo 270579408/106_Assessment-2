@@ -18,7 +18,8 @@
 
             <!-- Title -->
             <TextBlock Text="Events"
-                       FontSize="36"
+                       FontSize="32"
+                       FontWeight="SemiBold"
                        Margin="30 30 30 0"/>
 
             <!-- Search Bar -->

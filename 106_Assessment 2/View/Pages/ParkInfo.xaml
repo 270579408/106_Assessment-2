@@ -18,8 +18,9 @@
 
             <!-- Title -->
             <TextBlock Text="Park Information"
-                   FontSize="36"
-                   Margin="30 30 30 0"/>
+                        FontSize="32"
+                       FontWeight="SemiBold"
+                        Margin="30 30 30 0"/>
 
             <!-- Park Information Content -->
             <Grid Margin="30 20 30 0" Height="Auto">
@@ -50,7 +51,8 @@
 
             <StackPanel Margin="0 50 0 0">
                 <TextBlock Text="Key Features" 
-                           FontSize="32"
+                           FontSize="24"
+                           FontWeight="SemiBold"
                            Margin="30 0 30 0 "/>
 
                 <ItemsControl ItemsSource="{Binding KeyFeatures}" Margin="30 20 30 0">
@@ -96,8 +98,9 @@
 
             <StackPanel Margin="0 50 0 0">
                 <TextBlock Text="Opening Hours and Entry Fees" 
-               FontSize="32"
-               Margin="30 0 30 0 "/>
+                            FontSize="24"
+                           FontWeight="SemiBold"
+                            Margin="30 0 30 0 "/>
 
                 <UniformGrid Rows="3" Columns="2" Margin="20" Width="500" Height="150" HorizontalAlignment="Left">
                     <Border BorderBrush="Gray" BorderThickness="1">
@@ -120,9 +123,9 @@
                     </Border>
                 </UniformGrid>
 
-                <TextBlock Margin="30 10 0 0" Text="Admission Fees" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="28" FontWeight="SemiBold" />
+                <TextBlock Margin="30 10 0 0" Text="Admission Fees" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="24" FontWeight="SemiBold" />
 
-                <TextBlock Margin="30 5 0 0" FontSize="24">
+                <TextBlock Margin="30 5 0 0" FontSize="20">
                     Adults: $25
                     <LineBreak/>
                     Children (5–15): $10

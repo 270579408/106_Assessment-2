@@ -18,7 +18,8 @@
             <!-- Upcoming events section -->
             <StackPanel Margin="0 50 0 0">
                 <TextBlock Text="Upcoming Events" 
-                           FontSize="32"
+                           FontSize="24"
+                            FontWeight="SemiBold"
                            Margin="30 0 30 0 "/>
                 <ScrollViewer x:Name="EventScrollViewer"
                               HorizontalScrollBarVisibility="Hidden"
@@ -96,9 +97,9 @@
             <!-- I want to section -->
             <StackPanel Margin="0 50 0 0">
                 <TextBlock Text="I WANT TO..."
-                           FontWeight="SemiBold"
                            Foreground="Black"
-                           FontSize="40"
+                           FontSize="28"
+                           FontWeight="SemiBold"
                            TextAlignment="Center"/>
 
                 <Grid Margin="30 30 30 0">
@@ -131,7 +132,8 @@
             <!-- Things to do section -->
             <StackPanel Margin="50">
                 <TextBlock Text="Things to do"
-                           FontSize="32"/>
+                           FontSize="24"
+                           FontWeight="SemiBold"/>
 
                 <ItemsControl ItemsSource="{Binding AllActivities}">
                     <ItemsControl.ItemsPanel>
