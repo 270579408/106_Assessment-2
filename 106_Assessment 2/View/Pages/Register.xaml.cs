@@ -1,20 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using _106_Assessment_2.Models;
 
 namespace _106_Assessment_2.View.Pages
 {
-    /// <summary>
-    /// Interaction logic for RegisterPage.xaml
-    /// </summary>
-    public partial class RegisterPage : Page
+    public partial class Register : Page
     {
-        public RegisterPage()
+        public Register()
         {
             InitializeComponent();
         }
