@@ -79,7 +79,7 @@
                 </StackPanel>
 
                 <StackPanel Margin="10" Grid.Row="2">
-                    <Button Style="{StaticResource NavButtonStyle}" Tag="Resources/profile.png" Content="Sign in" Click="SignIn_Click"/>
+                    <Button Style="{StaticResource NavButtonStyle}" Tag="Resources/profile.png" Content="Login" Click="LogIn_Click" x:Name="LoginSideBarOption"/>
                     <Button Style="{StaticResource NavButtonStyle}" Tag="Resources/setting.png" Content="Settings" Click="Settings_Click"/>
                 </StackPanel>
             </Grid>

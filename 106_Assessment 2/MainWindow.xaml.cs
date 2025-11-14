@@ -30,7 +30,12 @@ namespace _106_Assessment_2
         private void Park_Click(object sender, RoutedEventArgs e) => MainFrame.Navigate(new View.Pages.ParkInfo());
         private void Community_Click(object sender, RoutedEventArgs e) => MainFrame.Navigate(new View.Pages.Community());
         private void Help_Click(object sender, RoutedEventArgs e) => MainFrame.Navigate(new View.Pages.Help());
-        private void SignIn_Click(object sender, RoutedEventArgs e) => MainFrame.Navigate(new View.Pages.Login());
+        private void LogIn_Click(object sender, RoutedEventArgs e) => MainFrame.Navigate(new View.Pages.Login());
         private void Settings_Click(object sender, RoutedEventArgs e) => MessageBox.Show("Settings Page coming soon!");
+
+        public void ChangeLogInOption(string text)
+        {
+            LoginSideBarOption.Content = text;
+        }
     }
 }

@@ -33,6 +33,9 @@ namespace _106_Assessment_2.View.Pages
 
                         MessageBox.Show(GlobalData.CurrentUserId);
 
+                        var main = (MainWindow)Application.Current.MainWindow;
+                        main.ChangeLogInOption(GlobalData.CurrentUserName);
+
                     } else
                     {
                         FormError.Text = "* Password Not Matched";
