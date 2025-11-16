@@ -68,6 +68,7 @@
     <None Remove="Resources\stick.png" />
     <None Remove="Resources\ticket-golden.png" />
     <None Remove="Resources\tiger-golden.png" />
+    <None Remove="Resources\times.png" />
     <None Remove="Resources\wheelchair-golden.png" />
   </ItemGroup>
 
@@ -200,6 +201,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\tiger-golden.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\times.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

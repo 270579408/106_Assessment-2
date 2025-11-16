@@ -43,6 +43,8 @@ namespace _106_Assessment_2.View.UserControls
                 if (e.NewValue is Post post)
                 {
                     control.PostTextContent.Text = post.Text;
+                    control.PostImageContent.Source = new BitmapImage(new Uri("pack://application:,,," + post.ImageUrl));
+                    control.PostUserInitial.Text = "A";
                 }
             }
         }

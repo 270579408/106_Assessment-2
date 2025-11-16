@@ -17,14 +17,17 @@ namespace _106_Assessment_2.View.Pages
     {
         public List<Post> Posts { get; set; }
 
+        public string SelectedImageUrl;
+
         public Community()
         {
             InitializeComponent();
+
             Posts = new List<Post>() 
             {
                 new Post() {
                     Id = "asca",
-                    ImageUrl = "/Resources/community.png",
+                    ImageUrl = "/Resources/key-features-1.png",
                     Text = "Community",
                     UploaderId = "123456",
                     ReactorId = new List<string> { "1245", "12345" },
@@ -50,9 +53,20 @@ namespace _106_Assessment_2.View.Pages
 
             if (openFileDialog.ShowDialog() == true)
             {
-                UploadToCloudinary(openFileDialog.FileName);
+                if(openFileDialog.FileName != null)
+                {
+                    SelectedImage.Source = SelectedImage.Source = new BitmapImage(new Uri(openFileDialog.FileName, UriKind.Absolute));
+                    SelectedImageRow.Visibility = Visibility.Visible;
+                    SelectedImageUrl = openFileDialog.FileName;
+                }
             }
         }
+        private void RemoveImage_Click(object sender, RoutedEventArgs e)
+        {
+            SelectedImage.Source = null;
+            SelectedImageRow.Visibility = Visibility.Hidden;
+        }
+
 
         private void SendMessage_Click(object sender, RoutedEventArgs e)
         {

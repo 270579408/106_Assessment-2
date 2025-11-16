@@ -20,7 +20,6 @@
                              Fill="#9ebae8"/>
 
                 <TextBlock x:Name="PostUserInitial"
-                           Text="A"
                             FontSize="25"
                             FontWeight="Bold"
                             Foreground="White"
