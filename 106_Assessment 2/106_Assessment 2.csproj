@@ -42,6 +42,8 @@
     <None Remove="Resources\free-wifi-golden.png" />
     <None Remove="Resources\gift-shop-golden.png" />
     <None Remove="Resources\guide-golden.png" />
+    <None Remove="Resources\heart-outline.png" />
+    <None Remove="Resources\heart-red-filled.png" />
     <None Remove="Resources\help.png" />
     <None Remove="Resources\home.png" />
     <None Remove="Resources\key-features-1.png" />
@@ -123,6 +125,12 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Fonts\IrishGrover-Regular.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\heart-outline.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\heart-red-filled.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\help.png">

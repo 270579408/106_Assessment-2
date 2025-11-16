@@ -91,7 +91,19 @@
                 </Button>
             </Grid>
 
-            <userControls:PostList x:Name="MessagesListControl" Margin="30 20 30 30"/>
+            <ItemsControl x:Name="PostItemControl">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Width="600" Margin="0 50 0 0"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <userControls:PostItem/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
         </StackPanel>
     </ScrollViewer>
 </Page>
