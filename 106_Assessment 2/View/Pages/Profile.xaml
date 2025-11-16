@@ -75,8 +75,41 @@
                             HorizontalAlignment="Left"/>
                 </StackPanel>
             </StackPanel>
-        
-            
+
+            <StackPanel Orientation="Horizontal"
+                        Margin="30 20 0 0"
+                        HorizontalAlignment="Left">
+
+                <Button Content="Community"
+                        Width="150"
+                        Padding="15 8"
+                        FontSize="18"
+                        Background="Transparent"
+                        BorderThickness="0 0 0 1"
+                        BorderBrush="Black"
+                        Foreground="Black"
+                        Cursor="Hand"
+                        Click="Community_Click"
+                        x:Name="Community_Btn"/>
+
+                <Button Content="Booking"
+                        Width="150"
+                        Padding="15 8"
+                        FontSize="18"
+                        Background="Transparent"
+                        BorderThickness="0 0 0 1"
+                        BorderBrush="Black"
+                        Foreground="Black"
+                        Click="Booking_Click"
+                        Margin="30 0 0 0"
+                        x:Name="Booking_Btn"/>
+            </StackPanel>
+
+
+            <!-- Dynamic Content Area -->
+            <ContentControl x:Name="ProfileContentArea"
+                Margin="30 20 30 30"/>
+
         </StackPanel>
     </ScrollViewer>
 </Page>

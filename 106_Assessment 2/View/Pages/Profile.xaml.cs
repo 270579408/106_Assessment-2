@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using _106_Assessment_2.View.UserControls;
 
 namespace _106_Assessment_2.View.Pages
 {
@@ -8,16 +9,22 @@ namespace _106_Assessment_2.View.Pages
         public Profile()
         {
             InitializeComponent();
+            ProfileContentArea.Content = new ProfileCommunity();
+            Community_Btn.Background = System.Windows.Media.Brushes.LightGray;
         }
 
         private void Community_Click(object sender, RoutedEventArgs e)
         {
-            ProfileContentArea.Content = new ProfilelCommunity();
+            ProfileContentArea.Content = new ProfileCommunity();
+            Community_Btn.Background = System.Windows.Media.Brushes.LightGray;
+            Booking_Btn.Background = System.Windows.Media.Brushes.Transparent;
         }
 
         private void Booking_Click(object sender, RoutedEventArgs e)
         {
             ProfileContentArea.Content = new ProfileBooking();
+            Booking_Btn.Background = System.Windows.Media.Brushes.LightGray;
+            Community_Btn.Background = System.Windows.Media.Brushes.Transparent;
         }
 
     }
