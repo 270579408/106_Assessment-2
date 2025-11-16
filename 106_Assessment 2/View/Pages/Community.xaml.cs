@@ -15,19 +15,20 @@ namespace _106_Assessment_2.View.Pages
 
     public partial class Community : System.Windows.Controls.Page
     {
+        public List<Post> Posts { get; set; }
 
         public Community()
         {
             InitializeComponent();
-            List<Post> Posts = new List<Post>()
+            Posts = new List<Post>() 
             {
                 new Post() {
-                Id = "asca",
-                ImageUrl = "/Resources/community.png",
-                Text = "Community",
-                UploaderId = "123456",
-                ReactorId = new List<string> { "1245", "12345" },
-                PostedDate = "avas"
+                    Id = "asca",
+                    ImageUrl = "/Resources/community.png",
+                    Text = "Community",
+                    UploaderId = "123456",
+                    ReactorId = new List<string> { "1245", "12345" },
+                    PostedDate = "avas"
                 }
             };
 
