@@ -5,10 +5,78 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:_106_Assessment_2.View.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignWidth="1140"
+      d:DesignHeight="1024"
+      Background="White"
       Title="Profile">
 
-    <Grid>
+    <ScrollViewer VerticalScrollBarVisibility="Auto"
+              HorizontalScrollBarVisibility="Disabled"
+              Background="White">
+
+        <StackPanel>
+
+            <!-- Title -->
+            <TextBlock Text="Profile"
+                   FontSize="32"
+                   FontWeight="SemiBold"
+                   Margin="30 30 30 0"/>
+
+            <!-- Content -->
+            <StackPanel Orientation="Horizontal">
+                <Grid>
+                    <Ellipse Width="150" Height="150" Margin="30"
+                         Fill="#9ebae8"/>
+
+                    <TextBlock Text="S"
+                           FontSize="80"
+                           FontWeight="Bold"
+                           Foreground="White"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
+                </Grid>
+
+                <StackPanel VerticalAlignment="Center">
+                    <StackPanel Orientation="Horizontal" Height="40">
+                        <Image Source="/Resources/profile.png"
+                               Width="20"
+                               Height="20"
+                               VerticalAlignment="Center"/>
+
+                        <TextBlock Text="Sarah Johnson"
+                                   FontSize="24"
+                                   FontWeight="SemiBold"
+                                   VerticalAlignment="Center"
+                                   Margin="20 0 0 0"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Height="40">
+                        <Image Source="/Resources/email.png"
+                               Width="20"
+                               Height="20"
+                               VerticalAlignment="Center"/>
+
+                        <TextBlock Text="sachin@gmail.com"
+                               FontSize="24"
+                               FontWeight="SemiBold"
+                               VerticalAlignment="Center"
+                               Margin="20 0 0 0"/>
+                    </StackPanel>
+
+                    <Button Content="Edit Profile"
+                            Padding="20 10"
+                            FontSize="18"
+                            Background="#C59E00"
+                            Foreground="White"
+                            BorderBrush="Transparent"
+                            Cursor="Hand"
+                            Width="150"
+                            Margin="0 20 0 0"
+                            HorizontalAlignment="Left"/>
+                </StackPanel>
+            </StackPanel>
         
-    </Grid>
+            
+        </StackPanel>
+    </ScrollViewer>
 </Page>
