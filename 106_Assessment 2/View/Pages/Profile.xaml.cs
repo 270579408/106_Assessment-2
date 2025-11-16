@@ -9,8 +9,16 @@ namespace _106_Assessment_2.View.Pages
         public Profile()
         {
             InitializeComponent();
+
+            ProfileUserInitial.Text = GlobalData.CurrentUserName.Length > 0 ? GlobalData.CurrentUserName[0].ToString().ToUpper() : "";
+
+            ProfileUserName.Text = GlobalData.CurrentUserName;
+            ProfileUserEmail.Text = GlobalData.CurrentUserEmail;
+
             ProfileContentArea.Content = new ProfileCommunity();
             Community_Btn.Background = System.Windows.Media.Brushes.LightGray;
+
+            DataContext = this;
         }
 
         private void Community_Click(object sender, RoutedEventArgs e)

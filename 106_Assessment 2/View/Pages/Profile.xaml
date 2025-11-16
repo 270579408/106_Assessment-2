@@ -28,7 +28,7 @@
                     <Ellipse Width="150" Height="150" Margin="30"
                          Fill="#9ebae8"/>
 
-                    <TextBlock Text="S"
+                    <TextBlock x:Name="ProfileUserInitial"
                            FontSize="80"
                            FontWeight="Bold"
                            Foreground="White"
@@ -43,7 +43,7 @@
                                Height="20"
                                VerticalAlignment="Center"/>
 
-                        <TextBlock Text="Sarah Johnson"
+                        <TextBlock x:Name="ProfileUserName"
                                    FontSize="24"
                                    FontWeight="SemiBold"
                                    VerticalAlignment="Center"
@@ -56,7 +56,7 @@
                                Height="20"
                                VerticalAlignment="Center"/>
 
-                        <TextBlock Text="sachin@gmail.com"
+                        <TextBlock x:Name="ProfileUserEmail"
                                FontSize="24"
                                FontWeight="SemiBold"
                                VerticalAlignment="Center"
@@ -100,6 +100,7 @@
                         BorderThickness="0 0 0 1"
                         BorderBrush="Black"
                         Foreground="Black"
+                        Cursor="Hand"
                         Click="Booking_Click"
                         Margin="30 0 0 0"
                         x:Name="Booking_Btn"/>
