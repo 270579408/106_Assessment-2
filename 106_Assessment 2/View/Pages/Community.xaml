@@ -91,6 +91,7 @@
                 </Button>
             </Grid>
 
+            <userControls:PostList x:Name="MessagesListControl" Margin="30 20 30 30"/>
         </StackPanel>
     </ScrollViewer>
 </Page>
