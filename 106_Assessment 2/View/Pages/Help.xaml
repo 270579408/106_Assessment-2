@@ -6,7 +6,7 @@
       xmlns:userControls="clr-namespace:_106_Assessment_2.View.UserControls"
       mc:Ignorable="d"
       d:DesignWidth="1140"
-      d:DesignHeight="2000"
+      d:DesignHeight="1024"
       Title="Help"
       Background="White">
 

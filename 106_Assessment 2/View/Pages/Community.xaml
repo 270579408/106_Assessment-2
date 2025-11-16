@@ -40,19 +40,22 @@
 
                         <Grid Grid.Column="0">
                             <TextBlock Text="Type a message..." 
-                                   VerticalAlignment="Center"
+                                   VerticalAlignment="Top"
                                    FontSize="20"
-                                   Padding="15 0"
+                                   Padding="15 10"
                                    Foreground="#636363"
                                    x:Name="Placeholder_Input"/>
 
-                            <TextBox Height="50" 
+                            <TextBox Height="100" 
                                  Background="Transparent" 
                                  BorderBrush="Transparent"
-                                 VerticalContentAlignment="Center"
+                                 VerticalContentAlignment="Top"
                                  FontSize="20"
                                  Padding="15 0"
                                  x:Name="MessageInput"
+                                 AcceptsReturn="True"
+                                VerticalScrollBarVisibility="Visible"
+                                TextWrapping="Wrap"
                                  TextChanged="Input_TextChanged"/>
                         </Grid>
 
