@@ -1,0 +1,68 @@
+﻿<UserControl x:Class="_106_Assessment_2.View.UserControls.PostItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:_106_Assessment_2.View.UserControls"
+             mc:Ignorable="d"
+             Background="White">
+    <StackPanel>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            
+            <Grid Grid.Column="0">
+                <Ellipse Width="50" Height="50"
+                             Fill="#9ebae8"/>
+
+                <TextBlock x:Name="PostUserInitial"
+                            FontSize="25"
+                            FontWeight="Bold"
+                            Foreground="White"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"/>
+            </Grid>
+
+            <StackPanel VerticalAlignment="Center" Margin="10 0 0 0" Grid.Column="1">
+                <TextBlock x:Name="PostUserName"
+                           Text="Alice Smith"
+                            FontSize="18"
+                            FontWeight="SemiBold"/>
+
+                <TextBlock x:Name="PostTimestamp"
+                       Text="12 Jun 2024"
+                        FontSize="14"
+                        Foreground="Gray"/>
+            </StackPanel>
+
+            <Button Grid.Column="3"
+                    Width="30" Height="30"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Click="ReactBtn_Click"
+                    x:Name="ReactBtn"
+                    Cursor="Hand">
+                <Image Source="/Resources/heart-outline.png"
+                       Width="25" Height="25"
+                       x:Name="ReactBtnImg"/>
+            </Button>
+        </Grid>
+
+        <StackPanel Margin="0 10 0 0">
+            <TextBlock x:Name="PostTextContent"
+                        FontSize="18"
+                        TextWrapping="Wrap"/>
+
+            <Image x:Name="PostImageContent"
+                   Source="/Resources/bird-in-mountain.jpg"
+                     Stretch="UniformToFill"
+                     Margin="0 10 0 0"/>
+        </StackPanel>
+    </StackPanel>
+</UserControl>

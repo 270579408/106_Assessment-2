@@ -12,6 +12,7 @@ namespace _106_Assessment_2
         {
             InitializeComponent();
             MainFrame.Navigate(new View.Pages.Help());
+            NavigateToProfile();
         }
 
         private void MenuToggleButton_Click(object sender, RoutedEventArgs e)
@@ -33,9 +34,15 @@ namespace _106_Assessment_2
         private void LogIn_Click(object sender, RoutedEventArgs e) => MainFrame.Navigate(new View.Pages.Login());
         private void Settings_Click(object sender, RoutedEventArgs e) => MessageBox.Show("Settings Page coming soon!");
 
-        public void ChangeLogInOption(string text)
+        public void ChangeProfileNameSideBar(string text)
         {
             LoginSideBarOption.Content = text;
+        }
+
+        public void NavigateToProfile()
+        {
+            if(GlobalData.CurrentUserId != null && GlobalData.CurrentUserEmail != null && GlobalData.CurrentUserName != null)
+                MainFrame.Navigate(new View.Pages.Profile());
         }
     }
 }

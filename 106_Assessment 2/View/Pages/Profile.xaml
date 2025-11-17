@@ -6,8 +6,8 @@
       xmlns:local="clr-namespace:_106_Assessment_2.View.Pages"
       mc:Ignorable="d" 
       d:DesignWidth="1140"
-    d:DesignHeight="1500"
-    Background="White"
+      d:DesignHeight="1024"
+      Background="White"
       Title="Profile">
 
     <ScrollViewer VerticalScrollBarVisibility="Auto"
@@ -18,13 +18,98 @@
 
             <!-- Title -->
             <TextBlock Text="Profile"
-                        FontSize="32"
-                       FontWeight="SemiBold"
-                        Margin="30 30 30 0"/>
+                   FontSize="32"
+                   FontWeight="SemiBold"
+                   Margin="30 30 30 0"/>
 
             <!-- Content -->
-            <Grid Margin="30 20 30 0" Height="Auto">
-            </Grid>
+            <StackPanel Orientation="Horizontal">
+                <Grid>
+                    <Ellipse Width="150" Height="150" Margin="30"
+                         Fill="#9ebae8"/>
+
+                    <TextBlock x:Name="ProfileUserInitial"
+                           FontSize="80"
+                           FontWeight="Bold"
+                           Foreground="White"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
+                </Grid>
+
+                <StackPanel VerticalAlignment="Center">
+                    <StackPanel Orientation="Horizontal" Height="40">
+                        <Image Source="/Resources/profile.png"
+                               Width="20"
+                               Height="20"
+                               VerticalAlignment="Center"/>
+
+                        <TextBlock x:Name="ProfileUserName"
+                                   FontSize="24"
+                                   FontWeight="SemiBold"
+                                   VerticalAlignment="Center"
+                                   Margin="20 0 0 0"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Height="40">
+                        <Image Source="/Resources/email.png"
+                               Width="20"
+                               Height="20"
+                               VerticalAlignment="Center"/>
+
+                        <TextBlock x:Name="ProfileUserEmail"
+                               FontSize="24"
+                               FontWeight="SemiBold"
+                               VerticalAlignment="Center"
+                               Margin="20 0 0 0"/>
+                    </StackPanel>
+
+                    <Button Content="Edit Profile"
+                            Padding="20 10"
+                            FontSize="18"
+                            Background="#C59E00"
+                            Foreground="White"
+                            BorderBrush="Transparent"
+                            Cursor="Hand"
+                            Width="150"
+                            Margin="0 20 0 0"
+                            HorizontalAlignment="Left"/>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal"
+                        Margin="30 20 0 0"
+                        HorizontalAlignment="Left">
+
+                <Button Content="Community"
+                        Width="150"
+                        Padding="15 8"
+                        FontSize="18"
+                        Background="Transparent"
+                        BorderThickness="0 0 0 1"
+                        BorderBrush="Black"
+                        Foreground="Black"
+                        Cursor="Hand"
+                        Click="Community_Click"
+                        x:Name="Community_Btn"/>
+
+                <Button Content="Booking"
+                        Width="150"
+                        Padding="15 8"
+                        FontSize="18"
+                        Background="Transparent"
+                        BorderThickness="0 0 0 1"
+                        BorderBrush="Black"
+                        Foreground="Black"
+                        Cursor="Hand"
+                        Click="Booking_Click"
+                        Margin="30 0 0 0"
+                        x:Name="Booking_Btn"/>
+            </StackPanel>
+
+
+            <!-- Dynamic Content Area -->
+            <ContentControl x:Name="ProfileContentArea"
+                Margin="30 20 30 30"/>
 
         </StackPanel>
     </ScrollViewer>
