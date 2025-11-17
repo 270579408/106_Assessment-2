@@ -23,9 +23,15 @@ namespace _106_Assessment_2.ViewModels
         {
             return _user.Find(_ => true).ToList();
         }
+
         public User GetUserByEmail(string email)
         {
             return _user.Find(u => u.Email == email).FirstOrDefault();
+        }
+
+        public User GetUserById(string id)
+        {
+            return _user.Find(u => u.ID == id).FirstOrDefault();
         }
 
     }

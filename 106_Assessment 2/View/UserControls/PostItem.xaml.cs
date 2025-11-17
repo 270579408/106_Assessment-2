@@ -1,4 +1,5 @@
 ﻿using _106_Assessment_2.Models;
+using _106_Assessment_2.ViewModels;
 using Microsoft.Win32;
 using System.Windows;
 using System.Windows.Controls;
@@ -10,9 +11,16 @@ namespace _106_Assessment_2.View.UserControls
     {
         public bool Reacetd = false;
 
+        public RegisterViewModel _registerViewModel;
+
+        public User userDetails;
+
         public PostItem()
         {
             InitializeComponent();
+
+            _registerViewModel = new RegisterViewModel();
+
         }
 
         private void ReactBtn_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -39,14 +47,24 @@ namespace _106_Assessment_2.View.UserControls
         private static void OnDataChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var control = d as PostItem;
-            if (control != null)
+            if (control == null) return;
+
+            if (e.NewValue is Post post)
             {
-                if (e.NewValue is Post post)
+                var registerVM = control._registerViewModel;
+                var userDetails = registerVM.GetUserById(post.UploaderId);
+
+                control.PostTextContent.Text = post.Text;
+
+                if (!string.IsNullOrEmpty(post.ImageUrl))
                 {
-                    control.PostTextContent.Text = post.Text;
-                    control.PostImageContent.Source = new BitmapImage(new Uri(post.ImageUrl, UriKind.Absolute));
-                    control.PostUserInitial.Text = "A";
+                    control.PostImageContent.Source = new BitmapImage(
+                        new Uri(post.ImageUrl, UriKind.Absolute));
                 }
+
+                control.PostUserInitial.Text = userDetails?.Name?[0].ToString() ?? "?";
+                control.PostUserName.Text = userDetails?.Name ?? "Unknown";
+                control.PostTimestamp.Text = post.PostedDate.ToString("dd MMM yyyy, hh:mm tt");
             }
         }
     }

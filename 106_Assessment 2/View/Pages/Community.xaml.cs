@@ -31,6 +31,7 @@ namespace _106_Assessment_2.View.Pages
             try
             {
                 Posts = _postViewModel.GetAllPosts();
+                Posts.Reverse();
             }
             catch (Exception ex)
             {
