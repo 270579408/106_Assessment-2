@@ -20,7 +20,7 @@ namespace _106_Assessment_2.View.Pages
 
         public string SelectedImageUrl;
 
-        private PostViewModel _postViewModel;
+        public PostViewModel _postViewModel;
 
         public Community()
         {
@@ -28,7 +28,14 @@ namespace _106_Assessment_2.View.Pages
 
             _postViewModel = new PostViewModel();
 
-            Posts = _postViewModel.GetAllPosts();
+            try
+            {
+                Posts = _postViewModel.GetAllPosts();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading posts: " + ex.Message);
+            }
             PostItemControl.ItemsSource = Posts;
 
             DataContext = this;
@@ -65,13 +72,19 @@ namespace _106_Assessment_2.View.Pages
 
         private void SendMessage_Click(object sender, RoutedEventArgs e)
         {
+            string uploadedImageUrl = null;
+
+            if (!string.IsNullOrWhiteSpace(SelectedImageUrl))
+            {
+                uploadedImageUrl = UploadToCloudinary(SelectedImageUrl);
+            }
 
             Post iniPost = new Post()
             {
-                ImageUrl = UploadToCloudinary(SelectedImageUrl),
+                ImageUrl = uploadedImageUrl,   // null if no image
                 Text = MessageInput.Text,
                 UploaderId = GlobalData.CurrentUserId,
-                ReactorId = new List<string> { },
+                ReactorId = new List<string>(),
                 PostedDate = DateTime.Now
             };
 
@@ -85,29 +98,35 @@ namespace _106_Assessment_2.View.Pages
 
         private string UploadToCloudinary(string filePath)
         {
-            Account account = new Account(
-                "devjm9laj",
-                "641983795813514",
-                "-a042HqSMoH07m00VXZXSApdTk0");
+            if (string.IsNullOrWhiteSpace(filePath))
+                return null;
 
-            Cloudinary cloudinary = new Cloudinary(account);
-            string imageUrl = "";
-
-            var uploadParams = new ImageUploadParams()
+            try
             {
-                File = new FileDescription(filePath),
-                Folder = "Onewhero Bay" // optional: organize images
-            };
+                Account account = new Account(
+                    "devjm9laj",
+                    "641983795813514",
+                    "-a042HqSMoH07m00VXZXSApdTk0");
 
-            ImageUploadResult result = cloudinary.Upload(uploadParams);
+                Cloudinary cloudinary = new Cloudinary(account);
 
-            if (result.StatusCode == System.Net.HttpStatusCode.OK)
+                var uploadParams = new ImageUploadParams()
+                {
+                    File = new FileDescription(filePath),
+                    Folder = "onewhero_bay"
+                };
+
+                var result = cloudinary.Upload(uploadParams);
+
+                if (result.StatusCode == System.Net.HttpStatusCode.OK)
+                    return result.SecureUrl.ToString();
+            }
+            catch (Exception ex)
             {
-                imageUrl = result.SecureUrl.ToString();
-                // Store imageUrl in MongoDB for global access
+                MessageBox.Show("Upload Failed: " + ex.Message);
             }
 
-            return imageUrl;
+            return null;
         }
     }
 }

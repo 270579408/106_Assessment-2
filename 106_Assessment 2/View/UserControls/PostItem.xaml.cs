@@ -1,4 +1,5 @@
 ﻿using _106_Assessment_2.Models;
+using Microsoft.Win32;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
@@ -43,7 +44,7 @@ namespace _106_Assessment_2.View.UserControls
                 if (e.NewValue is Post post)
                 {
                     control.PostTextContent.Text = post.Text;
-                    control.PostImageContent.Source = new BitmapImage(new Uri("pack://application:,,," + post.ImageUrl));
+                    control.PostImageContent.Source = new BitmapImage(new Uri(post.ImageUrl, UriKind.Absolute));
                     control.PostUserInitial.Text = "A";
                 }
             }
