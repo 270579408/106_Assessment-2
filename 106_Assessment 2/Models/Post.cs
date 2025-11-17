@@ -22,6 +22,6 @@ namespace _106_Assessment_2.Models
         public List<string> ReactorId { get; set; }
 
         [BsonElement("postedDate")]
-        public string PostedDate { get; set; }
+        public DateTime PostedDate { get; set; }
     }
 }

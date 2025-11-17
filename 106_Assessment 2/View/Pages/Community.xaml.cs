@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using _106_Assessment_2.Models;
+using _106_Assessment_2.ViewModels;
 
 
 namespace _106_Assessment_2.View.Pages
@@ -19,23 +20,25 @@ namespace _106_Assessment_2.View.Pages
 
         public string SelectedImageUrl;
 
+        public PostViewModel _postViewModel;
+
         public Community()
         {
             InitializeComponent();
 
-            Posts = new List<Post>() 
-            {
-                new Post() {
-                    Id = "asca",
-                    ImageUrl = "/Resources/key-features-1.png",
-                    Text = "Community",
-                    UploaderId = "123456",
-                    ReactorId = new List<string> { "1245", "12345" },
-                    PostedDate = "avas"
-                }
-            };
+            _postViewModel = new PostViewModel();
 
+            try
+            {
+                Posts = _postViewModel.GetAllPosts();
+                Posts.Reverse();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading posts: " + ex.Message);
+            }
             PostItemControl.ItemsSource = Posts;
+
             DataContext = this;
         }
 
@@ -70,36 +73,66 @@ namespace _106_Assessment_2.View.Pages
 
         private void SendMessage_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("a");
-        }
+            if(GlobalData.CurrentUserId == null && GlobalData.CurrentUserEmail == null && GlobalData.CurrentUserName == null) {
+                MessageBox.Show("You need to Login to upload.");
+                return;
+            }
 
-        private void UploadToCloudinary(string filePath)
-        {
-            Account account = new Account(
-                "devjm9laj",
-                "641983795813514",
-                "-a042HqSMoH07m00VXZXSApdTk0");
+            string uploadedImageUrl = null;
 
-            Cloudinary cloudinary = new Cloudinary(account);
-
-            var uploadParams = new ImageUploadParams()
+            if (!string.IsNullOrWhiteSpace(SelectedImageUrl))
             {
-                File = new FileDescription(filePath),
-                Folder = "Onewhero Bay" // optional: organize images
+                uploadedImageUrl = UploadToCloudinary(SelectedImageUrl);
+            }
+
+            Post iniPost = new Post()
+            {
+                ImageUrl = uploadedImageUrl,   // null if no image
+                Text = MessageInput.Text,
+                UploaderId = GlobalData.CurrentUserId,
+                ReactorId = new List<string>(),
+                PostedDate = DateTime.Now
             };
 
-            ImageUploadResult result = cloudinary.Upload(uploadParams);
+            _postViewModel.AddPost(iniPost);
 
-            if (result.StatusCode == System.Net.HttpStatusCode.OK)
+            MessageInput.Clear();
+            SelectedImage.Source = null;
+            SelectedImageRow.Visibility = Visibility.Hidden;
+            SelectedImageUrl = "";
+        }
+
+        private string UploadToCloudinary(string filePath)
+        {
+            if (string.IsNullOrWhiteSpace(filePath))
+                return null;
+
+            try
             {
-                string imageUrl = result.SecureUrl.ToString();
-                MessageBox.Show("Uploaded! URL: " + imageUrl);
-                // Store imageUrl in MongoDB for global access
+                Account account = new Account(
+                    "devjm9laj",
+                    "641983795813514",
+                    "-a042HqSMoH07m00VXZXSApdTk0");
+
+                Cloudinary cloudinary = new Cloudinary(account);
+
+                var uploadParams = new ImageUploadParams()
+                {
+                    File = new FileDescription(filePath),
+                    Folder = "onewhero_bay"
+                };
+
+                var result = cloudinary.Upload(uploadParams);
+
+                if (result.StatusCode == System.Net.HttpStatusCode.OK)
+                    return result.SecureUrl.ToString();
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Upload failed: " + result.Error.Message);
+                MessageBox.Show("Upload Failed: " + ex.Message);
             }
+
+            return null;
         }
     }
 }
