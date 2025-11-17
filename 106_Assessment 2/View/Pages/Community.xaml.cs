@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using _106_Assessment_2.Models;
+using _106_Assessment_2.ViewModels;
 
 
 namespace _106_Assessment_2.View.Pages
@@ -19,23 +20,17 @@ namespace _106_Assessment_2.View.Pages
 
         public string SelectedImageUrl;
 
+        private PostViewModel _postViewModel;
+
         public Community()
         {
             InitializeComponent();
 
-            Posts = new List<Post>() 
-            {
-                new Post() {
-                    Id = "asca",
-                    ImageUrl = "/Resources/key-features-1.png",
-                    Text = "Community",
-                    UploaderId = "123456",
-                    ReactorId = new List<string> { "1245", "12345" },
-                    PostedDate = "avas"
-                }
-            };
+            _postViewModel = new PostViewModel();
 
+            Posts = _postViewModel.GetAllPosts();
             PostItemControl.ItemsSource = Posts;
+
             DataContext = this;
         }
 
@@ -70,10 +65,25 @@ namespace _106_Assessment_2.View.Pages
 
         private void SendMessage_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("a");
+
+            Post iniPost = new Post()
+            {
+                ImageUrl = UploadToCloudinary(SelectedImageUrl),
+                Text = MessageInput.Text,
+                UploaderId = GlobalData.CurrentUserId,
+                ReactorId = new List<string> { },
+                PostedDate = DateTime.Now
+            };
+
+            _postViewModel.AddPost(iniPost);
+
+            MessageInput.Clear();
+            SelectedImage.Source = null;
+            SelectedImageRow.Visibility = Visibility.Hidden;
+            SelectedImageUrl = "";
         }
 
-        private void UploadToCloudinary(string filePath)
+        private string UploadToCloudinary(string filePath)
         {
             Account account = new Account(
                 "devjm9laj",
@@ -81,6 +91,7 @@ namespace _106_Assessment_2.View.Pages
                 "-a042HqSMoH07m00VXZXSApdTk0");
 
             Cloudinary cloudinary = new Cloudinary(account);
+            string imageUrl = "";
 
             var uploadParams = new ImageUploadParams()
             {
@@ -92,14 +103,11 @@ namespace _106_Assessment_2.View.Pages
 
             if (result.StatusCode == System.Net.HttpStatusCode.OK)
             {
-                string imageUrl = result.SecureUrl.ToString();
-                MessageBox.Show("Uploaded! URL: " + imageUrl);
+                imageUrl = result.SecureUrl.ToString();
                 // Store imageUrl in MongoDB for global access
             }
-            else
-            {
-                MessageBox.Show("Upload failed: " + result.Error.Message);
-            }
+
+            return imageUrl;
         }
     }
 }
