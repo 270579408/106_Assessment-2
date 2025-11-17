@@ -73,6 +73,11 @@ namespace _106_Assessment_2.View.Pages
 
         private void SendMessage_Click(object sender, RoutedEventArgs e)
         {
+            if(GlobalData.CurrentUserId == null && GlobalData.CurrentUserEmail == null && GlobalData.CurrentUserName == null) {
+                MessageBox.Show("You need to Login to upload.");
+                return;
+            }
+
             string uploadedImageUrl = null;
 
             if (!string.IsNullOrWhiteSpace(SelectedImageUrl))
