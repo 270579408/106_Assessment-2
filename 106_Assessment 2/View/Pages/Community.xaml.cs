@@ -73,7 +73,10 @@ namespace _106_Assessment_2.View.Pages
 
         private void SendMessage_Click(object sender, RoutedEventArgs e)
         {
-            if(GlobalData.CurrentUserId == null && GlobalData.CurrentUserEmail == null && GlobalData.CurrentUserName == null) {
+            if (GlobalData.CurrentUserId == null &&
+                GlobalData.CurrentUserEmail == null &&
+                GlobalData.CurrentUserName == null)
+            {
                 MessageBox.Show("You need to Login to upload.");
                 return;
             }
@@ -87,7 +90,7 @@ namespace _106_Assessment_2.View.Pages
 
             Post iniPost = new Post()
             {
-                ImageUrl = uploadedImageUrl,   // null if no image
+                ImageUrl = uploadedImageUrl,
                 Text = MessageInput.Text,
                 UploaderId = GlobalData.CurrentUserId,
                 ReactorId = new List<string>(),
@@ -96,11 +99,18 @@ namespace _106_Assessment_2.View.Pages
 
             _postViewModel.AddPost(iniPost);
 
+            Posts = _postViewModel.GetAllPosts();
+            Posts.Reverse();
+
+            PostItemControl.ItemsSource = null;  
+            PostItemControl.ItemsSource = Posts;
+
             MessageInput.Clear();
             SelectedImage.Source = null;
             SelectedImageRow.Visibility = Visibility.Hidden;
             SelectedImageUrl = "";
         }
+
 
         private string UploadToCloudinary(string filePath)
         {
