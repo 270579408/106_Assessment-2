@@ -4,6 +4,7 @@ using _106_Assessment_2.Models;
 using _106_Assessment_2.ViewModels;
 using System.Xml.Linq;
 using _106_Assessment_2;
+using _106_Assessment_2.Common;
 
 namespace _106_Assessment_2.View.Pages
 {
@@ -22,8 +23,16 @@ namespace _106_Assessment_2.View.Pages
             else
             {
                 User user = _registerViewModel.GetUserByEmail(txtEmail.Text);
+                if (user.Email == "admin@onewhero.nz")
+                {
+                    var adminWindow = new AdminWindow();
+                    adminWindow.Show();
 
-                if(user != null)
+                    Window.GetWindow(this)?.Close();
+                    return;
+                }
+
+                if (user != null)
                 {
                     if(BCrypt.Net.BCrypt.Verify(pwdPassword.Password, user.PasswordHash))
                     {
@@ -31,11 +40,10 @@ namespace _106_Assessment_2.View.Pages
                         GlobalData.CurrentUserName = user.Name;
                         GlobalData.CurrentUserEmail = user.Email;
 
-                        MessageBox.Show(GlobalData.CurrentUserId);
+                        var main = new MainWindow();
+                        main.Show();
 
-                        var main = (MainWindow)Application.Current.MainWindow;
-                        main.ChangeProfileNameSideBar(GlobalData.CurrentUserName);
-                        main.NavigateToProfile();
+                        Window.GetWindow(this)?.Close();
                     } else
                     {
                         FormError.Text = "* Password Not Matched";
