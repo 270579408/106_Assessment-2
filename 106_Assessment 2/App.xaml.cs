@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using _106_Assessment_2.Common;
+using System.Windows;
 
 namespace _106_Assessment_2
 {

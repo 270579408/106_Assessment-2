@@ -6,7 +6,6 @@ namespace _106_Assessment_2
     public partial class MainWindow : Window
     {
         private bool _isCollapsed = false;
-        public User currentUser;
 
         public MainWindow()
         {
@@ -16,7 +15,7 @@ namespace _106_Assessment_2
 
         private void MenuToggleButton_Click(object sender, RoutedEventArgs e)
         {
-            double newWidth = _isCollapsed ? 250 : 65;
+            double newWidth = _isCollapsed ? 300 : 65;
             NavColumn.Width = new GridLength(newWidth);
 
             AppTitle.Visibility = _isCollapsed ? Visibility.Visible : Visibility.Collapsed;

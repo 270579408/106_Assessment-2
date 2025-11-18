@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace _106_Assessment_2.View.Pages.Admin
 {
     /// <summary>
-    /// Interaction logic for VisitorManagementPage.xaml
+    /// Interaction logic for BookingManagement.xaml
     /// </summary>
-    public partial class VisitorManagementPage : Page
+    public partial class BookingManagement : Page
     {
-        public VisitorManagementPage()
+        public BookingManagement()
         {
             InitializeComponent();
         }

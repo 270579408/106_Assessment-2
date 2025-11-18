@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace _106_Assessment_2.View.Pages.Admin
 {
     /// <summary>
-    /// Interaction logic for MessageCenterPage.xaml
+    /// Interaction logic for CommunityModeration.xaml
     /// </summary>
-    public partial class MessageCenterPage : Page
+    public partial class CommunityModeration : Page
     {
-        public MessageCenterPage()
+        public CommunityModeration()
         {
             InitializeComponent();
         }

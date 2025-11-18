@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace _106_Assessment_2.View.Pages.Admin
 {
     /// <summary>
-    /// Interaction logic for EventManagementPage.xaml
+    /// Interaction logic for ReportsPage.xaml
     /// </summary>
-    public partial class EventManagementPage : Page
+    public partial class Reports : Page
     {
-        public EventManagementPage()
+        public Reports()
         {
             InitializeComponent();
         }
