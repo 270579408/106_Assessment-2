@@ -101,5 +101,16 @@ namespace _106_Assessment_2.View.Pages
             TagScrollViewer.ScrollToHorizontalOffset(newOffset);
         }
 
+        private void BookBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+
+            var selectedEvent = btn.Tag as Event;
+            if (selectedEvent == null) return;
+
+            NavigationService?.Navigate(new BookEvent(selectedEvent));
+        }
+
+
     }
 }

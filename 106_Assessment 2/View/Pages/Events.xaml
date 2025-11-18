@@ -180,6 +180,8 @@
                                             Background="White"
                                             BorderThickness="0"
                                             Cursor="Hand"
+                                            Click="BookBtn_Click"
+                                            Tag="{Binding}"
                                             Visibility="Collapsed"/>
                                 </StackPanel>
 
