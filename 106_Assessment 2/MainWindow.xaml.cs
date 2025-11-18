@@ -11,8 +11,7 @@ namespace _106_Assessment_2
         public MainWindow()
         {
             InitializeComponent();
-            MainFrame.Navigate(new View.Pages.Help());
-            NavigateToProfile();
+            MainFrame.Navigate(new View.Pages.Home());
         }
 
         private void MenuToggleButton_Click(object sender, RoutedEventArgs e)
@@ -31,7 +30,8 @@ namespace _106_Assessment_2
         private void Park_Click(object sender, RoutedEventArgs e) => MainFrame.Navigate(new View.Pages.ParkInfo());
         private void Community_Click(object sender, RoutedEventArgs e) => MainFrame.Navigate(new View.Pages.Community());
         private void Help_Click(object sender, RoutedEventArgs e) => MainFrame.Navigate(new View.Pages.Help());
-        private void LogIn_Click(object sender, RoutedEventArgs e) => MainFrame.Navigate(new View.Pages.Login());
+        private void LogIn_Click(object sender, RoutedEventArgs e) => NavigateToProfile();
+
         private void Settings_Click(object sender, RoutedEventArgs e) => MessageBox.Show("Settings Page coming soon!");
 
         public void ChangeProfileNameSideBar(string text)
@@ -43,6 +43,8 @@ namespace _106_Assessment_2
         {
             if(GlobalData.CurrentUserId != null && GlobalData.CurrentUserEmail != null && GlobalData.CurrentUserName != null)
                 MainFrame.Navigate(new View.Pages.Profile());
+            else
+                MainFrame.Navigate(new View.Pages.Login());
         }
     }
 }

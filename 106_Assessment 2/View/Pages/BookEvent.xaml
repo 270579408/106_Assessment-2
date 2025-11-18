@@ -1,0 +1,190 @@
+﻿<Page x:Class="_106_Assessment_2.View.Pages.BookEvent"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:_106_Assessment_2.View.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="2000" d:DesignWidth="1000"
+      Title="BookEvent">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                  HorizontalScrollBarVisibility="Disabled"
+                  Background="White">
+        <StackPanel>
+
+            <!-- Banner -->
+            <Grid HorizontalAlignment="Center" Height="400" MaxHeight="700">
+                <Image x:Name="FeaturedEventsBannerImg" 
+                       Stretch="UniformToFill"
+                       Source="/Resources/bird-in-mountain.jpg"/>
+                <Rectangle Fill="Black" Opacity="0.5"/>
+                <StackPanel Orientation="Vertical" VerticalAlignment="Center"
+                            HorizontalAlignment="Center" Margin="50 30">
+                    <TextBlock x:Name="FeaturedEventsTitle" 
+                               FontSize="54" 
+                               FontWeight="Bold" 
+                               Foreground="White"
+                               Margin="0 0 0 20"
+                               TextAlignment="Center"/>
+                    <TextBlock x:Name="FeaturedEventsDescription" 
+                               FontSize="24" 
+                               FontWeight="Bold" 
+                               Foreground="White"
+                               TextAlignment="Center"
+                               TextWrapping="Wrap"/>
+                </StackPanel>
+            </Grid>
+
+            <!-- Promotion Banner -->
+            <Border x:Name="PromotionBanner"
+                    Background="#FFB300" CornerRadius="10" Margin="40 20" Padding="15" Cursor="Hand"
+                    MouseDown="PromotionBanner_Click">
+                <TextBlock Text="Sign up now to get 5% discount on your booking!" 
+                           Foreground="White" FontSize="18" FontWeight="SemiBold" TextAlignment="Center"/>
+            </Border>
+
+            <!-- Event Info -->
+            <StackPanel Margin="40 20">
+                <TextBlock Text="Event Information"
+                           FontSize="26"
+                           FontWeight="SemiBold"
+                           Margin="0 0 0 10"/>
+                <TextBlock x:Name="EventDateTxt" FontSize="18" Margin="0 5"/>
+                <TextBlock x:Name="EventLocationTxt" FontSize="18" Margin="0 5"/>
+                <TextBlock x:Name="EventPriceTxt" FontSize="18" Margin="0 10"/>
+
+                <!-- Total Price -->
+                <TextBlock x:Name="TotalPriceTxt" FontSize="20" FontWeight="SemiBold" Foreground="#FFB300" Margin="0 10"/>
+
+                <!-- Detailed Description -->
+                <TextBlock Text="About the Experience"
+                           FontSize="26"
+                           FontWeight="SemiBold"
+                           Margin="0 20 0 10"/>
+                <TextBlock x:Name="EventFullDescriptionTxt"
+                           FontSize="18"
+                           TextWrapping="Wrap"/>
+            </StackPanel>
+
+            <!-- Booking Form -->
+            <StackPanel Margin="40 20">
+                <TextBlock Text="Book Your Spot"
+                           FontSize="26"
+                           FontWeight="SemiBold"
+                           Margin="0 0 0 20"/>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0" Margin="0 0 20 0">
+                        <TextBlock Text="Full Name" FontSize="18"/>
+                        <TextBox x:Name="FullNameTxt" Height="35" Margin="0 5 0 15"/>
+
+                        <TextBlock Text="Email" FontSize="18"/>
+                        <TextBox x:Name="EmailTxt" Height="35" Margin="0 5 0 15"/>
+
+                        <TextBlock Text="Phone Number" FontSize="18"/>
+                        <TextBox x:Name="PhoneTxt" Height="35" Margin="0 5 0 15"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" Margin="20 0 0 0">
+                        <TextBlock Text="Number of Tickets" FontSize="18"/>
+                        <ComboBox x:Name="TicketCountCombo" Height="35" Margin="0 5 0 15"
+                                  SelectionChanged="TicketCountCombo_SelectionChanged">
+                            <ComboBoxItem Content="1"/>
+                            <ComboBoxItem Content="2"/>
+                            <ComboBoxItem Content="3"/>
+                            <ComboBoxItem Content="4"/>
+                            <ComboBoxItem Content="5"/>
+                        </ComboBox>
+
+                        <TextBlock Text="Event Date" FontSize="18"/>
+                        <TextBlock x:Name="EventDate" Margin="0 5 0 15"/>
+
+                        <TextBlock Text="Special Requirements" FontSize="18"/>
+                        <TextBox x:Name="SpecialReqTxt" Height="80" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </Grid>
+
+                <Button Content="Confirm Booking"
+                        Click="ConfirmBooking_Click"
+                        Background="#FFB300"
+                        Foreground="White"
+                        Padding="10"
+                        FontSize="20"
+                        BorderBrush="Transparent"
+                        Margin="0 30 0 0"
+                        Cursor="Hand"/>
+            </StackPanel>
+
+            <!-- Payment Section -->
+            <StackPanel x:Name="PaymentSection"
+                        Visibility="Hidden"
+                        Margin="40"
+                        Width="600"
+                        HorizontalAlignment="Center">
+
+                <Grid Height="400" MaxHeight="450">
+                    <Rectangle RadiusX="15" RadiusY="15"/>
+                    <StackPanel Margin="30">
+                        <TextBlock Text="Payment Information"
+                                   FontSize="28"
+                                   FontWeight="SemiBold"
+                                   Foreground="Black"
+                                   Margin="0 0 0 20"/>
+
+                        <!-- Card Holder -->
+                        <TextBlock Text="Cardholder Name"
+                                   FontSize="18"
+                                   Foreground="Black"/>
+                        <TextBox x:Name="CardHolderTxt" Height="35" Margin="0 5 0 15"/>
+
+                        <!-- Card Number -->
+                        <TextBlock Text="Card Number"
+                                   FontSize="18"
+                                   Foreground="Black"/>
+                        <TextBox x:Name="CardNumberTxt" Height="35" Margin="0 5 0 15" MaxLength="16"/>
+
+                        <!-- Expiry + CVV -->
+                        <Grid Margin="0 0 0 15">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Grid.Column="0" Margin="0 0 10 0">
+                                <TextBlock Text="Expiry (MM/YY)"
+                                           FontSize="18"
+                                           Foreground="Black"/>
+                                <TextBox x:Name="ExpiryTxt" Height="35" MaxLength="5"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="1">
+                                <TextBlock Text="CVV"
+                                           FontSize="18"
+                                           Foreground="Black"/>
+                                <TextBox x:Name="CVVTxt" Height="35" MaxLength="3"/>
+                            </StackPanel>
+                        </Grid>
+
+                        <!-- Pay Button -->
+                        <Button Content="Confirm Payment"
+                                Height="45"
+                                Background="#FFB300"
+                                Foreground="White"
+                                FontSize="18"
+                                FontWeight="SemiBold"
+                                BorderBrush="Transparent"
+                                Cursor="Hand"
+                                Click="PayNow_Click"/>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+
+        </StackPanel>
+    </ScrollViewer>
+</Page>
