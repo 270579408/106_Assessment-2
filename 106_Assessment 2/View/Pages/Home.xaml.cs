@@ -4,6 +4,7 @@ using MongoDB.Driver;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
@@ -44,28 +45,37 @@ namespace _106_Assessment_2.View.Pages
             DataContext = this;
         }
 
-        private void ScrollViewer_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void ScrollLeft_Click(object sender, RoutedEventArgs e)
         {
-            _isDragging = true;
-            _startPoint = e.GetPosition(EventScrollViewer);
-            _startOffset = EventScrollViewer.HorizontalOffset;
-            EventScrollViewer.CaptureMouse();
+            EventScrollViewer.ScrollToHorizontalOffset(EventScrollViewer.HorizontalOffset - 300);
         }
 
-        private void ScrollViewer_PreviewMouseMove(object sender, MouseEventArgs e)
+        private void ScrollRight_Click(object sender, RoutedEventArgs e)
         {
-            if (!_isDragging) return;
-
-            Point currentPoint = e.GetPosition(EventScrollViewer);
-            double delta = _startPoint.X - currentPoint.X;
-
-            EventScrollViewer.ScrollToHorizontalOffset(_startOffset + delta);
+            EventScrollViewer.ScrollToHorizontalOffset(EventScrollViewer.HorizontalOffset + 300);
         }
 
-        private void ScrollViewer_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        private void EventScrollViewer_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
         {
-            _isDragging = false;
-            EventScrollViewer.ReleaseMouseCapture();
+            e.Handled = true;
+            var parent = FindParent<ScrollViewer>(EventScrollViewer);
+            if (parent != null)
+                parent.ScrollToVerticalOffset(parent.VerticalOffset - e.Delta);
         }
+
+        private T FindParent<T>(DependencyObject child) where T : DependencyObject
+        {
+            DependencyObject parent = VisualTreeHelper.GetParent(child);
+
+            while (parent != null)
+            {
+                if (parent is T correctlyTyped)
+                    return correctlyTyped;
+
+                parent = VisualTreeHelper.GetParent(parent);
+            }
+            return null;
+        }
+
     }
 }

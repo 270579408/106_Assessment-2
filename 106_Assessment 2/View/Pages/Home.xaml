@@ -12,89 +12,146 @@
                   HorizontalScrollBarVisibility="Disabled"
                   Background="White">
         <StackPanel>
-        <!-- Featured events banner section -->
+
+            <!-- Featured Banner -->
             <userControls:FeaturedBanner x:Name="FeaturedBanner" Height="700"/>
 
-            <!-- Upcoming events section -->
+            <!-- UPCOMING EVENTS -->
             <StackPanel Margin="0 50 0 0">
                 <TextBlock Text="Upcoming Events" 
                            FontSize="24"
-                            FontWeight="SemiBold"
-                           Margin="30 0 30 0 "/>
-                <ScrollViewer x:Name="EventScrollViewer"
-                              HorizontalScrollBarVisibility="Hidden"
-                              VerticalScrollBarVisibility="Disabled"
-                              PreviewMouseLeftButtonDown="ScrollViewer_PreviewMouseLeftButtonDown"
-                              PreviewMouseMove="ScrollViewer_PreviewMouseMove"
-                              PreviewMouseLeftButtonUp="ScrollViewer_PreviewMouseLeftButtonUp"
-                              Cursor="Hand" 
-                              Margin="30 20 0 0">
-                    <ItemsControl x:Name="EventItemsControl" 
-                                  ItemsSource="{Binding AllEvents}">
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <StackPanel Orientation="Horizontal"/>
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
+                           FontWeight="SemiBold"
+                           Margin="30 0 30 0"/>
 
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <Grid Width="250" Height="270" Margin="0 0 20 0" x:Name="eventCard">
-                                    <Image Source="{Binding ImageUrl}" 
-                                           Stretch="UniformToFill" 
-                                           VerticalAlignment="Center"/>
+                <Grid Margin="30 20 0 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="50"/>
+                    </Grid.ColumnDefinitions>
 
-                                    <Rectangle>
-                                        <Rectangle.Fill>
-                                            <LinearGradientBrush EndPoint="0,0" StartPoint="0,1">
-                                                <GradientStop Color="#CC000000" Offset="0"/>
-                                                <GradientStop Color="#00000000" Offset="1"/>
-                                            </LinearGradientBrush>
-                                        </Rectangle.Fill>
-                                    </Rectangle>
+                    <!-- LEFT BUTTON -->
+                    <Button Grid.Column="0"
+                            Content="◀"
+                            FontSize="24"
+                            Width="40" Height="200"
+                            VerticalAlignment="Center"
+                            Click="ScrollLeft_Click"
+                            Background="Transparent"
+                            BorderBrush="Transparent"
+                            Cursor="Hand"/>
 
-                                    <StackPanel VerticalAlignment="Bottom"
-                                                Margin="15">
-                                        <TextBlock Text="{Binding EventDate, StringFormat={}{0:MMM dd}}" 
-                                                   FontSize="28"
-                                                   Foreground="White"
-                                                   FontWeight="Bold"
-                                                   TextWrapping="Wrap"/>
+                    <!-- SCROLLVIEWER -->
+                    <ScrollViewer x:Name="EventScrollViewer"
+                                  Grid.Column="1"
+                                  HorizontalScrollBarVisibility="Hidden"
+                                  VerticalScrollBarVisibility="Disabled"
+                                  PreviewMouseWheel="EventScrollViewer_PreviewMouseWheel">
 
-                                        <TextBlock Text="{Binding EventDate, StringFormat={}{0:dddd}}" 
-                                                   FontSize="16" 
-                                                   FontWeight="SemiBold"
-                                                   Foreground="White"/>
+                        <ItemsControl x:Name="EventItemsControl" ItemsSource="{Binding AllEvents}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
 
-                                        <TextBlock Text="{Binding Title}" 
-                                                   FontSize="20"
-                                                   Foreground="White"
-                                                   TextWrapping="Wrap"
-                                                   Margin="0 10 0 0"/>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Width="250" Height="270" Margin="0 0 20 0">
 
-                                        <Button Content="Book Now →"
-                                                FontSize="20"
-                                                Padding="0 5"
-                                                Margin="0 5 0 0"
-                                                Foreground="White"
-                                                Background="Transparent"
-                                                BorderBrush="Transparent"
-                                                BorderThickness="0"
-                                                Cursor="Hand"
-                                                HorizontalContentAlignment="Left"
-                                                x:Name="bookButton"
-                                                Visibility="Collapsed">
+                                        <!-- IMAGE -->
+                                        <Image Source="{Binding ImageUrl}" 
+                                               Stretch="UniformToFill"/>
 
-                                        </Button>
-                                    </StackPanel>
-                                </Grid>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                </ScrollViewer>
+                                        <!-- Gradient overlay -->
+                                        <Rectangle>
+                                            <Rectangle.Fill>
+                                                <LinearGradientBrush StartPoint="0,1" EndPoint="0,0">
+                                                    <GradientStop Color="#CC000000" Offset="0"/>
+                                                    <GradientStop Color="#00000000" Offset="1"/>
+                                                </LinearGradientBrush>
+                                            </Rectangle.Fill>
+                                        </Rectangle>
+
+                                        <!-- CONTENT -->
+                                        <StackPanel VerticalAlignment="Bottom" Margin="15">
+
+                                            <TextBlock Text="{Binding EventDate, StringFormat={}{0:MMM dd}}" 
+                                                       FontSize="28"
+                                                       Foreground="White"
+                                                       FontWeight="Bold"/>
+
+                                            <TextBlock Text="{Binding EventDate, StringFormat={}{0:dddd}}" 
+                                                       FontSize="16" 
+                                                       FontWeight="SemiBold"
+                                                       Foreground="White"/>
+
+                                            <TextBlock Text="{Binding Title}" 
+                                                       FontSize="20"
+                                                       Foreground="White"
+                                                       TextWrapping="Wrap"
+                                                       Margin="0 10 0 0"/>
+
+                                            <!-- BOOK NOW (Hidden initially) -->
+                                            <Button x:Name="BookBtn"
+                                                    Content="Book Now →"
+                                                    FontSize="20"
+                                                    Padding="0 5"
+                                                    Foreground="Black"
+                                                    Background="White"
+                                                    BorderBrush="Transparent"
+                                                    Cursor="Hand"
+                                                    Margin="0 10 0 0"
+                                                    Visibility="Collapsed"/>
+                                        </StackPanel>
+
+                                        <!-- HOVER TRIGGER -->
+                                        <Grid.Triggers>
+                                            <EventTrigger RoutedEvent="MouseEnter">
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BookBtn"
+                                                                                       Storyboard.TargetProperty="Visibility">
+                                                            <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Visible}"/>
+                                                        </ObjectAnimationUsingKeyFrames>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </EventTrigger>
+
+                                            <EventTrigger RoutedEvent="MouseLeave">
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BookBtn"
+                                                                                       Storyboard.TargetProperty="Visibility">
+                                                            <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Collapsed}"/>
+                                                        </ObjectAnimationUsingKeyFrames>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </EventTrigger>
+                                        </Grid.Triggers>
+
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                    </ScrollViewer>
+
+                    <!-- RIGHT BUTTON -->
+                    <Button Grid.Column="2"
+                            Content="▶"
+                            FontSize="24"
+                            Width="40" Height="200"
+                            VerticalAlignment="Center"
+                            Click="ScrollRight_Click"
+                            Background="Transparent"
+                            BorderBrush="Transparent"
+                            Cursor="Hand"/>
+                </Grid>
             </StackPanel>
 
-            <!-- I want to section -->
+
+            <!-- I WANT TO SECTION -->
             <StackPanel Margin="0 50 0 0">
                 <TextBlock Text="I WANT TO..."
                            Foreground="Black"
@@ -112,24 +169,24 @@
                     </Grid.ColumnDefinitions>
 
                     <userControls:ActivityItem Grid.Column="0"
-                                            ActivityItemIcon="/Resources/badge-golden.png"
-                                            ActivityItemTitle="Become a Member"/>
+                                               ActivityItemIcon="/Resources/badge-golden.png"
+                                               ActivityItemTitle="Become a Member"/>
                     <userControls:ActivityItem Grid.Column="1"
-                                            ActivityItemIcon="/Resources/news-golden.png"
-                                            ActivityItemTitle="Read Our Latest News"/>
+                                               ActivityItemIcon="/Resources/news-golden.png"
+                                               ActivityItemTitle="Read Our Latest News"/>
                     <userControls:ActivityItem Grid.Column="2"
-                                            ActivityItemIcon="/Resources/calendar-golden.png"
-                                            ActivityItemTitle="Find Out What's On"/>
+                                               ActivityItemIcon="/Resources/calendar-golden.png"
+                                               ActivityItemTitle="Find Out What's On"/>
                     <userControls:ActivityItem Grid.Column="3"
-                                            ActivityItemIcon="/Resources/car-side-golden.png"
-                                            ActivityItemTitle="Plan My Visit"/>
+                                               ActivityItemIcon="/Resources/car-side-golden.png"
+                                               ActivityItemTitle="Plan My Visit"/>
                     <userControls:ActivityItem Grid.Column="4"
-                                            ActivityItemIcon="/Resources/community-golden.png"
-                                            ActivityItemTitle="Community"/>
+                                               ActivityItemIcon="/Resources/community-golden.png"
+                                               ActivityItemTitle="Community"/>
                 </Grid>
             </StackPanel>
-        
-            <!-- Things to do section -->
+
+            <!-- THINGS TO DO -->
             <StackPanel Margin="50">
                 <TextBlock Text="Things to do"
                            FontSize="24"
@@ -138,7 +195,6 @@
                 <ItemsControl ItemsSource="{Binding AllActivities}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <!--<WrapPanel Orientation="Horizontal" ItemWidth="400" ItemHeight="300"/>-->
                             <UniformGrid Columns="3" />
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
@@ -147,11 +203,10 @@
                         <DataTemplate>
                             <Grid Width="400" Height="300" Margin="0 20 20 20">
                                 <Image Source="{Binding ImageUrl}" 
-                                       Stretch="UniformToFill" 
-                                       VerticalAlignment="Center"/>
+                                       Stretch="UniformToFill"/>
                                 <Rectangle>
                                     <Rectangle.Fill>
-                                        <LinearGradientBrush EndPoint="0,0" StartPoint="0,1">
+                                        <LinearGradientBrush StartPoint="0,1" EndPoint="0,0">
                                             <GradientStop Color="#CC000000" Offset="0"/>
                                             <GradientStop Color="#00000000" Offset="1"/>
                                         </LinearGradientBrush>
@@ -160,22 +215,21 @@
 
                                 <StackPanel VerticalAlignment="Bottom" Margin="15 0 15 25">
                                     <TextBlock Text="{Binding Title}" 
-                                                FontSize="24"
-                                                Foreground="White"
-                                                FontWeight="SemiBold"
-                                                TextWrapping="Wrap"/>
+                                               FontSize="24"
+                                               Foreground="White"
+                                               FontWeight="SemiBold"/>
 
                                     <TextBlock Text="{Binding Description}" 
-                                                FontSize="16"
-                                                Foreground="White"
-                                                TextWrapping="Wrap"
-                                                Margin="0 5 0 0"/>
+                                               FontSize="16"
+                                               Foreground="White"
+                                               Margin="0 5 0 0"/>
                                 </StackPanel>
                             </Grid>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
             </StackPanel>
+
         </StackPanel>
     </ScrollViewer>
 </Page>
