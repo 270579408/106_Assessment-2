@@ -36,5 +36,8 @@ namespace _106_Assessment_2.Models
         [BsonElement("bookingDate")]
         public DateTime BookingDate { get; set; }
 
+        [BsonElement("eventDate")]
+        public DateTime EventDate { get; set; }
+
     }
 }

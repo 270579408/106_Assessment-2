@@ -23,5 +23,11 @@ namespace _106_Assessment_2.ViewModels
         {
             return _events.Find(_ => true).ToList();
         }
+
+        public Event GetEventById(string id)
+        {
+            return _events.Find(u => u.Id == id).FirstOrDefault();
+        }
+
     }
 }

@@ -124,6 +124,7 @@ namespace _106_Assessment_2.View.Pages
                 TicketCount = TicketCountCombo.SelectedIndex,
                 TotalPrice = amount,
                 BookingDate = DateTime.Now,
+                EventDate = EventInfo.EventDate
             };
 
             _booking.AddBooking(b);

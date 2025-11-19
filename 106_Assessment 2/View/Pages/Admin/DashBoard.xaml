@@ -5,92 +5,177 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:_106_Assessment_2.View.Pages.Admin"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="3000
+      " d:DesignWidth="800"
+      Background="White"
       Title="AdminDashboardPage">
 
     <ScrollViewer VerticalScrollBarVisibility="Auto">
-            <StackPanel Margin="40">
+        <StackPanel Margin="40">
 
-                <!-- Welcome Header -->
-                <TextBlock Text="Welcome back, Admin"
+            <!-- Welcome Header -->
+            <TextBlock Text="Welcome back, Admin"
                        FontSize="32"
                        FontWeight="Bold"
                        Margin="0 0 0 10"/>
 
-                <TextBlock Text="Here is your overview of the park activity"
+            <TextBlock Text="Here is your overview of the park activity"
                        FontSize="16"
                        Foreground="#666"
                        Margin="0 0 0 20"/>
 
-                <!-- Profile Card -->
-                <Border Background="#F8F8F8" CornerRadius="12" Padding="20" Margin="0 0 0 30">
-                    <StackPanel Orientation="Horizontal">
-                        <Ellipse Width="80" Height="80" Fill="#ddd"/>
-                        <StackPanel Margin="20 0 0 0">
-                            <TextBlock Text="Admin User"
+            <!-- Profile Card -->
+            <Border Background="#F8F8F8" CornerRadius="12" Padding="20" Margin="0 0 0 30">
+                <StackPanel Orientation="Horizontal">
+                    <Ellipse Width="80" Height="80" Fill="#ddd"/>
+                    <StackPanel Margin="20 0 0 0">
+                        <TextBlock Text="Admin User"
                                    FontSize="22"
                                    FontWeight="Bold"/>
-                            <TextBlock Text="admin@onewhero.co.nz"
+                        <TextBlock Text="admin@onewhero.co.nz"
                                    FontSize="14"
                                    Foreground="#666"
                                    Margin="0 5 0 0"/>
-                            <TextBlock Text="Role: System Administrator"
+                        <TextBlock Text="Role: System Administrator"
                                    FontSize="14"
                                    Foreground="#666"/>
-                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+
+            <!-- Statistics -->
+            <TextBlock Text="Overview" FontSize="26" FontWeight="Bold"/>
+            <WrapPanel Margin="0 20 0 30" ItemWidth="280" ItemHeight="140">
+
+                <Border Background="#F2F2F2" Padding="20" CornerRadius="12" Margin="0 0 20 20">
+                    <StackPanel>
+                        <TextBlock Text="Total Visitors" FontSize="16"/>
+                        <TextBlock x:Name="TotalVisitorsText" Text="0"
+                                   FontSize="36" FontWeight="Bold"
+                                   Margin="0 10 0 0"/>
                     </StackPanel>
                 </Border>
 
-
-                <!-- Statistics -->
-                <TextBlock Text="Website Overview" FontSize="26" FontWeight="Bold"/>
-                <WrapPanel Margin="0 20 0 30" ItemWidth="280" ItemHeight="140">
-
-                    <!-- New Members -->
-                    <Border Background="#F2F2F2" Padding="20" CornerRadius="12" Margin="0 0 20 20">
-                        <StackPanel>
-                            <TextBlock Text="New Members (Today)" FontSize="16"/>
-                            <TextBlock x:Name="NewMembersText" Text="0"
+                <Border Background="#F2F2F2" Padding="20" CornerRadius="12" Margin="0 0 20 20">
+                    <StackPanel>
+                        <TextBlock Text="Total Upcoming Event Booking" FontSize="16"/>
+                        <TextBlock x:Name="TotalUpcomingEventBookingText" Text="0"
                                    FontSize="36" FontWeight="Bold"
                                    Margin="0 10 0 0"/>
-                        </StackPanel>
-                    </Border>
+                    </StackPanel>
+                </Border>
 
-                    <!-- Total Visitors -->
-                    <Border Background="#F2F2F2" Padding="20" CornerRadius="12" Margin="0 0 20 20">
-                        <StackPanel>
-                            <TextBlock Text="Total Visitors" FontSize="16"/>
-                            <TextBlock x:Name="TotalVisitorsText" Text="0"
+                <Border Background="#F2F2F2" Padding="20" CornerRadius="12" Margin="0 0 20 20">
+                    <StackPanel>
+                        <TextBlock Text="Upcoming Events" FontSize="16"/>
+                        <TextBlock x:Name="UpcomingEventsText" Text="0"
                                    FontSize="36" FontWeight="Bold"
                                    Margin="0 10 0 0"/>
-                        </StackPanel>
-                    </Border>
+                    </StackPanel>
+                </Border>
 
-                    <!-- Active Events -->
-                    <Border Background="#F2F2F2" Padding="20" CornerRadius="12" Margin="0 0 20 20">
-                        <StackPanel>
-                            <TextBlock Text="Active Events" FontSize="16"/>
-                            <TextBlock x:Name="ActiveEventsText" Text="0"
-                                   FontSize="36" FontWeight="Bold"
-                                   Margin="0 10 0 0"/>
-                        </StackPanel>
-                    </Border>
+            </WrapPanel>
 
+
+            <!-- Quick Action Buttons -->
+            <StackPanel>
+                <TextBlock Text="Quick Action Buttons" FontSize="26" FontWeight="Bold" Margin="0 0 0 10"/>
+
+                <WrapPanel ItemWidth="160" Margin="0 10 0 30">
+                    <Button Content="Add Event" Width="150" Height="40" Margin="10"/>
+                    <Button Content="Modify Event" Width="150" Height="40" Margin="10"/>
+                    <Button Content="Manage Bookings" Width="150" Height="40" Margin="10"/>
+                    <Button Content="View Community Posts" Width="150" Height="40" Margin="10"/>
                 </WrapPanel>
-
-
-                <!-- Upcoming Events -->
-                <TextBlock Text="Upcoming Events" FontSize="26" FontWeight="Bold" Margin="0 0 0 10"/>
-
-                <ScrollViewer HorizontalScrollBarVisibility="Auto">
-                    <StackPanel x:Name="UpcomingEventsPanel" Orientation="Horizontal" Margin="0 10 0 40"/>
-                </ScrollViewer>
-
-
-                <!-- Recent Messages -->
-                <TextBlock Text="Recent Messages" FontSize="26" FontWeight="Bold"/>
-                <StackPanel x:Name="MessagesPanel" Margin="0 20 0 0"/>
-
             </StackPanel>
-        </ScrollViewer>
-    </Page>
+
+
+            <!-- Visitor Insights Section -->
+            <TextBlock Text="Visitor Insights" FontSize="26" FontWeight="Bold" Margin="0 20 0 10"/>
+
+            <WrapPanel Margin="0 10 0 30" ItemWidth="280">
+
+                <Border Background="#F2F2F2" Padding="20" CornerRadius="12" Margin="0 20 20 20">
+                    <StackPanel>
+                        <TextBlock Text="Today's Visitors" FontSize="16"/>
+                        <TextBlock x:Name="TodaysVisitorsText" Text="0"
+                                   FontSize="36" FontWeight="Bold"
+                                   Margin="0 10 0 0"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Background="#F2F2F2" Padding="20" CornerRadius="12" Margin="0 20 20 20">
+                    <StackPanel>
+                        <TextBlock Text="This Week's Visitors" FontSize="16"/>
+                        <TextBlock x:Name="WeeklyVisitorsText" Text="0"
+                                   FontSize="36" FontWeight="Bold"
+                                   Margin="0 10 0 0"/>
+                    </StackPanel>
+                </Border>
+            </WrapPanel>
+
+
+            <!-- Popular Attractions -->
+            <TextBlock Text="Popular Attractions" FontSize="26" FontWeight="Bold" Margin="0 20 0 10"/>
+
+            <WrapPanel Margin="0 10 0 30" ItemWidth="280">
+                <Border Background="#F2F2F2" CornerRadius="12" Padding="20" Margin="0 0 20 20">
+                    <StackPanel>
+                        <TextBlock Text="Top Attraction" FontSize="16"/>
+                        <TextBlock x:Name="TopAttractionText" Text="Kiwi House"
+                                   FontSize="24" FontWeight="Bold" Margin="0 10 0 0"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Background="#F2F2F2" CornerRadius="12" Padding="20" Margin="0 0 20 20">
+                    <StackPanel>
+                        <TextBlock Text="Second Most Popular" FontSize="16"/>
+                        <TextBlock x:Name="SecondAttractionText" Text="Reptile Zone"
+                                   FontSize="24" FontWeight="Bold" Margin="0 10 0 0"/>
+                    </StackPanel>
+                </Border>
+            </WrapPanel>
+
+
+            <!-- Recent Activity Table -->
+            <TextBlock Text="Recent Activity" FontSize="26" FontWeight="Bold" Margin="0 30 0 10"/>
+
+            <DataGrid x:Name="RecentActivityGrid"
+                        AutoGenerateColumns="False"
+                        HeadersVisibility="Column"
+                        CanUserAddRows="False"
+                        Margin="0 10 0 30"
+                        Height="300">
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Visitor" Binding="{Binding VisitorName}" Width="200"/>
+                    <DataGridTextColumn Header="Activity" Binding="{Binding Activity}" Width="250"/>
+                    <DataGridTextColumn Header="Date" Binding="{Binding Date}" Width="150"/>
+                    <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="150"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+
+            <!-- Chart Placeholder -->
+            <TextBlock Text="Visitors Trend (Monthly)" FontSize="26" FontWeight="Bold" Margin="0 20 0 10"/>
+
+            <Border Background="#EFEFEF" Height="300" CornerRadius="12" Padding="20" Margin="0 10 0 30">
+                <TextBlock Text="[Chart Placeholder]" 
+                           VerticalAlignment="Center" 
+                           HorizontalAlignment="Center"
+                           FontSize="20" 
+                           Foreground="#666"/>
+            </Border>
+
+
+            <!-- Footer -->
+            <TextBlock Text="© 2025 Onewhero Bay Heritage Park — Admin Panel"
+                       FontSize="14"
+                       HorizontalAlignment="Center"
+                       Margin="0 50 0 20"
+                       Foreground="#888"/>
+
+        </StackPanel>
+    </ScrollViewer>
+</Page>

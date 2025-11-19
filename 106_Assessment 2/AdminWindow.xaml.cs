@@ -15,9 +15,6 @@ using _106_Assessment_2;
 
 namespace _106_Assessment_2.Common
 {
-    /// <summary>
-    /// Interaction logic for AdminWindow.xaml
-    /// </summary>
     public partial class AdminWindow : Window
     {
         private bool _isCollapsed = false;
@@ -25,6 +22,7 @@ namespace _106_Assessment_2.Common
         public AdminWindow()
         {
             InitializeComponent();
+            MainFrame.Navigate(new View.Pages.Admin.DashBoard());
         }
 
         private void MenuToggleButton_Click(object sender, RoutedEventArgs e)
