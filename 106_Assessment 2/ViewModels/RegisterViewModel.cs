@@ -33,6 +33,11 @@ namespace _106_Assessment_2.ViewModels
         {
             return _user.Find(u => u.ID == id).FirstOrDefault();
         }
+        public void DeleteUser(string userId)
+        {
+            var filter = Builders<User>.Filter.Eq(u => u.ID, userId);
+            _user.DeleteOne(filter);
+        }
 
     }
 }

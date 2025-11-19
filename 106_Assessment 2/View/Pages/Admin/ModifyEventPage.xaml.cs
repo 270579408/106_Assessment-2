@@ -4,7 +4,6 @@ using _106_Assessment_2.ViewModels;
 using Microsoft.Win32;
 using MongoDB.Driver;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -14,10 +13,13 @@ namespace _106_Assessment_2.View.Pages.Admin
 {
     public partial class ModifyEventPage : Page
     {
-        private EventViewModel _eventViewModel;
+        private readonly EventViewModel _eventViewModel;
         private Event _selectedEvent;
         private string _uploadedImageUrl;
 
+        // ----------------------------------------------
+        // DEFAULT CONSTRUCTOR (dropdown-based selection)
+        // ----------------------------------------------
         public ModifyEventPage()
         {
             InitializeComponent();
@@ -25,94 +27,190 @@ namespace _106_Assessment_2.View.Pages.Admin
             LoadEvents();
         }
 
+        // ----------------------------------------------
+        // CONSTRUCTOR FOR AUTO SELECTED EVENT
+        // ----------------------------------------------
+        public ModifyEventPage(string eventId)
+        {
+            InitializeComponent();
+            _eventViewModel = new EventViewModel();
+            LoadEvents();
+            LoadEventById(eventId);
+        }
+
+        // ----------------------------------------------
+        // LOAD ALL EVENTS INTO COMBOBOX
+        // ----------------------------------------------
         private void LoadEvents()
         {
             var events = _eventViewModel.GetAllEvents();
             EventComboBox.ItemsSource = events;
         }
 
+        // ----------------------------------------------
+        // LOAD SPECIFIC EVENT BY ID (from Modify button)
+        // ----------------------------------------------
+        private void LoadEventById(string eventId)
+        {
+            _selectedEvent = _eventViewModel.GetEventById(eventId);
+
+            if (_selectedEvent == null)
+            {
+                MessageBox.Show("Event not found!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            // Auto-select in ComboBox
+            EventComboBox.SelectedItem = EventComboBox.Items.Cast<Event>()
+                .FirstOrDefault(e => e.Id == eventId);
+
+            PopulateForm();
+        }
+
+        // ----------------------------------------------
+        // POPULATE FORM WITH EVENT DATA
+        // ----------------------------------------------
+        private void PopulateForm()
+        {
+            if (_selectedEvent == null) return;
+
+            EventTitleTextBox.Text = _selectedEvent.Title;
+            EventDatePicker.SelectedDate = _selectedEvent.EventDate;
+            PriceTextBox.Text = _selectedEvent.Price;
+            EventDescriptionTextBox.Text = _selectedEvent.Description;
+            TagsTextBox.Text = string.Join(", ", _selectedEvent.Tags);
+            FeaturedCheckBox.IsChecked = _selectedEvent.Featured;
+
+            _uploadedImageUrl = _selectedEvent.ImageUrl;
+
+            // Load preview image
+            if (!string.IsNullOrEmpty(_selectedEvent.ImageUrl))
+            {
+                BitmapImage bitmap = new BitmapImage(new Uri(_selectedEvent.ImageUrl));
+                PreviewImage.Source = bitmap;
+                SelectedImageTextBlock.Text = System.IO.Path.GetFileName(_selectedEvent.ImageUrl);
+            }
+            else
+            {
+                PreviewImage.Source = null;
+                SelectedImageTextBlock.Text = "No file selected";
+            }
+        }
+
+        // ----------------------------------------------
+        // COMBOBOX SELECTION CHANGE
+        // ----------------------------------------------
         private void EventComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (EventComboBox.SelectedItem is Event ev)
             {
                 _selectedEvent = ev;
-
-                // Populate fields
-                EventTitleTextBox.Text = ev.Title;
-                EventDatePicker.SelectedDate = ev.EventDate;
-                PriceTextBox.Text = ev.Price;
-                TagsTextBox.Text = string.Join(", ", ev.Tags);
-                FeaturedCheckBox.IsChecked = ev.Featured;
-                EventDescriptionTextBox.Text = ev.Description;
-
-                _uploadedImageUrl = ev.ImageUrl;
-
-                // Load preview image
-                if (!string.IsNullOrEmpty(ev.ImageUrl))
-                {
-                    BitmapImage bitmap = new BitmapImage(new Uri(ev.ImageUrl));
-                    PreviewImage.Source = bitmap;
-                    SelectedImageTextBlock.Text = System.IO.Path.GetFileName(ev.ImageUrl);
-                }
-                else
-                {
-                    PreviewImage.Source = null;
-                    SelectedImageTextBlock.Text = "No file selected";
-                }
+                PopulateForm();
             }
         }
 
+        // ----------------------------------------------
+        // SELECT IMAGE BUTTON
+        // ----------------------------------------------
         private void SelectImageButton_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog
+            OpenFileDialog dialog = new OpenFileDialog
             {
                 Filter = "Image files (*.jpg;*.jpeg;*.png)|*.jpg;*.jpeg;*.png"
             };
 
-            if (openFileDialog.ShowDialog() == true)
+            if (dialog.ShowDialog() == true)
             {
-                SelectedImageTextBlock.Text = System.IO.Path.GetFileName(openFileDialog.FileName);
+                SelectedImageTextBlock.Text = System.IO.Path.GetFileName(dialog.FileName);
 
                 BitmapImage bitmap = new BitmapImage();
                 bitmap.BeginInit();
-                bitmap.UriSource = new Uri(openFileDialog.FileName);
+                bitmap.UriSource = new Uri(dialog.FileName);
                 bitmap.CacheOption = BitmapCacheOption.OnLoad;
                 bitmap.EndInit();
                 PreviewImage.Source = bitmap;
 
                 try
                 {
-                    // Upload to Cloudinary
-                    _uploadedImageUrl = Helpers.UploadToCloudinary(openFileDialog.FileName, "Event");
+                    _uploadedImageUrl = Helpers.UploadToCloudinary(dialog.FileName, "Event");
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Image upload failed: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show($"Image upload failed: {ex.Message}",
+                                    "Upload Error",
+                                    MessageBoxButton.OK,
+                                    MessageBoxImage.Error);
                 }
             }
         }
 
+        // ----------------------------------------------
+        // SAVE CHANGES
+        // ----------------------------------------------
         private void SaveChangesButton_Click(object sender, RoutedEventArgs e)
         {
             if (_selectedEvent == null)
             {
-                MessageBox.Show("Please select an event to modify.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Please select an event first.", "Warning",
+                                MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
-            // Update selected event
+            // Update event properties
             _selectedEvent.Title = EventTitleTextBox.Text.Trim();
             _selectedEvent.EventDate = EventDatePicker.SelectedDate ?? _selectedEvent.EventDate;
             _selectedEvent.Price = PriceTextBox.Text.Trim();
-            _selectedEvent.Tags = TagsTextBox.Text.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries).ToList();
-            _selectedEvent.Featured = FeaturedCheckBox.IsChecked == true;
             _selectedEvent.Description = EventDescriptionTextBox.Text.Trim();
+            _selectedEvent.Featured = FeaturedCheckBox.IsChecked == true;
+            _selectedEvent.Tags = TagsTextBox.Text
+                                    .Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+                                    .ToList();
             _selectedEvent.ImageUrl = _uploadedImageUrl ?? _selectedEvent.ImageUrl;
 
-            _eventViewModel.UpdateEvent(_selectedEvent); // implement this in your EventViewModel
+            _eventViewModel.UpdateEvent(_selectedEvent);
 
-            MessageBox.Show("Event updated successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show("Event updated successfully!", "Success",
+                            MessageBoxButton.OK, MessageBoxImage.Information);
 
+            ClearForm();
+            LoadEvents();
+        }
+
+        // ----------------------------------------------
+        // DELETE EVENT
+        // ----------------------------------------------
+        private void DeleteEventButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (_selectedEvent == null)
+            {
+                MessageBox.Show("Select an event to delete.", "Warning",
+                                MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            var confirm = MessageBox.Show(
+                $"Are you sure you want to delete \"{_selectedEvent.Title}\"?",
+                "Delete Event",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Warning);
+
+            if (confirm == MessageBoxResult.Yes)
+            {
+                _eventViewModel.DeleteEvent(_selectedEvent.Id);
+
+                MessageBox.Show("Event deleted successfully!", "Success",
+                                MessageBoxButton.OK, MessageBoxImage.Information);
+
+                ClearForm();
+                LoadEvents();
+            }
+        }
+
+        // ----------------------------------------------
+        // CLEAR FORM + RESET STATE
+        // ----------------------------------------------
+        private void ClearForm()
+        {
             EventComboBox.SelectedIndex = -1;
             EventTitleTextBox.Text = "";
             EventDatePicker.SelectedDate = null;
@@ -122,49 +220,9 @@ namespace _106_Assessment_2.View.Pages.Admin
             EventDescriptionTextBox.Text = "";
             PreviewImage.Source = null;
             SelectedImageTextBlock.Text = "No file selected";
+
             _uploadedImageUrl = null;
             _selectedEvent = null;
-        }
-
-        private void DeleteEventButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (_selectedEvent == null)
-            {
-                MessageBox.Show("Please select an event to delete.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
-
-            var result = MessageBox.Show($"Are you sure you want to delete the event \"{_selectedEvent.Title}\"?",
-                                         "Confirm Deletion",
-                                         MessageBoxButton.YesNo,
-                                         MessageBoxImage.Warning);
-
-            if (result == MessageBoxResult.Yes)
-            {
-                try
-                {
-                    _eventViewModel.DeleteEvent(_selectedEvent.Id);
-                    MessageBox.Show("Event deleted successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-
-                    EventComboBox.SelectedIndex = -1;
-                    EventTitleTextBox.Text = "";
-                    EventDatePicker.SelectedDate = null;
-                    PriceTextBox.Text = "";
-                    TagsTextBox.Text = "";
-                    FeaturedCheckBox.IsChecked = false;
-                    EventDescriptionTextBox.Text = "";
-                    PreviewImage.Source = null;
-                    SelectedImageTextBlock.Text = "No file selected";
-                    _uploadedImageUrl = null;
-                    _selectedEvent = null;
-
-                    LoadEvents();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Failed to delete event: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            }
         }
     }
 }
