@@ -84,7 +84,7 @@
 
                 <WrapPanel ItemWidth="160" Margin="0 10 0 30">
                     <Button Content="Add Event" Width="150" Height="40" Margin="10" Click="AddEventButton_Click"/>
-                    <Button Content="Modify Event" Width="150" Height="40" Margin="10"/>
+                    <Button Content="Modify Event" Width="150" Height="40" Margin="10" Click="ModifyEventButton_Click"/>
                     <Button Content="Manage Bookings" Width="150" Height="40" Margin="10"/>
                     <Button Content="View Community Posts" Width="150" Height="40" Margin="10"/>
                 </WrapPanel>

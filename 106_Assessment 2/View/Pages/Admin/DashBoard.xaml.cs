@@ -183,6 +183,13 @@ namespace _106_Assessment_2.View.Pages.Admin
             this.NavigationService.Navigate(addEventPage);
         }
 
+        private void ModifyEventButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Navigate to AddEventPage
+            var moddifyEventPage = new ModifyEventPage();
+            this.NavigationService.Navigate(moddifyEventPage);
+        }
+
     }
 
 }

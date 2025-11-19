@@ -12,7 +12,7 @@
             <!-- Event List -->
             <TextBlock Text="Select an Event" FontSize="18" FontWeight="SemiBold" Margin="0 0 0 10"/>
             <ComboBox x:Name="EventComboBox" Width="400" Height="30" SelectionChanged="EventComboBox_SelectionChanged"
-                      DisplayMemberPath="Title"/>
+                      DisplayMemberPath="Title" HorizontalAlignment="Left"/>
 
             <!-- Event Image Upload -->
             <Border Background="#F8F8F8" CornerRadius="12" Padding="20" Margin="0 20 0 20">
@@ -54,9 +54,16 @@
             </Border>
 
             <!-- Save Changes Button -->
-            <Button Content="Save Changes" Width="180" Height="45" FontSize="16" FontWeight="Bold"
-                    Background="#2196F3" Foreground="White" Margin="0 10 0 30" HorizontalAlignment="Left"
-                    Cursor="Hand" Click="SaveChangesButton_Click"/>
+            <StackPanel Orientation="Horizontal" Margin="0 10 0 30" HorizontalAlignment="Left">
+                <Button Content="Save Changes" Width="180" Height="45" FontSize="16" FontWeight="Bold"
+            Background="#2196F3" Foreground="White"
+            Cursor="Hand" Click="SaveChangesButton_Click"
+                        Margin="0 0 10 0"/>
+
+                <Button Content="Delete Event" Width="180" Height="45" FontSize="16" FontWeight="Bold"
+            Background="#F44336" Foreground="White"
+            Cursor="Hand" Click="DeleteEventButton_Click"/>
+            </StackPanel>
         </StackPanel>
     </ScrollViewer>
 </Page>
