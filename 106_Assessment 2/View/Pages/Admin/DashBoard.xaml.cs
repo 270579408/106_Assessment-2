@@ -190,6 +190,13 @@ namespace _106_Assessment_2.View.Pages.Admin
             this.NavigationService.Navigate(moddifyEventPage);
         }
 
+        private void ManageBookingButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Navigate to AddEventPage
+            var manageBookingPage = new ManageBookingPage();
+            this.NavigationService.Navigate(manageBookingPage);
+        }
+
     }
 
 }

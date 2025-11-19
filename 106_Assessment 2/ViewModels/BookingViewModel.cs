@@ -23,5 +23,15 @@ namespace _106_Assessment_2.ViewModels
         {
             return _bookings.Find(_ => true).ToList();
         }
+
+        public void DeleteBooking(string bookingId)
+        {
+            if (string.IsNullOrEmpty(bookingId))
+                throw new ArgumentException("Booking ID cannot be null or empty.");
+
+            var filter = Builders<Booking>.Filter.Eq(b => b.Id, bookingId);
+            _bookings.DeleteOne(filter);
+        }
+
     }
 }
