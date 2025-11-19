@@ -196,6 +196,13 @@ namespace _106_Assessment_2.View.Pages.Admin
             var manageBookingPage = new ManageBookingPage();
             this.NavigationService.Navigate(manageBookingPage);
         }
+        
+        private void PostModerationButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Navigate to AddEventPage
+            var postModerationPage = new PostModerationPage();
+            this.NavigationService.Navigate(postModerationPage);
+        }
 
     }
 

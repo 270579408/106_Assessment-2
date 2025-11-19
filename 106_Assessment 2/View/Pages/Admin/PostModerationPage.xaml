@@ -1,0 +1,56 @@
+﻿<Page x:Class="_106_Assessment_2.View.Pages.Admin.PostModerationPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="Community Moderation"
+      Background="White">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <TextBlock Text="Community Post Moderation"
+                   FontSize="24"
+                   FontWeight="Bold"
+                   Margin="0,0,0,10"/>
+
+        <!-- DataGrid -->
+        <DataGrid x:Name="PostsDataGrid"
+                  Grid.Row="1"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  SelectionMode="Single">
+            <DataGrid.Columns>
+
+                <!-- Image Column -->
+                <DataGridTemplateColumn Header="Image" Width="100">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding ImageUrl}" Height="60" Width="60" Stretch="Uniform"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTextColumn Header="Post ID" Binding="{Binding Id}" Width="150"/>
+                <DataGridTextColumn Header="Uploader ID" Binding="{Binding UploaderId}" Width="150"/>
+                <DataGridTextColumn Header="Text" Binding="{Binding Text}" Width="300"/>
+                <DataGridTextColumn Header="Posted Date" Binding="{Binding PostedDate}" Width="150"/>
+                <DataGridTextColumn Header="Reactors Count" Binding="{Binding ReactorId.Count}" Width="100"/>
+
+                <!-- Actions -->
+                <DataGridTemplateColumn Header="Actions" Width="150">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Button Content="Delete" Margin="2" Click="Delete_Click"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page>
