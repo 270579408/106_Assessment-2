@@ -1,21 +1,33 @@
-﻿using _106_Assessment_2.ViewModels;
+﻿using _106_Assessment_2.Models;
+using _106_Assessment_2.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 using System.Windows.Controls;
 
 namespace _106_Assessment_2.View.Pages.Admin
 {
     public partial class DashBoard : Page
     {
-        private BookingViewModel _booking { get; set; }
-        private EventViewModel _event { get; set; }
+        private BookingViewModel _bookingViewModel;
+        private EventViewModel _eventViewModel;
+        private RegisterViewModel _registerViewModel;
+
+        private List<Booking> _allBookings;
+        private List<Event> _allEvents;
+        private List<User> _allUsers;
 
         public DashBoard()
         {
             InitializeComponent();
 
-            _booking = new BookingViewModel();
-            _event = new EventViewModel();
+            _bookingViewModel = new BookingViewModel();
+            _eventViewModel = new EventViewModel();
+            _registerViewModel = new RegisterViewModel();
+
+            _allBookings = _bookingViewModel.GetAllBooking();
+            _allEvents = _eventViewModel.GetAllEvents();
+            _allUsers = _registerViewModel.GetAllUser();
 
             LoadDashboardData();
         }
@@ -33,115 +45,134 @@ namespace _106_Assessment_2.View.Pages.Admin
             LoadRecentActivity();
         }
 
-        // ---------------------------
-        // TOTAL VISITORS
-        // ---------------------------
         private void LoadTotalVisitors()
         {
             // TODO: Replace with actual DB value
-            int totalVisitors = _booking.GetAllBooking().Count;
+            int totalVisitors = _allBookings.Count;
 
             TotalVisitorsText.Text = totalVisitors.ToString();
         }
 
-        // ---------------------------
-        // UPCOMING EVENTS
-        // ---------------------------
         private void LoadUpcomingEvents()
         {
-            // TODO: Replace with actual DB value
-            int eventCount = _event.GetAllEvents().Count;
-
+            int eventCount = _allEvents
+                .Where(b => b.EventDate > DateTime.Today)
+                .Count();
             UpcomingEventsText.Text = eventCount.ToString();
         }
 
-        // ---------------------------
-        // UPCOMING EVENT BOOKINGS
-        // ---------------------------
         private void LoadUpcomingEventBookings()
         {
-            var allBookings = _booking.GetAllBooking(); // your existing method
+            int upcomingBookingCount = _allBookings
+                .Where(b => b.EventDate > DateTime.Today)
+                .Count();
 
-            // Filter upcoming bookings (event date AFTER today)
-            var upcoming = allBookings
-                            .Where(b => b.EventDate.Date > DateTime.Now.Date)
-                            .ToList();
-
-            TotalUpcomingEventBookingText.Text = upcoming.Count.ToString();
+            TotalUpcomingEventBookingText.Text = upcomingBookingCount.ToString();
         }
 
-        // ---------------------------
-        // VISITOR INSIGHTS
-        // ---------------------------
         private void LoadVisitorInsights()
         {
-            var allBookings = _booking.GetAllBooking();
+            var allBookings = _bookingViewModel.GetAllBooking();
 
-            // Today's visitors
-            var today = DateTime.Now.Date;
-            int todaysCount = allBookings.Count(b => b.EventDate.Date == today);
-            TodaysVisitorsText.Text = todaysCount.ToString();
+            int todaysVisitors = allBookings
+                .Count(b => b.EventDate.Date == DateTime.Today); // count bookings for today
+            TodaysVisitorsText.Text = todaysVisitors.ToString();
 
-            // Last 7 days (including today)
-            var weekAgo = today.AddDays(-6); // 7 days including today
-            int weeklyCount = allBookings.Count(b => b.EventDate.Date >= weekAgo && b.EventDate.Date <= today);
-            WeeklyVisitorsText.Text = weeklyCount.ToString();
+            DateTime weekStart = DateTime.Today.AddDays(-6); // 7-day window: today and previous 6 days
+            int weeklyVisitors = allBookings
+                .Count(b => b.EventDate.Date >= weekStart && b.EventDate.Date <= DateTime.Today);
+            WeeklyVisitorsText.Text = weeklyVisitors.ToString();
         }
 
-        // ---------------------------
-        // POPULAR ATTRACTIONS
-        // ---------------------------
         private void LoadPopularAttractions()
         {
-            var allBookings = _booking.GetAllBooking();
+            var allBookings = _bookingViewModel.GetAllBooking();
 
-            if (allBookings.Count == 0)
+            // Group bookings by EventId and count them
+            var popularEventGroups = allBookings
+                .GroupBy(b => b.EventId)
+                .OrderByDescending(g => g.Count()) // most booked first
+                .ToList();
+
+            if (popularEventGroups.Count > 0)
             {
-                TopAttractionText.Text = "No bookings yet";
-                SecondAttractionText.Text = "No bookings yet";
-                return;
+                // Get the top event details
+                var topEventId = popularEventGroups[0].Key;
+                var topEvent = _eventViewModel.GetEventById(topEventId);
+                TopAttractionText.Text = topEvent?.Title ?? "N/A";
+            }
+            else
+            {
+                TopAttractionText.Text = "N/A";
             }
 
-            // Group bookings by EventId and count
-            var eventCounts = allBookings
-                                .GroupBy(b => b.EventId)
-                                .Select(g => new { EventId = g.Key, Count = g.Count() })
-                                .OrderByDescending(g => g.Count)
-                                .ToList();
-
-            // Top booked event
-            if (eventCounts.Count > 0)
+            if (popularEventGroups.Count > 1)
             {
-                var topEvent = _event.GetEventById(eventCounts[0].EventId);
-                TopAttractionText.Text = topEvent?.Title ?? "Unknown Event";
-            }
-
-            // Second most booked event
-            if (eventCounts.Count > 1)
-            {
-                var secondEvent = _event.GetEventById(eventCounts[1].EventId);
-                SecondAttractionText.Text = secondEvent?.Title ?? "Unknown Event";
+                // Get the second most popular event details
+                var secondEventId = popularEventGroups[1].Key;
+                var secondEvent = _eventViewModel.GetEventById(secondEventId);
+                SecondAttractionText.Text = secondEvent?.Title ?? "N/A";
             }
             else
             {
                 SecondAttractionText.Text = "N/A";
             }
         }
-        // ---------------------------
-        // RECENT ACTIVITY (DATA TABLE)
-        // ---------------------------
+
+        public class RecentActivityModel
+        {
+            public string VisitorName { get; set; }
+            public string Activity { get; set; }
+            public DateTime DateTime { get; set; } 
+            public string Date { get; set; }
+        }
+
+
         private void LoadRecentActivity()
         {
-            // TODO: Replace with DB activity logs
-            List<RecentActivityModel> recent = new List<RecentActivityModel>()
-            {
-                new RecentActivityModel { VisitorName="Alice Johnson", Activity="Booked Event", Date="20 Nov", Status="Confirmed" },
-                new RecentActivityModel { VisitorName="Mark Smith", Activity="Registered Account", Date="19 Nov", Status="Active" },
-                new RecentActivityModel { VisitorName="Daniel Carter", Activity="Cancelled Booking", Date="19 Nov", Status="Cancelled" },
-                new RecentActivityModel { VisitorName="Emily Brown", Activity="Booked Event", Date="18 Nov", Status="Confirmed" }
-            };
+            var recentActivities = new List<RecentActivityModel>();
 
-            RecentActivityGrid.ItemsSource = recent;
+            foreach (var booking in _allBookings)
+            {
+                recentActivities.Add(new RecentActivityModel
+                {
+                    VisitorName = booking.BookingName,
+                    Activity = "Booked Event",
+                    DateTime = booking.BookingDate, 
+                });
+            }
+
+            foreach (var ev in _allEvents)
+            {
+                recentActivities.Add(new RecentActivityModel
+                {
+                    VisitorName = ev.Title,
+                    Activity = "Event Created",
+                    DateTime = ev.CreatedAt,
+                });
+            }
+
+            foreach (var user in _allUsers)
+            {
+                recentActivities.Add(new RecentActivityModel
+                {
+                    VisitorName = user.Name,
+                    Activity = "Registered Account",
+                    DateTime = user.CreatedAt,
+                });
+            }
+
+            var sortedActivities = recentActivities
+                .OrderBy(a => a.DateTime)
+                .Take(10) 
+                .ToList();
+
+            foreach (var activity in sortedActivities)
+            {
+                activity.Date = activity.DateTime.ToString("dd MMM yyyy");
+            }
+
+            RecentActivityGrid.ItemsSource = sortedActivities;
         }
     }
 

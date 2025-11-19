@@ -34,5 +34,9 @@ namespace _106_Assessment_2.Models
 
         [BsonElement("registeredUserIds")]
         public List<string> RegisteredUserIds { get; set; } = new();
+
+        [BsonElement("createdAt")]
+        public DateTime CreatedAt { get; set; }
+
     }
 }

@@ -152,7 +152,6 @@
                     <DataGridTextColumn Header="Visitor" Binding="{Binding VisitorName}" Width="200"/>
                     <DataGridTextColumn Header="Activity" Binding="{Binding Activity}" Width="250"/>
                     <DataGridTextColumn Header="Date" Binding="{Binding Date}" Width="150"/>
-                    <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="150"/>
                 </DataGrid.Columns>
             </DataGrid>
 
