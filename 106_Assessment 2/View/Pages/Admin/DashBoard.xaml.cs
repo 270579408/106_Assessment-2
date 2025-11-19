@@ -3,6 +3,7 @@ using _106_Assessment_2.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace _106_Assessment_2.View.Pages.Admin
@@ -174,16 +175,14 @@ namespace _106_Assessment_2.View.Pages.Admin
 
             RecentActivityGrid.ItemsSource = sortedActivities;
         }
+
+        private void AddEventButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Navigate to AddEventPage
+            var addEventPage = new AddEventPage();
+            this.NavigationService.Navigate(addEventPage);
+        }
+
     }
 
-    // -------------------------------------
-    // DATA MODEL FOR RECENT ACTIVITY TABLE
-    // -------------------------------------
-    public class RecentActivityModel
-    {
-        public string VisitorName { get; set; }
-        public string Activity { get; set; }
-        public string Date { get; set; }
-        public string Status { get; set; }
-    }
 }

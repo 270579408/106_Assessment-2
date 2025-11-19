@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using _106_Assessment_2.Models;
+using _106_Assessment_2.Common;
 using _106_Assessment_2.ViewModels;
 
 
@@ -85,7 +86,7 @@ namespace _106_Assessment_2.View.Pages
 
             if (!string.IsNullOrWhiteSpace(SelectedImageUrl))
             {
-                uploadedImageUrl = UploadToCloudinary(SelectedImageUrl);
+                uploadedImageUrl = Helpers.UploadToCloudinary(SelectedImageUrl, "Post");
             }
 
             Post iniPost = new Post()
@@ -112,37 +113,6 @@ namespace _106_Assessment_2.View.Pages
         }
 
 
-        private string UploadToCloudinary(string filePath)
-        {
-            if (string.IsNullOrWhiteSpace(filePath))
-                return null;
-
-            try
-            {
-                Account account = new Account(
-                    "devjm9laj",
-                    "641983795813514",
-                    "-a042HqSMoH07m00VXZXSApdTk0");
-
-                Cloudinary cloudinary = new Cloudinary(account);
-
-                var uploadParams = new ImageUploadParams()
-                {
-                    File = new FileDescription(filePath),
-                    Folder = "onewhero_bay"
-                };
-
-                var result = cloudinary.Upload(uploadParams);
-
-                if (result.StatusCode == System.Net.HttpStatusCode.OK)
-                    return result.SecureUrl.ToString();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Upload Failed: " + ex.Message);
-            }
-
-            return null;
-        }
+        
     }
 }
