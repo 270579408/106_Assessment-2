@@ -1,5 +1,6 @@
 ﻿using _106_Assessment_2.Models;
 using _106_Assessment_2.View.Pages;
+using _106_Assessment_2.ViewModels;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -14,11 +15,15 @@ namespace _106_Assessment_2.View.Pages
         private decimal DiscountPercent = 5m;
         private bool DiscountApplied = false;
 
+        private BookingViewModel _booking;
+
         public Event EventInfo { get; set; }
 
         public BookEvent(Event selectedEvent)
         {
             InitializeComponent();
+
+            _booking = new BookingViewModel();
 
             EventInfo = selectedEvent;
 
@@ -107,6 +112,21 @@ namespace _106_Assessment_2.View.Pages
             System.Threading.Thread.Sleep(500);
 
             MessageBox.Show($"Payment successful! Total paid: ${amount:F2}", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+
+            Booking b = new Booking()
+            {
+                EventId = EventInfo.Id,
+                UserId = GlobalData.CurrentUserId != null ? GlobalData.CurrentUserId : string.Empty,
+                BookingName = FullNameTxt.Text,
+                BookingEmail = EmailTxt.Text,
+                BookingPhoneNumber = string.IsNullOrWhiteSpace(PhoneTxt.Text) ? string.Empty : PhoneTxt.Text,
+                BookingSpecialReq = string.IsNullOrWhiteSpace(SpecialReqTxt.Text) ? string.Empty : SpecialReqTxt.Text,
+                TicketCount = TicketCountCombo.SelectedIndex,
+                TotalPrice = amount,
+                BookingDate = DateTime.Now,
+            };
+
+            _booking.AddBooking(b);
 
             ClearInputFields();
 
