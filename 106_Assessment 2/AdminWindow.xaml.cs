@@ -39,8 +39,8 @@ namespace _106_Assessment_2.Common
         private void Dashboard_Click(object sender, RoutedEventArgs e) => MainFrame.Navigate(new View.Pages.Admin.DashBoard());
         private void VisitorMan_Click(object sender, RoutedEventArgs e) => MainFrame.Navigate(new View.Pages.Admin.VisitorManagement());
         private void EventMan_Click(object sender, RoutedEventArgs e) => MainFrame.Navigate(new View.Pages.Admin.EventManagement());
-        private void BookingMan_Click(object sender, RoutedEventArgs e) => MainFrame.Navigate(new View.Pages.Admin.BookingManagement());
-        private void CommunityMod_Click(object sender, RoutedEventArgs e) => MainFrame.Navigate(new View.Pages.Admin.CommunityModeration());
+        private void BookingMan_Click(object sender, RoutedEventArgs e) => MainFrame.Navigate(new View.Pages.Admin.ManageBookingPage());
+        private void CommunityMod_Click(object sender, RoutedEventArgs e) => MainFrame.Navigate(new View.Pages.Admin.PostModerationPage());
         private void Report_Click(object sender, RoutedEventArgs e) => MainFrame.Navigate(new View.Pages.Admin.Reports());
 
     }

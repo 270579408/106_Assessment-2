@@ -20,9 +20,6 @@ namespace _106_Assessment_2.View.Pages.Admin
             LoadEvents();
         }
 
-        // -----------------------------------------
-        // LOAD ALL EVENTS
-        // -----------------------------------------
         private void LoadEvents()
         {
             _allEvents = _eventViewModel.GetAllEvents();
@@ -37,9 +34,6 @@ namespace _106_Assessment_2.View.Pages.Admin
             }).ToList();
         }
 
-        // -----------------------------------------
-        // SEARCH EVENTS
-        // -----------------------------------------
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
             string query = SearchTextBox.Text.Trim().ToLower();
@@ -70,23 +64,16 @@ namespace _106_Assessment_2.View.Pages.Admin
             LoadEvents();
         }
 
-        // -----------------------------------------
-        // ADD NEW EVENT
-        // -----------------------------------------
         private void AddEventButton_Click(object sender, RoutedEventArgs e)
         {
             this.NavigationService.Navigate(new AddEventPage());
         }
 
-        // Open Modify Event Page without selecting a specific event
         private void OpenModifyEventPage_Click(object sender, RoutedEventArgs e)
         {
             this.NavigationService.Navigate(new ModifyEventPage());
         }
 
-        // -----------------------------------------
-        // MODIFY EVENT (ROW BUTTON)
-        // -----------------------------------------
         private void ModifyEventFromRow_Click(object sender, RoutedEventArgs e)
         {
             string eventId = (sender as Button).Tag.ToString();
@@ -94,9 +81,6 @@ namespace _106_Assessment_2.View.Pages.Admin
             this.NavigationService.Navigate(new ModifyEventPage(eventId));
         }
 
-        // -----------------------------------------
-        // DELETE EVENT
-        // -----------------------------------------
         private void DeleteEventButton_Click(object sender, RoutedEventArgs e)
         {
             string eventId = (sender as Button).Tag.ToString();

@@ -17,9 +17,6 @@ namespace _106_Assessment_2.View.Pages.Admin
         private Event _selectedEvent;
         private string _uploadedImageUrl;
 
-        // ----------------------------------------------
-        // DEFAULT CONSTRUCTOR (dropdown-based selection)
-        // ----------------------------------------------
         public ModifyEventPage()
         {
             InitializeComponent();
@@ -27,9 +24,6 @@ namespace _106_Assessment_2.View.Pages.Admin
             LoadEvents();
         }
 
-        // ----------------------------------------------
-        // CONSTRUCTOR FOR AUTO SELECTED EVENT
-        // ----------------------------------------------
         public ModifyEventPage(string eventId)
         {
             InitializeComponent();
@@ -38,18 +32,12 @@ namespace _106_Assessment_2.View.Pages.Admin
             LoadEventById(eventId);
         }
 
-        // ----------------------------------------------
-        // LOAD ALL EVENTS INTO COMBOBOX
-        // ----------------------------------------------
         private void LoadEvents()
         {
             var events = _eventViewModel.GetAllEvents();
             EventComboBox.ItemsSource = events;
         }
 
-        // ----------------------------------------------
-        // LOAD SPECIFIC EVENT BY ID (from Modify button)
-        // ----------------------------------------------
         private void LoadEventById(string eventId)
         {
             _selectedEvent = _eventViewModel.GetEventById(eventId);
@@ -67,9 +55,6 @@ namespace _106_Assessment_2.View.Pages.Admin
             PopulateForm();
         }
 
-        // ----------------------------------------------
-        // POPULATE FORM WITH EVENT DATA
-        // ----------------------------------------------
         private void PopulateForm()
         {
             if (_selectedEvent == null) return;
@@ -83,7 +68,6 @@ namespace _106_Assessment_2.View.Pages.Admin
 
             _uploadedImageUrl = _selectedEvent.ImageUrl;
 
-            // Load preview image
             if (!string.IsNullOrEmpty(_selectedEvent.ImageUrl))
             {
                 BitmapImage bitmap = new BitmapImage(new Uri(_selectedEvent.ImageUrl));
@@ -97,9 +81,6 @@ namespace _106_Assessment_2.View.Pages.Admin
             }
         }
 
-        // ----------------------------------------------
-        // COMBOBOX SELECTION CHANGE
-        // ----------------------------------------------
         private void EventComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (EventComboBox.SelectedItem is Event ev)
@@ -109,9 +90,6 @@ namespace _106_Assessment_2.View.Pages.Admin
             }
         }
 
-        // ----------------------------------------------
-        // SELECT IMAGE BUTTON
-        // ----------------------------------------------
         private void SelectImageButton_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog dialog = new OpenFileDialog
@@ -144,9 +122,6 @@ namespace _106_Assessment_2.View.Pages.Admin
             }
         }
 
-        // ----------------------------------------------
-        // SAVE CHANGES
-        // ----------------------------------------------
         private void SaveChangesButton_Click(object sender, RoutedEventArgs e)
         {
             if (_selectedEvent == null)
@@ -156,7 +131,6 @@ namespace _106_Assessment_2.View.Pages.Admin
                 return;
             }
 
-            // Update event properties
             _selectedEvent.Title = EventTitleTextBox.Text.Trim();
             _selectedEvent.EventDate = EventDatePicker.SelectedDate ?? _selectedEvent.EventDate;
             _selectedEvent.Price = PriceTextBox.Text.Trim();
@@ -176,9 +150,6 @@ namespace _106_Assessment_2.View.Pages.Admin
             LoadEvents();
         }
 
-        // ----------------------------------------------
-        // DELETE EVENT
-        // ----------------------------------------------
         private void DeleteEventButton_Click(object sender, RoutedEventArgs e)
         {
             if (_selectedEvent == null)
@@ -206,9 +177,6 @@ namespace _106_Assessment_2.View.Pages.Admin
             }
         }
 
-        // ----------------------------------------------
-        // CLEAR FORM + RESET STATE
-        // ----------------------------------------------
         private void ClearForm()
         {
             EventComboBox.SelectedIndex = -1;

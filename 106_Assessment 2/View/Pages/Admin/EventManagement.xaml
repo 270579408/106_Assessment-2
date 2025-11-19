@@ -4,6 +4,22 @@
       Background="White"
       Title="Event Management">
 
+    <Page.Resources>
+
+        <!-- Disable clicking any cell -->
+        <Style x:Key="DisabledCellStyle" TargetType="DataGridCell">
+            <Setter Property="IsHitTestVisible" Value="False"/>
+            <Setter Property="Focusable" Value="False"/>
+        </Style>
+
+        <!-- Disable selecting rows -->
+        <Style x:Key="DisabledRowStyle" TargetType="DataGridRow">
+            <Setter Property="IsHitTestVisible" Value="False"/>
+            <Setter Property="Focusable" Value="False"/>
+        </Style>
+
+    </Page.Resources>
+
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel Margin="40">
 
@@ -22,13 +38,6 @@
                         Foreground="White"
                         Margin="0 0 10 0"
                         Click="AddEventButton_Click"/>
-
-                <Button Content="Modify Event Page"
-                        Width="160"
-                        Height="40"
-                        Background="#2196F3"
-                        Foreground="White"
-                        Click="OpenModifyEventPage_Click"/>
             </StackPanel>
 
             <TextBlock Text="Search event by title" FontSize="16"/>
@@ -60,9 +69,10 @@
                       AutoGenerateColumns="False"
                       CanUserAddRows="False"
                       HeadersVisibility="Column"
-                      RowHeight="40"
-                      FontSize="14"
-                      Height="500">
+                      IsReadOnly="True"
+                      SelectionMode="Single"
+                      SelectionUnit="Cell"
+                      >
 
                 <DataGrid.Columns>
 
