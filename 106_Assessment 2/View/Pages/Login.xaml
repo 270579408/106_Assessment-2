@@ -27,7 +27,7 @@
 
             <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 30 0 0">
                 <Button Content="Log in" Padding="20 10" Click="Login_Click" FontSize="18"
-                            Background="#C59E00" Foreground="White" BorderBrush="Transparent" Cursor="Hand"/>
+                            Background="#2E7DFF" Foreground="White" BorderBrush="Transparent" Cursor="Hand"/>
             </StackPanel>
 
             <StackPanel Grid.Row="4" Margin="0 30 0 0">

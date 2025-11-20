@@ -40,7 +40,7 @@
                 <TextBlock x:Name="FormError" Foreground="Red" FontSize="16" Height="20"/>
 
                 <Button Content="Register" Padding="20 10" HorizontalAlignment="Right"
-                            Background="#C59E00" Foreground="White" BorderBrush="Transparent" FontSize="18"
+                            Background="#2E7DFF" Foreground="White" BorderBrush="Transparent" FontSize="18"
                             Click="Register_Click"/>
 
                 <StackPanel Orientation="Horizontal" Margin="0,30,0,0">

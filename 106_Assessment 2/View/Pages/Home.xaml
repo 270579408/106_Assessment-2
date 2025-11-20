@@ -6,220 +6,253 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:userControls="clr-namespace:_106_Assessment_2.View.UserControls"
       mc:Ignorable="d"
-      d:DesignWidth="1140">
+      d:DesignWidth="1140"
+      Background="White">
 
     <ScrollViewer VerticalScrollBarVisibility="Auto"
-                  HorizontalScrollBarVisibility="Disabled"
-                  Background="White">
+                  HorizontalScrollBarVisibility="Disabled">
+
         <StackPanel>
 
-            <userControls:FeaturedBanner x:Name="FeaturedBanner" Height="700"/>
+            <!-- Featured Banner -->
+            <userControls:FeaturedBanner Height="650" x:Name="FeaturedBanner" />
 
-            <StackPanel Margin="0 50 0 0">
-                <TextBlock Text="Upcoming Events" 
-                           FontSize="24"
-                           FontWeight="SemiBold"
-                           Margin="30 0 30 0"/>
+            <!-- Upcoming Events -->
+            <StackPanel Margin="30 50 30 0">
+                <TextBlock Text="Upcoming Events"
+                           FontSize="32"
+                           FontWeight="SemiBold"/>
 
-                <Grid Margin="30 20 0 0">
+                <Grid Margin="0 20 0 0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="50"/>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="50"/>
                     </Grid.ColumnDefinitions>
 
+                    <!-- Left Scroll -->
                     <Button Grid.Column="0"
                             Content="◀"
-                            FontSize="24"
+                            FontSize="26"
                             Width="40" Height="200"
-                            VerticalAlignment="Center"
-                            Click="ScrollLeft_Click"
                             Background="Transparent"
-                            BorderBrush="Transparent"
-                            Cursor="Hand"/>
+                            BorderThickness="0"
+                            Cursor="Hand"
+                            Click="ScrollLeft_Click"/>
 
+                    <!-- Carousel Items -->
                     <ScrollViewer x:Name="EventScrollViewer"
                                   Grid.Column="1"
                                   HorizontalScrollBarVisibility="Hidden"
                                   VerticalScrollBarVisibility="Disabled"
+                                  Margin="10 0"
                                   PreviewMouseWheel="EventScrollViewer_PreviewMouseWheel">
 
-                        <ItemsControl x:Name="EventItemsControl" ItemsSource="{Binding AllEvents}">
+                        <ItemsControl x:Name="EventItemsControl"
+                                      ItemsSource="{Binding AllEvents}">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
-                                    <StackPanel Orientation="Horizontal"/>
+                                    <StackPanel Orientation="Horizontal" />
                                 </ItemsPanelTemplate>
                             </ItemsControl.ItemsPanel>
 
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Grid Width="250" Height="270" Margin="0 0 20 0">
 
-                                        <Image Source="{Binding ImageUrl}" 
-                                               Stretch="UniformToFill"/>
+                                    <!-- Event card -->
+                                    <Border Width="260"
+                                            Height="290"
+                                            Margin="0 0 20 0"
+                                            Background="White"
+                                            CornerRadius="12"
+                                            SnapsToDevicePixels="True">
 
-                                        <Rectangle>
-                                            <Rectangle.Fill>
-                                                <LinearGradientBrush StartPoint="0,1" EndPoint="0,0">
-                                                    <GradientStop Color="#CC000000" Offset="0"/>
-                                                    <GradientStop Color="#00000000" Offset="1"/>
-                                                </LinearGradientBrush>
-                                            </Rectangle.Fill>
-                                        </Rectangle>
+                                        <Grid>
 
-                                        <StackPanel VerticalAlignment="Bottom" Margin="15">
+                                            <Image Source="{Binding ImageUrl}"
+                                                   Stretch="UniformToFill"
+                                                   ClipToBounds="True"
+                                                   />
 
-                                            <TextBlock Text="{Binding EventDate, StringFormat={}{0:MMM dd}}" 
-                                                       FontSize="28"
-                                                       Foreground="White"
-                                                       FontWeight="Bold"/>
+                                            <Rectangle>
+                                                <Rectangle.Fill>
+                                                    <LinearGradientBrush StartPoint="0,1" EndPoint="0,0">
+                                                        <GradientStop Color="#CC000000" Offset="0"/>
+                                                        <GradientStop Color="#00000000" Offset="1"/>
+                                                    </LinearGradientBrush>
+                                                </Rectangle.Fill>
+                                            </Rectangle>
 
-                                            <TextBlock Text="{Binding EventDate, StringFormat={}{0:dddd}}" 
-                                                       FontSize="16" 
-                                                       FontWeight="SemiBold"
-                                                       Foreground="White"/>
+                                            <StackPanel VerticalAlignment="Bottom"
+                                                        Margin="15">
 
-                                            <TextBlock Text="{Binding Title}" 
-                                                       FontSize="20"
-                                                       Foreground="White"
-                                                       TextWrapping="Wrap"
-                                                       Margin="0 10 0 0"/>
+                                                <TextBlock Text="{Binding EventDate, StringFormat={}{0:MMM dd}}"
+                                                           FontSize="28"
+                                                           FontWeight="Bold"
+                                                           Foreground="White"/>
 
-                                            <Button x:Name="BookBtn"
-                                                    Click="BookBtn_Click"
-                                                    Content="Book Now →"
-                                                    FontSize="20"
-                                                    Padding="0 5"
-                                                    Foreground="Black"
-                                                    Background="White"
-                                                    BorderBrush="Transparent"
-                                                    Cursor="Hand"
-                                                    Margin="0 10 0 0"
-                                                    Tag="{Binding}"   
-                                                    Visibility="Collapsed"/>
-                                        </StackPanel>
+                                                <TextBlock Text="{Binding EventDate, StringFormat={}{0:dddd}}"
+                                                           FontSize="16"
+                                                           FontWeight="SemiBold"
+                                                           Foreground="White"/>
 
-                                        <Grid.Triggers>
-                                            <EventTrigger RoutedEvent="MouseEnter">
-                                                <BeginStoryboard>
-                                                    <Storyboard>
-                                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BookBtn"
-                                                                                       Storyboard.TargetProperty="Visibility">
-                                                            <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Visible}"/>
-                                                        </ObjectAnimationUsingKeyFrames>
-                                                    </Storyboard>
-                                                </BeginStoryboard>
-                                            </EventTrigger>
+                                                <TextBlock Text="{Binding Title}"
+                                                           FontSize="18"
+                                                           Foreground="White"
+                                                           Margin="0 5 0 0"
+                                                           TextWrapping="Wrap"/>
 
-                                            <EventTrigger RoutedEvent="MouseLeave">
-                                                <BeginStoryboard>
-                                                    <Storyboard>
-                                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BookBtn"
-                                                                                       Storyboard.TargetProperty="Visibility">
-                                                            <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Collapsed}"/>
-                                                        </ObjectAnimationUsingKeyFrames>
-                                                    </Storyboard>
-                                                </BeginStoryboard>
-                                            </EventTrigger>
-                                        </Grid.Triggers>
+                                                <!-- Hover Button -->
+                                                <Button x:Name="BookBtn"
+                                                        Content="Book Now →"
+                                                        FontSize="18"
+                                                        Background="White"
+                                                        BorderBrush="Transparent"
+                                                        Foreground="Black"
+                                                        Padding="4 4"
+                                                        Margin="0 10 0 0"
+                                                        Cursor="Hand"
+                                                        Visibility="Collapsed"
+                                                        Tag="{Binding}"
+                                                        Click="BookBtn_Click"/>
+                                            </StackPanel>
 
-                                    </Grid>
+                                            <!-- Hover Animation -->
+                                            <Grid.Triggers>
+                                                <EventTrigger RoutedEvent="MouseEnter">
+                                                    <BeginStoryboard>
+                                                        <Storyboard>
+                                                            <ObjectAnimationUsingKeyFrames 
+                                                                Storyboard.TargetName="BookBtn"
+                                                                Storyboard.TargetProperty="Visibility">
+                                                                <DiscreteObjectKeyFrame Value="{x:Static Visibility.Visible}"
+                                                                                        KeyTime="0:0:0"/>
+                                                            </ObjectAnimationUsingKeyFrames>
+                                                        </Storyboard>
+                                                    </BeginStoryboard>
+                                                </EventTrigger>
+
+                                                <EventTrigger RoutedEvent="MouseLeave">
+                                                    <BeginStoryboard>
+                                                        <Storyboard>
+                                                            <ObjectAnimationUsingKeyFrames 
+                                                                Storyboard.TargetName="BookBtn"
+                                                                Storyboard.TargetProperty="Visibility">
+                                                                <DiscreteObjectKeyFrame Value="{x:Static Visibility.Collapsed}"
+                                                                                        KeyTime="0:0:0"/>
+                                                            </ObjectAnimationUsingKeyFrames>
+                                                        </Storyboard>
+                                                    </BeginStoryboard>
+                                                </EventTrigger>
+                                            </Grid.Triggers>
+
+                                        </Grid>
+                                    </Border>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
-
                     </ScrollViewer>
 
+                    <!-- Right Scroll -->
                     <Button Grid.Column="2"
                             Content="▶"
-                            FontSize="24"
+                            FontSize="26"
                             Width="40" Height="200"
-                            VerticalAlignment="Center"
-                            Click="ScrollRight_Click"
                             Background="Transparent"
-                            BorderBrush="Transparent"
-                            Cursor="Hand"/>
+                            BorderThickness="0"
+                            Cursor="Hand"
+                            Click="ScrollRight_Click"/>
+
                 </Grid>
             </StackPanel>
 
-
-            <StackPanel Margin="0 50 0 0">
+            <!-- I WANT TO -->
+            <StackPanel Margin="30 70 30 0">
                 <TextBlock Text="I WANT TO..."
-                           Foreground="Black"
-                           FontSize="28"
-                           FontWeight="SemiBold"
-                           TextAlignment="Center"/>
-
-                <Grid Margin="30 30 30 0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <userControls:ActivityItem Grid.Column="0"
-                                               ActivityItemIcon="/Resources/badge-golden.png"
-                                               ActivityItemTitle="Become a Member"/>
-                    <userControls:ActivityItem Grid.Column="1"
-                                               ActivityItemIcon="/Resources/news-golden.png"
-                                               ActivityItemTitle="Read Our Latest News"/>
-                    <userControls:ActivityItem Grid.Column="2"
-                                               ActivityItemIcon="/Resources/calendar-golden.png"
-                                               ActivityItemTitle="Find Out What's On"/>
-                    <userControls:ActivityItem Grid.Column="3"
-                                               ActivityItemIcon="/Resources/car-side-golden.png"
-                                               ActivityItemTitle="Plan My Visit"/>
-                    <userControls:ActivityItem Grid.Column="4"
-                                               ActivityItemIcon="/Resources/community-golden.png"
-                                               ActivityItemTitle="Community"/>
-                </Grid>
-            </StackPanel>
-
-            <StackPanel Margin="50">
-                <TextBlock Text="Things to do"
-                           FontSize="24"
+                           FontSize="32"
                            FontWeight="SemiBold"/>
 
-                <ItemsControl ItemsSource="{Binding AllActivities}">
+                <UniformGrid Columns="5" Margin="0 30 0 0" HorizontalAlignment="Center">
+
+                    <userControls:ActivityItem ActivityItemIcon="/Resources/badge-golden.png"
+                                               ActivityItemTitle="Become a Member"/>
+                    <userControls:ActivityItem ActivityItemIcon="/Resources/news-golden.png"
+                                               ActivityItemTitle="Read Our Latest News"/>
+                    <userControls:ActivityItem ActivityItemIcon="/Resources/calendar-golden.png"
+                                               ActivityItemTitle="Find Out What's On"/>
+                    <userControls:ActivityItem ActivityItemIcon="/Resources/car-side-golden.png"
+                                               ActivityItemTitle="Plan My Visit"/>
+                    <userControls:ActivityItem ActivityItemIcon="/Resources/community-golden.png"
+                                               ActivityItemTitle="Community"/>
+
+                </UniformGrid>
+            </StackPanel>
+
+            <!-- Things to Do -->
+            <StackPanel Margin="30 70 30 40">
+                <TextBlock Text="Things to do"
+                           FontSize="32"
+                           FontWeight="SemiBold"/>
+
+                <ItemsControl ItemsSource="{Binding AllActivities}"
+                              Margin="0 30 0 0">
+
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <UniformGrid Columns="3" />
+                            <UniformGrid Columns="3"/>
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
 
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Grid Width="400" Height="300" Margin="0 20 20 20">
-                                <Image Source="{Binding ImageUrl}" 
-                                       Stretch="UniformToFill"/>
-                                <Rectangle>
-                                    <Rectangle.Fill>
-                                        <LinearGradientBrush StartPoint="0,1" EndPoint="0,0">
-                                            <GradientStop Color="#CC000000" Offset="0"/>
-                                            <GradientStop Color="#00000000" Offset="1"/>
-                                        </LinearGradientBrush>
-                                    </Rectangle.Fill>
-                                </Rectangle>
 
-                                <StackPanel VerticalAlignment="Bottom" Margin="15 0 15 25">
-                                    <TextBlock Text="{Binding Title}" 
-                                               FontSize="24"
-                                               Foreground="White"
-                                               FontWeight="SemiBold"/>
+                            <Border Width="360"
+                                    Height="280"
+                                    Margin="0 25 25 25"
+                                    CornerRadius="12"
+                                    Background="White">
 
-                                    <TextBlock Text="{Binding Description}" 
-                                               FontSize="16"
-                                               Foreground="White"
-                                               Margin="0 5 0 0"/>
-                                </StackPanel>
-                            </Grid>
+                                <Grid>
+                                    <Image Source="{Binding ImageUrl}" 
+                                           Stretch="UniformToFill"
+                                           ClipToBounds="True"
+                                           />
+
+                                    <Rectangle>
+                                        <Rectangle.Fill>
+                                            <LinearGradientBrush StartPoint="0,1" EndPoint="0,0">
+                                                <GradientStop Color="#CC000000" Offset="0"/>
+                                                <GradientStop Color="#00000000" Offset="1"/>
+                                            </LinearGradientBrush>
+                                        </Rectangle.Fill>
+                                    </Rectangle>
+
+                                    <StackPanel VerticalAlignment="Bottom"
+                                                Margin="15 0 15 20">
+
+                                        <TextBlock Text="{Binding Title}"
+                                                   FontSize="22"
+                                                   FontWeight="SemiBold"
+                                                   Foreground="White"/>
+
+                                        <TextBlock Text="{Binding Description}"
+                                                   FontSize="15"
+                                                   Foreground="White"
+                                                   Margin="0 5 0 0"
+                                                   TextWrapping="Wrap"/>
+                                    </StackPanel>
+                                </Grid>
+
+                            </Border>
+
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
+
                 </ItemsControl>
+
             </StackPanel>
 
         </StackPanel>
+
     </ScrollViewer>
 </Page>

@@ -6,119 +6,98 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:userControls="clr-namespace:_106_Assessment_2.View.UserControls"
       mc:Ignorable="d"
+      Background="White"
       d:DesignWidth="1140"
-      d:DesignHeight="1024"
-      Background="White">
+      d:DesignHeight="1024">
 
     <ScrollViewer VerticalScrollBarVisibility="Auto"
-              HorizontalScrollBarVisibility="Disabled"
-              Background="White">
-        <StackPanel>
+                  HorizontalScrollBarVisibility="Disabled"
+                  Background="White">
+
+        <!-- Main container (same as Home page structure) -->
+        <StackPanel Margin="40 20 40 40">
+
             <!-- Title -->
             <TextBlock Text="Things to do"
                        FontSize="32"
                        FontWeight="SemiBold"
-                       Margin="30 30 30 0"/>
-            <!-- Items -->
-            <StackPanel Margin="30 30 30 0">
-                <ItemsControl ItemsSource="{Binding AllActivities}">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <!--<WrapPanel Orientation="Horizontal" ItemWidth="400" ItemHeight="300"/>-->
-                            <UniformGrid Columns="3" />
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
+                       Margin="0 10 0 20"/>
 
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Width="400" Height="300" Margin="0 20 20 20">
-                                <Image Source="{Binding ImageUrl}" 
-                           Stretch="UniformToFill" 
-                           VerticalAlignment="Center"/>
-                                <Rectangle>
+            <!-- Activities Grid -->
+            <ItemsControl ItemsSource="{Binding AllActivities}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns="3" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Margin="0 20 20 20"
+                                CornerRadius="10"
+                                Background="White"
+                                Width="330"
+                                Height="260"
+                                SnapsToDevicePixels="True">
+                            <Grid>
+                                <!-- Activity Image -->
+                                <Image Source="{Binding ImageUrl}"
+                                       Stretch="UniformToFill"
+                                       ClipToBounds="True" />
+
+                                <!-- Overlay -->
+                                <Rectangle VerticalAlignment="Bottom" Height="110">
                                     <Rectangle.Fill>
-                                        <LinearGradientBrush EndPoint="0,0" StartPoint="0,1">
+                                        <LinearGradientBrush StartPoint="0,1" EndPoint="0,0">
                                             <GradientStop Color="#CC000000" Offset="0"/>
                                             <GradientStop Color="#00000000" Offset="1"/>
                                         </LinearGradientBrush>
                                     </Rectangle.Fill>
                                 </Rectangle>
 
-                                <StackPanel VerticalAlignment="Bottom" Margin="15 0 15 25">
-                                    <TextBlock Text="{Binding Title}" 
-                                    FontSize="24"
-                                    Foreground="White"
-                                    FontWeight="SemiBold"
-                                    TextWrapping="Wrap"/>
+                                <!-- Text -->
+                                <StackPanel VerticalAlignment="Bottom"
+                                            Margin="15 0 15 15">
+                                    <TextBlock Text="{Binding Title}"
+                                               FontSize="20"
+                                               FontWeight="SemiBold"
+                                               Foreground="White"
+                                               TextWrapping="Wrap"
+                                               Margin="0 0 0 5"/>
 
-                                    <TextBlock Text="{Binding Description}" 
-                                    FontSize="16"
-                                    Foreground="White"
-                                    TextWrapping="Wrap"
-                                    Margin="0 5 0 0"/>
+                                    <TextBlock Text="{Binding Description}"
+                                               FontSize="14"
+                                               Foreground="White"
+                                               TextWrapping="Wrap" />
                                 </StackPanel>
+
                             </Grid>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
 
             <!-- Banner -->
-            <Grid Height="100" Width="1200" Margin="0 50 0 0">
-                <Image Source="/Resources/bird-in-mountain.jpg" Stretch="UniformToFill" VerticalAlignment="Center"/>
+            <Grid Height="130"
+                  Margin="0 40 0 0"
+                  Background="#222">
+
+                <Image Source="/Resources/bird-in-mountain.jpg"
+                       Stretch="UniformToFill"
+                       Opacity="0.6"/>
+
                 <TextBlock Text="“Ready to explore? Plan your visit today and experience the best of Onewhero Bay Heritage Park.”"
-                           FontSize="24"
+                           FontSize="22"
                            FontWeight="Bold"
                            Foreground="White"
-                           VerticalAlignment="Center"
                            HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
                            TextWrapping="Wrap"
-                           TextAlignment="Center"/>
-            </Grid>
-            <!-- Plan your visit section -->
-            <!--<StackPanel Margin="0 50 0 0">
-                <TextBlock Text="PLAN YOUR VISIT"
-                           FontWeight="SemiBold"
                            TextAlignment="Center"
-                           FontSize="40"
-                           Margin="30 0 0 20"/>
+                           Width="800"/>
+            </Grid>
 
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <userControls:Items ItemIcon="/Resources/clock-golden.png" 
-                                        ItemTitle="Opening Hours"
-                                        Margin="30 0"/>
-
-                    <userControls:Items ItemIcon="/Resources/ticket-golden.png" 
-                                        ItemTitle="Buy Tickets"
-                                        Margin="30 0"/>
-
-                    <userControls:Items ItemIcon="/Resources/map-golden.png" 
-                                        ItemTitle="Getting Here"
-                                        Margin="30 0"/>
-
-                    <userControls:Items ItemIcon="/Resources/calendar-golden.png" 
-                                        ItemTitle="Upcoming Events"
-                                        Margin="30 0"/>
-
-                    <userControls:Items ItemIcon="/Resources/leaf-maple-golden.png" 
-                                        ItemTitle="Facilities"
-                                        Margin="30 0"/>
-                </StackPanel>
-
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <userControls:Items ItemIcon="/Resources/basket-golden.png" 
-                        ItemTitle="What to Bring?"
-                        Margin="30 0"/>
-
-                    <userControls:Items ItemIcon="/Resources/tiger-golden.png" 
-                        ItemTitle="Wildlife Encounters"
-                        Margin="30 0"/>
-
-                    <userControls:Items ItemIcon="/Resources/landmark-golden.png" 
-                        ItemTitle="Heritage and Culture"
-                        Margin="30 0"/>
-                </StackPanel>
-            </StackPanel>-->
         </StackPanel>
+
     </ScrollViewer>
 </Page>

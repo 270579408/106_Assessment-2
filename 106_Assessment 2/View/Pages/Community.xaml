@@ -1,139 +1,155 @@
 ﻿<Page x:Class="_106_Assessment_2.View.Pages.Community"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      Title="Events"
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:userControls="clr-namespace:_106_Assessment_2.View.UserControls"
       xmlns:models="clr-namespace:_106_Assessment_2.Models"
-      mc:Ignorable="d"
-      d:DesignWidth="1140"
-      d:DesignHeight="1024"
-      Background="White">
+      xmlns:userControls="clr-namespace:_106_Assessment_2.View.UserControls"
+      Background="#F7F7F7">
 
-    <ScrollViewer VerticalScrollBarVisibility="Auto"
-                  HorizontalScrollBarVisibility="Disabled"
-                  Background="White">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="30">
 
-        <StackPanel>
-
-            <!-- Title -->
+            <!-- PAGE TITLE -->
             <TextBlock Text="Community"
-                       FontSize="32"
-                       FontWeight="SemiBold"
-                       Margin="30 30 30 0"/>
+                       FontSize="36"
+                       FontWeight="Bold"
+                       Foreground="#2E2E2E"
+                       Margin="0 0 0 20"/>
 
-            <Grid Margin="0 30 0 5">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
+            <!-- POST INPUT CARD -->
+            <Border Background="White"
+                    CornerRadius="12"
+                    Padding="20"
+                    BorderBrush="#E3E3E3"
+                    BorderThickness="1"
+                    Margin="0 0 0 25">
 
-                <Grid x:Name="SelectedImageRow" Visibility="Hidden">
-                    <Image Grid.Row="0"
-                       Height="Auto"
-                       MaxHeight="100"
-                       Stretch="Uniform"
-                       Margin="30 0 0 0"
-                       HorizontalAlignment="Left"
-                       x:Name="SelectedImage" />
+                <StackPanel>
 
-                    <Button Width="20"
-                            Height="20"
-                            VerticalAlignment="Top"
-                            HorizontalAlignment="Left"
-                            Panel.ZIndex="1"
-                            Margin="30 0 0 0"
-                            Cursor="Hand"
-                            Click="RemoveImage_Click">
-                        <Image Source="/Resources/times.png"
-                               Height="15"/>
-                    </Button>
-                </Grid>
+                    <!-- IMAGE PREVIEW -->
+                    <Grid x:Name="SelectedImageRow"
+                          Visibility="Hidden"
+                          Margin="0 0 0 15">
 
-                <Grid Margin="30 0 30 0" Grid.Row="1">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
+                        <Border Width="200"
+                                MaxHeight="120"
+                                CornerRadius="10"
+                                ClipToBounds="True"
+                                BorderBrush="#D0D0D0"
+                                BorderThickness="1"
+                                HorizontalAlignment="Left">
+                            <Image x:Name="SelectedImage"
+                                   Stretch="UniformToFill"
+                                   />
+                        </Border>
 
-                    <Border Grid.Column="0" 
-                    CornerRadius="5" 
-                    BorderThickness="1" 
-                    BorderBrush="Black">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
+                        <Button Width="28"
+                                Height="28"
+                                VerticalAlignment="Top"
+                                HorizontalAlignment="Left"
+                                Margin="5"
+                                Background="White"
+                                BorderThickness="0"
+                                Cursor="Hand"
+                                Click="RemoveImage_Click">
+                            <Image Source="/Resources/times.png"
+                                   Width="15" Height="15"/>
+                        </Button>
+                    </Grid>
 
-                            <Grid Grid.Column="0">
-                                <TextBlock Text="Type a message..." 
-                                   VerticalAlignment="Top"
-                                   FontSize="20"
-                                   Padding="15 10"
-                                   Foreground="#636363"
-                                   x:Name="Placeholder_Input"/>
+                    <!-- TEXTBOX + SEND -->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
 
-                                <TextBox Height="100" 
-                                         Background="Transparent" 
-                                         BorderBrush="Transparent"
-                                         VerticalContentAlignment="Top"
-                                         FontSize="20"
-                                         Padding="15 10"
-                                         x:Name="MessageInput"
+                        <!-- INPUT AREA -->
+                        <Border Grid.Column="0"
+                                Padding="10"
+                                CornerRadius="10"
+                                BorderBrush="#D0D0D0"
+                                BorderThickness="1"
+                                Background="White">
+
+                            <Grid>
+                                <TextBlock Text="Type a message..."
+                                           x:Name="Placeholder_Input"
+                                           FontSize="18"
+                                           Foreground="#888"
+                                           Margin="5 5 5 0"
+                                           VerticalAlignment="Top"/>
+
+                                <TextBox x:Name="MessageInput"
+                                         FontSize="18"
+                                         Background="Transparent"
+                                         BorderThickness="0"
                                          AcceptsReturn="True"
-                                         VerticalScrollBarVisibility="Visible"
                                          TextWrapping="Wrap"
+                                         VerticalScrollBarVisibility="Auto"
+                                         Height="80"
                                          TextChanged="Input_TextChanged"/>
                             </Grid>
+                        </Border>
 
-                            <Button Grid.Column="1" 
-                            Background="Transparent" 
-                            BorderBrush="Transparent" 
-                            BorderThickness="0" 
-                            Padding="0" 
+                        <!-- SEND BUTTON -->
+                        <Button Grid.Column="1"
+                                Margin="10 0 0 0"
+                                Background="Transparent"
+                                BorderThickness="0"
+                                Cursor="Hand"
+                                Click="SendMessage_Click">
+                            <Image Source="/Resources/sent-alt.png"
+                                   Width="35"
+                                   Height="35"/>
+                        </Button>
+
+                    </Grid>
+
+                    <!-- ADD IMAGE BUTTON -->
+                    <Button Background="#EFEFEF"
+                            Padding="10"
+                            Width="140"
+                            HorizontalAlignment="Left"
+                            BorderBrush="#C8C8C8"
+                            BorderThickness="1"
+                            Margin="0 15 0 0"
                             Cursor="Hand"
-                            Click="SendMessage_Click">
-                                <Image Source="/Resources/sent-alt.png" 
-                           Height="25" 
-                           Width="25" 
-                           VerticalAlignment="Center" 
-                           Margin="15 0"
-                           Grid.Column="1"/>
-                            </Button>
-                        </Grid>
-                    </Border>
-                    <Button Grid.Column="1"
-                        Background="Transparent" 
-                        BorderBrush="Transparent" 
-                        BorderThickness="0"
-                        Cursor="Hand"
-                        Padding="10"
-                        Margin="20 0 0 0"
-                        Click="SelectImage_Click">
-                        <Image Source="/Resources/add.png" 
-                           Height="35" 
-                           Width="35" 
-                           VerticalAlignment="Center"
-                           Grid.Column="1"/>
+                            Click="SelectImage_Click">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Image Source="/Resources/add.png" Width="25" Height="25" Margin="0 0 8 0"/>
+                            <TextBlock Text="Add Image" FontSize="18" VerticalAlignment="Center"/>
+                        </StackPanel>
                     </Button>
-                </Grid>
-            </Grid>
-            
+
+                </StackPanel>
+            </Border>
+
+
+
+            <!-- POSTS FEED -->
             <ItemsControl x:Name="PostItemControl">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <StackPanel Width="600" Margin="0 50 0 0"/>
+                        <StackPanel Width="650"
+                                    Margin="0 10 0 0"
+                                    HorizontalAlignment="Center"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
 
                 <ItemsControl.ItemTemplate>
                     <DataTemplate DataType="{x:Type models:Post}">
-                        <userControls:PostItem Data="{Binding}"/>
+                        <Border Background="White"
+                                CornerRadius="12"
+                                BorderBrush="#E3E3E3"
+                                BorderThickness="1"
+                                Padding="10"
+                                Margin="0 20 0 0">
+                            <userControls:PostItem Data="{Binding}"/>
+                        </Border>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
+
         </StackPanel>
     </ScrollViewer>
 </Page>
