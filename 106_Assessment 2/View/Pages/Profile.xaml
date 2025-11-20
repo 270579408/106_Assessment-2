@@ -73,6 +73,18 @@
                             Width="150"
                             Margin="0 20 0 0"
                             HorizontalAlignment="Left"/>
+                    
+                    <Button Content="Logout"
+                            Padding="20 10"
+                            FontSize="18"
+                            Background="#2E7DFF"
+                            Foreground="White"
+                            BorderBrush="Transparent"
+                            Cursor="Hand"
+                            Width="150"
+                            Margin="0 20 0 0"
+                            HorizontalAlignment="Left"
+                            Click="Logout_Click"/>
                 </StackPanel>
             </StackPanel>
 

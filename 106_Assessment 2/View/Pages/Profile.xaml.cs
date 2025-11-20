@@ -43,5 +43,14 @@ namespace _106_Assessment_2.View.Pages
             Community_Btn.Background = System.Windows.Media.Brushes.Transparent;
         }
 
+        private void Logout_Click(object sender, RoutedEventArgs e)
+        {
+            GlobalData.CurrentUserId = "";
+            GlobalData.CurrentUserName = "";
+            GlobalData.CurrentUserEmail = "";
+            var main = new MainWindow();
+            main.Show();
+            main.ChangeProfileNameSideBar("Login");
+        }
     }
 }
