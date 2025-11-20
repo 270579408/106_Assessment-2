@@ -11,10 +11,12 @@ namespace _106_Assessment_2.View.Pages
     public partial class Login : Page
     {
         private readonly RegisterViewModel _registerViewModel;
+        private readonly AdministratorViewModel _administratorViewModel;
         public Login()
         {
             InitializeComponent();
             _registerViewModel = new RegisterViewModel();
+            _administratorViewModel = new AdministratorViewModel();
         }
 
         private void Login_Click(object sender, RoutedEventArgs e)
@@ -22,16 +24,24 @@ namespace _106_Assessment_2.View.Pages
             if(string.IsNullOrWhiteSpace(txtEmail.Text) || string.IsNullOrWhiteSpace(pwdPassword.Password)) FormError.Text = "* All Fields are required.";
             else
             {
-                User user = _registerViewModel.GetUserByEmail(txtEmail.Text);
-                if (user.Email == "admin@onewhero.nz")
+                if (txtEmail.Text== "admin@onewhero.co.nz")
                 {
-                    var adminWindow = new AdminWindow();
-                    adminWindow.Show();
+                    Administrator admin = _administratorViewModel.GetUserByEmail(txtEmail.Text);
 
-                    Window.GetWindow(this)?.Close();
+                    if(BCrypt.Net.BCrypt.Verify(pwdPassword.Password, admin.Password))
+                    {
+                        var adminWindow = new AdminWindow();
+                        adminWindow.Show();
+
+                        Window.GetWindow(this)?.Close();
+                    } else
+                    {
+                        FormError.Text = "* Password Not Matched";
+                    }
                     return;
                 }
 
+                User user = _registerViewModel.GetUserByEmail(txtEmail.Text);
                 if (user != null)
                 {
                     if(BCrypt.Net.BCrypt.Verify(pwdPassword.Password, user.PasswordHash))
