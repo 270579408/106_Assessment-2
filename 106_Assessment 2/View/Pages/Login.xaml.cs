@@ -54,6 +54,8 @@ namespace _106_Assessment_2.View.Pages
                         main.Show();
 
                         Window.GetWindow(this)?.Close();
+
+                        main.ChangeProfileNameSideBar(user.Name);
                     } else
                     {
                         FormError.Text = "* Password Not Matched";

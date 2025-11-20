@@ -39,6 +39,14 @@ namespace _106_Assessment_2.View.Pages
                 };
 
                 _registerViewModel.AddUser(visitor);
+
+                var main = new MainWindow();
+                main.Show();
+
+                main.ChangeProfileNameSideBar(visitor.Name);
+
+                Window.GetWindow(this)?.Close();
+
                 MessageBox.Show("User register Successfully.");
             }
         }
