@@ -35,10 +35,16 @@ namespace _106_Assessment_2.View.Pages
                 {
                     Name = txtName.Text,
                     Email = txtEmail.Text,
-                    PasswordHash = passHashed
+                    PasswordHash = passHashed,
+                    CreatedAt = System.DateTime.Now
                 };
 
                 _registerViewModel.AddUser(visitor);
+                User regUser = _registerViewModel.GetUserByEmail(visitor.Email);
+
+                GlobalData.CurrentUserId = regUser.ID;
+                GlobalData.CurrentUserName = regUser.Name;
+                GlobalData.CurrentUserEmail = regUser.Email;
 
                 var main = new MainWindow();
                 main.Show();

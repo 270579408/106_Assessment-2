@@ -45,12 +45,16 @@ namespace _106_Assessment_2.View.Pages
 
         private void Logout_Click(object sender, RoutedEventArgs e)
         {
-            GlobalData.CurrentUserId = "";
-            GlobalData.CurrentUserName = "";
-            GlobalData.CurrentUserEmail = "";
-            var main = new MainWindow();
-            main.Show();
+            GlobalData.CurrentUserId = String.Empty;
+            GlobalData.CurrentUserName = String.Empty;
+            GlobalData.CurrentUserEmail = String.Empty;
+            var main = Application.Current.MainWindow as MainWindow;
+
+            // Refresh sidebar username
             main.ChangeProfileNameSideBar("Login");
+
+            // Navigate back to login page
+            main.MainFrame.Navigate(new Login());
         }
     }
 }

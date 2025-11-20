@@ -40,7 +40,7 @@ namespace _106_Assessment_2
 
         public void NavigateToProfile()
         {
-            if(GlobalData.CurrentUserId != null && GlobalData.CurrentUserEmail != null && GlobalData.CurrentUserName != null)
+            if(GlobalData.CurrentUserId != string.Empty && GlobalData.CurrentUserEmail != string.Empty && GlobalData.CurrentUserName != string.Empty)
                 MainFrame.Navigate(new View.Pages.Profile());
             else
                 MainFrame.Navigate(new View.Pages.Login());

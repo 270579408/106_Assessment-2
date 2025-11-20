@@ -42,9 +42,9 @@ namespace _106_Assessment_2.View.Pages
             TicketCountCombo.SelectedIndex = 0;
             UpdateTotalPrice();
 
-            PromotionBanner.Visibility = !(GlobalData.CurrentUserId == null &&
-                GlobalData.CurrentUserEmail == null &&
-                GlobalData.CurrentUserName == null) ? Visibility.Collapsed : Visibility.Visible;
+            PromotionBanner.Visibility = !(GlobalData.CurrentUserId == String.Empty &&
+                GlobalData.CurrentUserEmail == String.Empty &&
+                GlobalData.CurrentUserName == String.Empty) ? Visibility.Collapsed : Visibility.Visible;
         }
 
         private void TicketCountCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -61,9 +61,9 @@ namespace _106_Assessment_2.View.Pages
 
                 DiscountApplied = false;
 
-                if (!(GlobalData.CurrentUserId == null &&
-                GlobalData.CurrentUserEmail == null &&
-                GlobalData.CurrentUserName == null))
+                if (!(GlobalData.CurrentUserId == String.Empty &&
+                GlobalData.CurrentUserEmail == String.Empty &&
+                GlobalData.CurrentUserName == String.Empty))
                 {
                     total -= total * (DiscountPercent / 100);
                     DiscountApplied = true;
@@ -144,9 +144,9 @@ namespace _106_Assessment_2.View.Pages
             }
 
             decimal total = EventPrice * count;
-            if (!(GlobalData.CurrentUserId == null &&
-                GlobalData.CurrentUserEmail == null &&
-                GlobalData.CurrentUserName == null))
+            if (!(GlobalData.CurrentUserId == String.Empty &&
+                GlobalData.CurrentUserEmail == String.Empty &&
+                GlobalData.CurrentUserName == String.Empty))
             {
                 total -= total * (DiscountPercent / 100);
             }

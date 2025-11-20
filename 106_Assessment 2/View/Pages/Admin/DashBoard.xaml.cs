@@ -204,6 +204,20 @@ namespace _106_Assessment_2.View.Pages.Admin
             this.NavigationService.Navigate(postModerationPage);
         }
 
+        private void Logout_Click(object sender, RoutedEventArgs e)
+        {
+            GlobalData.CurrentUserId = "";
+            GlobalData.CurrentUserName = "";
+            GlobalData.CurrentUserEmail = "";
+            var main = Application.Current.MainWindow as MainWindow;
+
+            // Refresh sidebar username
+            main.ChangeProfileNameSideBar("Login");
+
+            // Navigate back to login page
+            main.MainFrame.Navigate(new Login());
+        }
+
     }
 
 }
