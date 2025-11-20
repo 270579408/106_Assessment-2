@@ -1,6 +1,7 @@
-﻿using MongoDB.Driver;
-using _106_Assessment_2.Data;
+﻿using _106_Assessment_2.Data;
 using _106_Assessment_2.Models;
+using _106_Assessment_2.View.Pages;
+using MongoDB.Driver;
 
 namespace _106_Assessment_2.ViewModels
 {
@@ -22,6 +23,11 @@ namespace _106_Assessment_2.ViewModels
         public List<Booking> GetAllBooking()
         {
             return _bookings.Find(_ => true).ToList();
+        }
+
+        public List<Booking> GetBookingById(string id)
+        {
+            return _bookings.Find(u => u.UserId == id).ToList();
         }
 
         public void DeleteBooking(string bookingId)

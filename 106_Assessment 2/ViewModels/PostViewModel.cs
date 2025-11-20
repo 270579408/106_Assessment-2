@@ -24,6 +24,11 @@ namespace _106_Assessment_2.ViewModels
             return _posts.Find(_ => true).ToList();
         }
 
+        public List<Post> GetPostsById(string id)
+        {
+            return _posts.Find(u => u.UploaderId == id).ToList();
+        }
+
         public bool DeletePost(string postId)
         {
             var filter = Builders<Post>.Filter.Eq(p => p.Id, postId);
